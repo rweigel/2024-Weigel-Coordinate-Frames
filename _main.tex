@@ -3,6 +3,7 @@
 %\usepackage{hyperref}
 \usepackage{lineno}
 \usepackage{todonotes}
+\usepackage{subcaption}
 \usepackage[inline]{trackchanges} %for better track changes. finalnew option will compile document with changes incorporated.
 \usepackage{soul}
 \linenumbers
@@ -178,6 +179,30 @@ A third example involves tracing magnetic field lines from the location of a sat
 
 \subsection{Ephemeris}
 \label{sect:comparisons_ephemeris}
+\clearpage
+\begin{figure}[h]
+     \centering
+     \begin{subfigure}[b]{0.49\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{figures/Geotail_GCI_SSCWeb_vs_CDAWeb.pdf}
+     \end{subfigure}
+     \begin{subfigure}[b]{0.49\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{figures/Geotail_GSE_SSCWeb_vs_CDAWeb.pdf}
+     \end{subfigure}
+     \begin{subfigure}[b]{0.49\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{figures/Geotail_GSM_SSCWeb_vs_CDAWeb.pdf}
+     \end{subfigure}
+     \begin{subfigure}[b]{0.49\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{figures/Geotail_J2K_SSCWeb_vs_CDAWeb.pdf}
+     \end{subfigure}
+     \caption{}
+     \label{fig:geotail}
+\end{figure}
+
+\clearpage
 
 In the following, the location of the Geotail spacecraft at \texttt{2021-11-25T00:00:00.000Z} in the \texttt{GSM} and \texttt{GSE} reference frame is given from two sources. The results from CDAWeb are drawn from the \texttt{GE\_OR\_DEF} dataset parameters with parameters named \texttt{GSE} and \texttt{GSM}.
 
