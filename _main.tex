@@ -109,6 +109,8 @@ Terminology related to reference systems and frames also varies in other fields.
 
 In this section, we provide an example of the diversity of definitions and usage of \texttt{GEI}--related reference frames. We also note that there is not consistency in the expansion of the acronym ``\texttt{GEI}''. \citeA{Russell1971} and \citeA{Hapgood1992} associate \texttt{GEI} with ``Geocentric Equatorial Inertial System". \citeA{Franz2002} and \citeA{SunPy} associate \texttt{GEI} with ``Geocentric Earth Equatorial".
 
+Another definition ambiguity is in \texttt{GCI}; \citeA{SSCWeb} notes ``Geocentric Inertial (GCI) and Earth-Centered Inertial (ECI) are the same as GEI.", which implicitly defines \texttt{GCI} as ``Geocentric Inertial'', in contrast to  \citeA{Russell1971}, which uses ``Geocentric Celestial Inertial''. 
+
 Two basic categories of the \texttt{GEI}-related reference systems are commonly used: inertial and non-inertial. The following acronyms are associated with an inertial reference system, an idealized system that is not rotating with respect to the stars at an infinite distance from its origin and with an origin that translates with constant velocity \cite{NAIFOverview2023}.
 % Notes infinite distance https://ntrs.nasa.gov/api/citations/19740026178/downloads/19740026178.pdf but not zero acceleration
 
@@ -179,24 +181,42 @@ A third example involves tracing magnetic field lines from the location of a sat
 
 \subsection{Ephemeris}
 \label{sect:comparisons_ephemeris}
+
+In this section, we give examples of how ephemeris values from data providers can differ.
+
+In Figure~\ref{fig:geotail}, the ephemeris of the Geotail satellite from \texttt{2021-11-25} through \texttt{2021-12-05} is shown from the \citeA{SSCWeb} web service and CDF files in \citeA{CDAWeb}. SSCWeb provides the ephemeris for scientific satellites in various reference systems, including \texttt{GEI}, \texttt{J2K}, \texttt{GSE}, and \texttt{GSM}. The \texttt{GE\_OR\_DEF} dataset has ephemeris in the \texttt{GCI}, \texttt{GSE}, and \texttt{GSM} reference systems.
+
+Figure~\ref{fig:geotail}, which shows calculations of the average distance, $\overline{r}$, from the two providers and errors relative to an Earth radius, $R_E=6378.16$~km, which is the value used by SSCWeb. SSCWeb reports ephemeris to two decimal places as a fraction of $R_E$, while the CDAWeb dataset has values stored in km as 64--bit floats and has a recommended display precision of eight decimal places.
+
+Based on the documentation for \citeA{SSCWeb}, which notes ``Geocentric Inertial (GCI) and Earth-Centered Inertial (ECI) are the same as GEI." we expect the SSCWeb/GEI and CDAWeb/GCI to be identical to the level of precision of the data. The result is shown in Figure~\ref{fig:geotail}(a). The angular difference in the position vector is ~$0.3^\circ$ and the average error relative to an Earth radius, $|\Delta r|/R_E\sim 0.1$, or 10\%. The maximum error relative to the radius, $|\Delta r|/\overline{r}$ is $1/187$, or $0.5$\%.
+
+In Figure~\ref{fig:geotail}(b), there is a much closer match between SSCWeb/J2K and CDAWeb/GCI.
+
+% The associated SPASE record has GCI translated to GEI
+% https://hpde.io/JAXA/NumericalData/Geotail/Ephemeris/PT10M
+
 \clearpage
 \begin{figure}[h]
-     \centering
      \begin{subfigure}[b]{0.49\textwidth}
+         (a) SSCWeb GEI and CDAWeb GCI
          \centering
-         \includegraphics[width=\textwidth]{figures/Geotail_GCI_SSCWeb_vs_CDAWeb.pdf}
+         \includegraphics[width=\textwidth]{figures/Geotail_SSCWeb-GEI_vs_CDAWeb-GCI.pdf}
      \end{subfigure}
      \begin{subfigure}[b]{0.49\textwidth}
+         (b) SSCWeb J2K and CDAWeb GCI
          \centering
-         \includegraphics[width=\textwidth]{figures/Geotail_GSE_SSCWeb_vs_CDAWeb.pdf}
+         \includegraphics[width=\textwidth]{figures/Geotail_SSCWeb-J2K_vs_CDAWeb-GCI.pdf}
+     \end{subfigure}
+     \par\bigskip\bigskip
+     \begin{subfigure}[b]{0.49\textwidth}
+         (c)
+         \centering
+         \includegraphics[width=\textwidth]{figures/Geotail_SSCWeb-GSE_vs_CDAWeb-GSE.pdf}
      \end{subfigure}
      \begin{subfigure}[b]{0.49\textwidth}
+         (d)
          \centering
-         \includegraphics[width=\textwidth]{figures/Geotail_GSM_SSCWeb_vs_CDAWeb.pdf}
-     \end{subfigure}
-     \begin{subfigure}[b]{0.49\textwidth}
-         \centering
-         \includegraphics[width=\textwidth]{figures/Geotail_J2K_SSCWeb_vs_CDAWeb.pdf}
+         \includegraphics[width=\textwidth]{figures/Geotail_SSCWeb-GSM_vs_CDAWeb-GSM.pdf}
      \end{subfigure}
      \caption{}
      \label{fig:geotail}
@@ -204,7 +224,6 @@ A third example involves tracing magnetic field lines from the location of a sat
 
 \clearpage
 
-In the following, the location of the Geotail spacecraft at \texttt{2021-11-25T00:00:00.000Z} in the \texttt{GSM} and \texttt{GSE} reference frame is given from two sources. The results from CDAWeb are drawn from the \texttt{GE\_OR\_DEF} dataset parameters with parameters named \texttt{GSE} and \texttt{GSM}.
 
 These calculations were based on ... ISTP software. The results from \citeA{SSCWeb} were obtained using its web interface, which dynamically computes results based on ...
 
