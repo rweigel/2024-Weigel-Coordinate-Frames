@@ -1,4 +1,4 @@
-\documentclass[draft]{agujournal2019}
+    \documentclass[draft]{agujournal2019}
 \usepackage{url}
 %\usepackage{hyperref}
 \usepackage{lineno}
@@ -186,11 +186,11 @@ In this section, we give examples of how ephemeris values from data providers ca
 
 In Figure~\ref{fig:geotail}, the ephemeris of the Geotail satellite from \texttt{2021-11-25} through \texttt{2021-12-05} is shown from the \citeA{SSCWeb} web service and CDF files in \citeA{CDAWeb}. SSCWeb provides the ephemeris for scientific satellites in various reference systems, including \texttt{GEI}, \texttt{J2K}, \texttt{GSE}, and \texttt{GSM}. The \texttt{GE\_OR\_DEF} dataset has ephemeris in the \texttt{GCI}, \texttt{GSE}, and \texttt{GSM} reference systems.
 
-Figure~\ref{fig:geotail}, which shows calculations of the average distance, $\overline{r}$, from the two providers and errors relative to an Earth radius, $R_E=6378.16$~km, which is the value used by SSCWeb. SSCWeb reports ephemeris to two decimal places as a fraction of $R_E$, while the CDAWeb dataset has values stored in km as 64--bit floats and has a recommended display precision of eight decimal places.
+Figure~\ref{fig:geotail}, which shows calculations of the average distance, $\overline{r}$, from the two providers and errors relative to an Earth radius, $R_E=6378.16$~km, which is the value used by SSCWeb. We used the SSCWeb option to return data as a fraction of $R_E$ to eight decimal places. The CDAWeb dataset stores values in km as 64-bit floats and recommends a display precision of eight decimal places. The cadence of the SSCWeb data 12--minute while the CDAWeb data is at a 10--minute cadence. In the time interval displayed in Figure~\ref{fig:geotail}, values for the 240 common time stamps are shown.
 
-Based on the documentation for \citeA{SSCWeb}, which notes ``Geocentric Inertial (GCI) and Earth-Centered Inertial (ECI) are the same as GEI." we expect the SSCWeb/GEI and CDAWeb/GCI to be identical to the level of precision of the data. The result is shown in Figure~\ref{fig:geotail}(a). The angular difference in the position vector is ~$0.3^\circ$ and the average error relative to an Earth radius, $|\Delta r|/R_E\sim 0.1$, or 10\%. The maximum error relative to the radius, $|\Delta r|/\overline{r}$ is $1/187$, or $0.5$\%.
+Based on the documentation for \citeA{SSCWeb}, which notes ``Geocentric Inertial (GCI) and Earth-Centered Inertial (ECI) are the same as GEI.", we expect the SSCWeb/GEI and CDAWeb/GCI to be identical to the level of precision of the data. The result is shown in Figure~\ref{fig:geotail}(a). The average angular difference in the position vector is ~$0.3^\circ$ and the average error relative to an Earth radius, $|\Delta r|/R_E\sim 0.1$, or 10\%. The maximum error relative to the radius, $|\Delta r|/\overline{r}$ is $1/187$, or $0.5$\%.
 
-In Figure~\ref{fig:geotail}(b), there is a much closer match between SSCWeb/J2K and CDAWeb/GCI.
+In Figure~\ref{fig:geotail}(b), there is a much closer match between SSCWeb/J2K and CDAWeb/GCI, with an average angular difference in the position vector of ~$0.002^\circ$ and an average error relative to an Earth radius of $\sim 0.05$\%.
 
 % The associated SPASE record has GCI translated to GEI
 % https://hpde.io/JAXA/NumericalData/Geotail/Ephemeris/PT10M
@@ -198,12 +198,12 @@ In Figure~\ref{fig:geotail}(b), there is a much closer match between SSCWeb/J2K 
 \clearpage
 \begin{figure}[h]
      \begin{subfigure}[b]{0.49\textwidth}
-         (a) SSCWeb GEI and CDAWeb GCI
+         (a)
          \centering
          \includegraphics[width=\textwidth]{figures/Geotail_SSCWeb-GEI_vs_CDAWeb-GCI.pdf}
      \end{subfigure}
      \begin{subfigure}[b]{0.49\textwidth}
-         (b) SSCWeb J2K and CDAWeb GCI
+         (b)
          \centering
          \includegraphics[width=\textwidth]{figures/Geotail_SSCWeb-J2K_vs_CDAWeb-GCI.pdf}
      \end{subfigure}
