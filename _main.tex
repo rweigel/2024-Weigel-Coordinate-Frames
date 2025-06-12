@@ -64,18 +64,18 @@ Stephens https://orcid.org/0000-0002-5961-5582\\
 \end{keypoints}
 
 \begin{abstract}
-In space physics, acronyms for coordinate systems (e.g., \texttt{GSE}) are commonly used, but differences can exist in their definitions and implementation that prevent reproducibility. In this work, we compare definitions in frequently cited online resources and software packages and show that implementation differences can lead to transformations between same--named coordinate systems to differ significantly. We also describe duplicative efforts by spacecraft missions in developing coordinate transform software and data products. Based on these results, and to improve reproducibility, we recommend (a) a central authority maintains a citable database of reference data needed for common coordinate system transforms; (b) a standard set of acronyms and definitions for coordinate systems is developed for the reference implementations; (c) a central authority maintains the SPICE kernels for coordinate transforms used by space physics satellite missions to generate data products in different coordinate systems; and (d) software developers provide explicit comparisons of their implementations with the results of (a) or (c) and documentation on implementation choices.
+In space physics, acronyms for coordinate systems (e.g., \texttt{GSE}) are commonly used; however, differences can exist in their definitions and implementations that prevent reproducibility. In this work, we compare definitions in frequently cited online resources and software packages and show that implementation differences can lead to transformations between same--named coordinate systems to differ significantly. We also describe duplicative efforts by spacecraft missions in developing coordinate transform software and data products. Based on these results, and to improve reproducibility, we recommend (a) a central authority maintains a citable database of reference data needed for common coordinate system transforms; (b) a standard set of acronyms and definitions for coordinate systems is developed for the reference implementations; (c) a central authority maintains the SPICE kernels for coordinate transforms used by space physics satellite missions to generate data products in different coordinate systems; and (d) software developers provide explicit comparisons of their implementations with the results of (a) or (c) and documentation on implementation choices.
 \end{abstract}
 
 \section{Introduction}
 
 In space physics journal articles and software, the definition of a coordinate system is typically given by citing a reference that describes it. (Thus far, we have used the term ``coordinate system" consistent with common usage in space physics. In Section~\ref{sect:terminology}, we note that ``reference system" is more consistent with literature outside of space physics and will use ``reference system" for in the remainder of this article.)
 
-This work results from a project to develop a standard for reference system acronyms (e.g., \texttt{GEI}, \texttt{GSE}, \texttt{GSM}, and commonly used variations, e.g., \texttt{GEI\_J2000}, \texttt{GEI\_MOD}, etc.) The motivation was that, given a statement such as "the vector measurements in \texttt{ABC} were transformed into \texttt{XYZ}," a scientist with measurements in \texttt{ABC} would be able to reproduce the transformation with the only uncertainty being due to round--off error.
+This work stems from a project to develop a standard for reference system acronyms (e.g., \texttt{GEI}, \texttt{GSE}, \texttt{GSM}, and their commonly used variations, e.g., \texttt{GEI\_J2000}, \texttt{GEI\_MOD}, etc.). The motivation was that, given a statement such as "the vector measurements in \texttt{ABC} were transformed into \texttt{XYZ}," a scientist with measurements in \texttt{ABC} would be able to reproduce the transformation with the only uncertainty being due to round--off error.
 
 The primary challenge with this task is that implementing a given reference system requires implementation choices, and so in addition, definitions of reference implementations are needed (in Section~\ref{sect:definitions}, we refer to implementations of reference systems as ``reference frames"). As a result, developing a list of acronyms and associated definitions for reference frames does not address the fundamental problem of reproducibility -- implementations of the same reference frame will not necessarily be the same because implementations rely on models, and there are both independent models and multiple versions of the same model. In Section~\ref{sect:comparisons}, we give examples where different databases or software give significantly different results for transforms. 
 
-In Section~\ref{sect:missions}, we describe how missions develop data products in different reference systems and show that there is a significant duplication of effort and can be a lack of knowledge transfer from mission to mission.
+In Section~\ref{sect:missions}, we describe how missions develop data products in different reference systems and show that there is a significant duplication of effort and a lack of knowledge transfer from mission to mission.
 
 In Section~\ref{sect:conclusions}, we provide a set of recommendations based on the observations in Section~\ref{sect:definitions} and results in Section~\ref{sect:comparisons} to improve the reproducibility issue and address issues (1) and (2) above.
 
@@ -90,15 +90,15 @@ In geometry, introductory physics, and mathematics textbooks, coordinate values 
 
 \subsection{Reference Systems and Frames}
 
-In astronomy, the terms ``reference system" and ``reference frame" are used; from \citeA{USNOICRS}: ``A reference system is the complete specification of how a celestial coordinate system is to be formed. It defines the origin and fundamental planes (or axes) of the coordinate system. It also specifies all of the constants, models, and algorithms used to transform between observable quantities and reference data that conform to the system. A reference frame consists of a set of identifiable fiducial points on the sky (specific astronomical objects), along with their coordinates, that serves as the practical realization of a reference system."
+In astronomy, the terms ``reference system" and ``reference frame" are used; from \citeA{USNOICRS}: ``A reference system is the complete specification of how a celestial coordinate system is to be formed. It defines the origin and fundamental planes (or axes) of the coordinate system. It also specifies all of the constants, models, and algorithms used to transform between observable quantities and reference data that conform to the system. A reference frame consists of a set of identifiable fiducial points on the sky (specific astronomical objects), along with their coordinates, that serves as the practical realization of a reference system." (See also \citeA{Muller1985}.)
 
-In this definition, ``coordinate system" is used in a way that implies that a reference system is a coordinate system (similar to usage in space physics). However, in the previous section, we defined a coordinate system as, e.g., Cartesian, cylindrical, etc. To be consistent, we should consider a reference frame as a complete specification of quantities, such as fundamental planes, axes, and an origin, that allow measurements to be described in a coordinate system such as Cartesian, cylindrical, or spherical.
+In this definition, the term "coordinate system" is used in a manner that implies a reference system is a coordinate system (similar to its usage in space physics). However, in the previous section, we defined a coordinate system, such as Cartesian, cylindrical, etc. To be consistent, we should consider a reference system as a complete specification of quantities, such as fundamental planes, axes, and an origin, and models that allow measurements to be described in a coordinate system such as Cartesian, cylindrical, or spherical within that reference system.
 
 % As an example, we can define a reference system by stating that the origin is Earth's center of mass, the z-axis in a Cartesian coordinate system passes through the North Pole, and the y-axis is formed by rotating the z-axis 90 degrees along a path that passes through Greenwich. The north pole and Greenwich locations are as they were on DATE. The center of mass value is derived from model X on DATE.
 
 A fundamental reference system is the ``International Celestial Reference System (ICRS)" \cite{Petit2010}. No unique reference frame is associated with this reference system because creating (equivalently, ``implementing" or ``realizing") one requires measurements and models. The ``International Celestial Reference System (ICRF)" is the general name for realizations of the ICRS that are agreed upon by a standards body and are updated as new measurements and models become available. There are three versions of the IRCF \cite{Charlot2020}.
 
-Thus, in the context of the literature in astronomy, what we call ``coordinate systems" (e.g., \texttt{GSE}, \texttt{GSM}) in space physics are ``reference systems" in astronomy.  \texttt{GSE}, \texttt{GSM}, etc., in space physics have an associated definition for their orientation and origin, but there are no standards for realizations of these systems.
+Thus, in the context of the literature in astronomy, what we call ``coordinate systems" (e.g., \texttt{GSE}, \texttt{GSM}) in space physics are ``reference systems" in astronomy.  \texttt{GSE}, \texttt{GSM}, etc., in space physics have associated definitions for their orientation and origin, but there are no standards for the realization of these systems.
 
 % paragraph 1, page 21 of ~\cite{ref:Petit2010}: This recommendation further stipulates that the celestial reference system should have its principal plane as close as possible to the mean equator at J2000.0 and that the origin of this principal plane should be as close as possible to the dynamical equinox of J2000.0. This system was prepared by the IERS and was adopted by the IAU General Assembly in 1997 (23rd IAU GA, Resol. B2) under the name of the International Celestial Reference System (ICRS). It officially replaced the FK5 system on January 1, 1998, considering that all the conditions set up by the 1991 resolutions were fulfilled, including the availability of the Hipparcos optical reference frame realizing the ICRS with an accuracy significantly better than the FK5. Responsibilities for the maintenance of the system, the frame and its link to the Hipparcos reference frame have been defined by the IAU in 2000 (24th IAU GA, Resol. B1.1)
 
@@ -117,9 +117,9 @@ Two basic categories of the \texttt{GEI}-related reference systems are commonly 
 \begin{itemize}
     \parskip 0.1in 
 
-    \item \texttt{J2000} -- Used by \citeA{SSCWeb} (and \texttt{J2000.0}) to refer to a frame with its origin at Earth's center-of-mass and in SPICE to refer to as a system with origin at the solar system Barycenter (\citeA{Acton1997}; \citeA{NAIFFrames2025}). \citeA{NAIFFrames2025} notes that \texttt{J2000} is ``generally used in SPICE to refer to the ICRF" and ``The rotational offset between the \texttt{J2000} frame and the \texttt{ICRS} has magnitude of under 0.1 arcseconds." The Van Allen Probes (nee RBSP) mission used the SPICE implementation of \texttt{J2000} for \texttt{GEI}.
+    \item \texttt{J2000} -- Used by \citeA{SSCWeb} (and \texttt{J2000.0}) to refer to a frame with its origin at Earth's center-of-mass and in SPICE to refer to as a system with origin at the solar system Barycenter (\citeA{Acton1997}; \citeA{NAIFFrames2025}). \citeA{NAIFFrames2025} notes that \texttt{J2000} is ``generally used in SPICE to refer to the ICRF" and ``The rotational offset between the \texttt{J2000} frame and the \texttt{ICRS} has magnitude of under 0.1 arcseconds." The Van Allen Probes (formerly Radiation Belt Storm Probe, RBSP) mission used the SPICE implementation of \texttt{J2000} for \texttt{GEI}.
 
-    \todo[inline]{Why is both ICRF and ICRS used in the  quotes above? It seems both should be ICRF (and, now, ICRF1).}
+    \todo[inline]{Why is both ICRF and ICRS used in the quotes above? It seems both should be ICRF (and, now, ICRF1).}
 
     \item \texttt{GeocentricEarthEquatorial} -- Used by \texttt{SunPy} with supporting definition of ``A coordinate or frame in the Geocentric Earth Equatorial (\texttt{GEI}) system."
     
@@ -163,7 +163,7 @@ Scientists have many options for transforming data from one coordinate system to
 
     \item It is common for space physics missions to provide multiple datasets to a data archive (e.g., SPDF/CDAWeb, CSA) for vector measurements in different coordinate systems; in this case, the scientist selects a dataset in a needed coordinate system, if available.
 
-    \item There exist data services that provide vector measurements in different coordinate systems. For example, SPDF/SSCWeb provides ephemeris values for satellites in various coordinate systems as a function of time and a calculator that takes an input of a position in a given coordinate system at a given time and produces the transformed position in various coordinate systems. 
+    \item There exist data services that provide vector measurements in different coordinate systems. For example, SPDF/SSCWeb provides ephemeris values for satellites in various coordinate systems as a function of time, along with a calculator that takes an input position in a given coordinate system at a specific time and produces the transformed position in other coordinate systems. 
 
     \item Many software packages have coordinate transform functions. For example, in Python, Astropy \cite{AstroPy2022}, SunPy \cite{SunPy}, SpacePy \cite{SpacePy}, and PySPEDAS \cite{Angelopoulos2024}. Fortran libraries include Geopack \cite{Tsyganenko2008} and IRBEM \cite{IRBEM2022}.
 
@@ -171,26 +171,36 @@ Scientists have many options for transforming data from one coordinate system to
 
 In this section, we give an example that demonstrates that the ephemeris for satellites in same--named reference systems can significantly differ depending on the source. We also show that software that transforms a vector between two reference frames can also have significant differences.
 
-It is sometimes argued that, although reference frame implementations may give different results, this uncertainty is small compared to measurement uncertainty. However, this is not always the case. We have encountered two examples where the difference in implementations mattered. In an attempt to develop a 3-D visualization program that returned the region of geospace given an arbitrary position, we implemented the models used by \cite{SSCWeb} and attempted to validate our work by comparing our predicted regions at the positions given by the web service for satellites. Although our predictions were generally consistent, we were not able to reproduce the time when a satellite crossed from one region into another. After a search for errors in our model implementation failed to explain the differences, we realized that the errors were because the software that we were using for reference frame transformation differed from that used by SSCWeb.
+It is sometimes argued that, although reference frame implementations may give different results, this uncertainty is small compared to measurement uncertainty. For example, \citeA{Hapgood1995} notes that ``The attitude error that arises from an error in the epoch used to compute \citettt{GEI} is $0.036^\circ$, which is small compared to the angular resolution of most space plasma measurements ..."
+However, having different data providers or software libraries compute \citettt{GEI} in different ways can lead to issues. 
 
-A second example of where precision matters is the inter--comparison of magnetosphere model output. Not all models are executed in the same reference frame. To compare the models, their variables must be transformed into the same coordinate frame, and the uncertainty due to this transformation must be known in order to identify the true difference in the model output.
+We have encountered two examples where the difference in implementations mattered. In an attempt to develop a 3D visualization program that returns the region of geospace given an arbitrary position, we implemented the models used by \cite{SSCWeb} and attempted to validate our work by comparing our predicted regions at the positions provided by its web service for satellites. Although our predictions were generally consistent, we were unable to reproduce the exact time when a satellite crossed from one region into another. After a search for errors in our model implementation failed to explain the differences, we realized that the errors were due to the software used for reference frame transformation differing from that used by SSCWeb.
 
-A third example involves tracing magnetic field lines from the location of a satellite to a point in the ionosphere.
+A second example of where precision matters is the inter--comparison of magnetosphere model output. Not all models are executed in the same reference frame. To compare the models, their variables must be transformed into the same coordinate frame, and the uncertainty associated with this transformation must be known to identify the true difference in the model output accurately. In addition, if the two models should, but do not match to numerical precision at certain locations or under certain conditions, it is difficult to determine the cause of the mis--match when different transforms were used. 
 
-\todo[inline]{Find example ...}
+Even if the uncertainty associated with how a given coordinate system was implemented is small relative to plasma measurements, we suggest that it does not make sense for two data providers or two software libraries to report the location of a satellite that differs by more than what is expected due to numerical precision.
+
+%A third example involves tracing magnetic field lines from the location of a satellite to a point in the ionosphere.
+%\todo[inline]{Find example ...}
 
 \subsection{Ephemeris}
 \label{sect:comparisons_ephemeris}
 
 In this section, we give examples of how ephemeris values from data providers can differ.
 
-In Figure~\ref{fig:geotail}, the ephemeris of the Geotail satellite from \texttt{2021-11-25} through \texttt{2021-12-05} is shown from the \citeA{SSCWeb} web service and CDF files in \citeA{CDAWeb}. SSCWeb provides the ephemeris for scientific satellites in various reference systems, including \texttt{GEI}, \texttt{J2K}, \texttt{GSE}, and \texttt{GSM}. The \texttt{GE\_OR\_DEF} dataset has ephemeris in the \texttt{GCI}, \texttt{GSE}, and \texttt{GSM} reference systems.
+In Figure~\ref{fig:geotail}, the ephemeris of the Geotail satellite from \texttt{2021-11-25} through \texttt{2021-12-05} is shown from the \citeA{SSCWeb} web service and CDF files in \citeA{CDAWeb}. SSCWeb provides the ephemeris for scientific satellites in reference systems that include \texttt{GEI}, \texttt{J2K}, \texttt{GSE}, and \texttt{GSM}. The \texttt{GE\_OR\_DEF} dataset has ephemeris in the \texttt{GCI}, \texttt{GSE}, and \texttt{GSM} reference systems.
 
-Figure~\ref{fig:geotail}, which shows calculations of the average distance, $\overline{r}$, from the two providers and errors relative to an Earth radius, $R_E=6378.16$~km, which is the value used by SSCWeb. We used the SSCWeb option to return data as a fraction of $R_E$ to eight decimal places. The CDAWeb dataset stores values in km as 64-bit floats and recommends a display precision of eight decimal places. The cadence of the SSCWeb data 12--minute while the CDAWeb data is at a 10--minute cadence. In the time interval displayed in Figure~\ref{fig:geotail}, values for the 240 common time stamps are shown.
+Figure~\ref{fig:geotail}, which shows calculations of the average distance, $\overline{r}$, from the two providers and errors relative to an Earth radius, $R_E=6378.16$~km, which is the value used by SSCWeb. We used the SSCWeb option to return data as a fraction of $R_E$ to eight decimal places. The CDAWeb dataset stores values in km as 64-bit floats and recommends a display precision of 10 decimal places. The cadence of the SSCWeb data 12--minute while the CDAWeb data is at a 10--minute cadence. In the time interval displayed in Figure~\ref{fig:geotail}, values for the 240 common time stamps are shown.
 
-Based on the documentation for \citeA{SSCWeb}, which notes ``Geocentric Inertial (GCI) and Earth-Centered Inertial (ECI) are the same as GEI.", we expect the SSCWeb/GEI and CDAWeb/GCI to be identical to the level of precision of the data. The result is shown in Figure~\ref{fig:geotail}(a). The average angular difference in the position vector is ~$0.3^\circ$ and the average error relative to an Earth radius, $|\Delta r|/R_E\sim 0.1$, or 10\%. The maximum error relative to the radius, $|\Delta r|/\overline{r}$ is $1/187$, or $0.5$\%.
+Based on the documentation for \citeA{SSCWeb}, which has the statement ``Geocentric Inertial (GCI) and Earth-Centered Inertial (ECI) are the same as GEI.", we expect the SSCWeb/GEI and CDAWeb/GCI to be identical to the level of precision of the data. The result is shown in Figure~\ref{fig:geotail}(a). The average angular difference in the position vector is ~$0.3^\circ$ and the average error relative to an Earth radius, $|\Delta r|/R_E\sim 0.1$, or 10\%. The maximum error relative to the radius, $|\Delta r|/\overline{r}$ is $1/187$, or $0.5$\%.
 
-In Figure~\ref{fig:geotail}(b), there is a much closer match between SSCWeb/J2K and CDAWeb/GCI, with an average angular difference in the position vector of ~$0.002^\circ$ and an average error relative to an Earth radius of $\sim 0.05$\%.
+Based on the precision of the data, we expect $|\Delta r|/R_E \simeq 10^{-10}$ given that the SSCWeb values are reported in $R_E$ to 10 decimal places. For $\overline{r}=20 R_E$, this corresponds to an uncertainty due to the precision of the data of $\Delta \theta \simeq 20\cdot (180/\pi) \cdot 10^{-10} \simeq 10^{-7}$ degrees.
+
+\citeA{Hapgood1995} finds that if a \texttt{GEI} coordinate system is used that accounts for precession, the \texttt{GEI}$_Z$ axis drifts by $\sim 0.006^\circ$ per year. As a result, if the CDAWeb GCI calculation accounted for nutation, we expect approximately a $0.006^\circ\cdot 21=0.126^\circ$ difference relative to \texttt{J2K}.
+
+In Figure~\ref{fig:geotail}(b), there is a much closer match between SSCWeb/J2K and CDAWeb/GCI, with an average angular difference in the position vector of ~$0.002^\circ$ and an average error relative to an Earth radius of $\sim 0.05$\%. These angular differences are much less than the nutation angle change of $\simeq 0.126^\circ$, but much larger than the uncertainty of $\Delta \theta \simeq 10^{-7}$ degrees due to the precision of the data.
+
+In summary, Figure~\ref{fig:geotail}(a) and (b) show that what is labeled as GCI in the CDAWeb ephemeris is much closer to SSCWeb/J2K ephemeris than SSCWeb/GEI, which is unexpected given the SSCWeb documentation that notes GCI and GEI are equivalent. Although the CDAWeb/GCI ephemeris is a better match to the SSCWeb/J2K ephemeris, the differences are not explained by the precision of the data, and the angular difference of $\sim 0.3^\circ$ is larger than expected based on the nutation formula of \citeA{Hapgood1995}, which gives $0.126^\circ$.
 
 % The associated SPASE record has GCI translated to GEI
 % https://hpde.io/JAXA/NumericalData/Geotail/Ephemeris/PT10M
@@ -224,32 +234,37 @@ In Figure~\ref{fig:geotail}(b), there is a much closer match between SSCWeb/J2K 
 
 \clearpage
 
+\begin{figure}[h]
+     \begin{subfigure}[b]{0.49\textwidth}
+         (a)
+         \centering
+         \includegraphics[width=\textwidth]{figures/MMS-2_SSCWeb-GSE_vs_CDAWeb-GSE.pdf}
+     \end{subfigure}
+     \begin{subfigure}[b]{0.49\textwidth}
+         (b)
+         \centering
+         \includegraphics[width=\textwidth]{figures/MMS-2_SSCWeb-GSE_vs_CDAWeb-GSM.pdf}
+     \end{subfigure}
+     \par\bigskip\bigskip
+     \begin{subfigure}[b]{0.49\textwidth}
+         (c)
+         \centering
+         \includegraphics[width=\textwidth]{figures/MMS-2_SSCWeb-GSE_vs_JPL-GSE.pdf}
+     \end{subfigure}
+     \begin{subfigure}[b]{0.49\textwidth}
+         (d)
+         \centering
+         \includegraphics[width=\textwidth]{figures/MMS-2_SSCWeb-GSE_vs_JPL-GSM.pdf}
+     \end{subfigure}
+     \caption{}
+     \label{fig:geotail}
+\end{figure}
 
-These calculations were based on ... ISTP software. The results from \citeA{SSCWeb} were obtained using its web interface, which dynamically computes results based on ...
+%These calculations were based on ... ISTP software. The results from \citeA{SSCWeb} were obtained using its web interface, which dynamically computes results based on ...
 
-\todo[inline]{Finish after browsing code, which is private Google Drive folder 2023_STCT_NASA}.
+%\todo[inline]{Finish after browsing code, which is private Google Drive folder 2023_STCT_NASA}.
 
-Another recommendation: service provide links to software used (sometimes not possible)
-
-\begin{verbatim}
-            X_GSE [km]    Y_GSE [km]    Z_GSE [km]
-    CDAWeb: -96913.678    112140.816    -64398.839
-    SSCWeb: -97844.503    111984.683    -64344.178
-
-            X_GSM [km]    Y_GSM [km]    Z_GSM [km]
-    CDAWeb: -96913.678    110822.349    -66642.180
-    SSCWeb: -97844.503    110030.273    -67631.954
-\end{verbatim}
-
-Maximum differences are on the order of 1000 km, which corresponds to $R_E/6$.
-
-\todo[inline]{
-\begin{itemize}
-    \item Summarize results over long time span (say absolute value of angular distance)
-    \item Add a LEO s/c.
-    \item See if results can be obtained from another resource.
-\end{itemize}
-}
+%Another recommendation: service provides links to software used (sometimes not possible)
 
 \subsection{Software}
 \label{sect:comparisons_software}
@@ -321,6 +336,8 @@ Tracers location is determined by GPS from Millenium space systems (running moc)
 
 \section{Conclusions and Recommendations}
 \label{sect:conclusions}
+
+Comment on definition of $R_E$ and problem with providing measurements in terms of $R_E$.
 
 In this section, we provide three recommendations to address the problems identified in this paper. No single recommendation will address all of the problems or satisfy all of the use cases.
 
