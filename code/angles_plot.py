@@ -78,7 +78,7 @@ def plot(df, tranform_str):
   axes[1].set_ylabel('Diff. relative to geopack_08_dp [deg]')
   axes[1].legend()
 
-  axes[2].plot(df['diffs'].index, df['diffs']['|max-min|'].index,
+  axes[2].plot(df['diffs'].index, df['diffs']['|max-min|'],
                label='|max-min|', color=line_map['|max-min|'][0], linestyle=line_map['|max-min|'][1])
   axes[2].grid(True)
   axes[2].set_ylabel('|max-min| [deg]')
