@@ -1,0 +1,49 @@
+{
+    "HAPI": "2.0",
+    "resourceURL": "https://cdaweb.gsfc.nasa.gov/misc/NotesC.html#C4_CP_FGM_5VPS",
+    "contact": "Chris Carr @ Imperial College",
+    "parameters": [
+        {
+            "name": "Time",
+            "length": 24,
+            "units": "UTC",
+            "type": "isotime",
+            "fill": null
+        },
+        {
+            "size": [
+                3
+            ],
+            "name": "B_vec_xyz_gse__C4_CP_FGM_5VPS",
+            "description": "Magnetic Field Vector, 5 vectors/sec resolution in GSE",
+            "units": "nT",
+            "type": "double",
+            "fill": "-1.0E30"
+        },
+        {
+            "name": "B_mag__C4_CP_FGM_5VPS",
+            "description": "Magnetic Field Magnitude, 5 vectors/sec resolution",
+            "units": "nT",
+            "type": "double",
+            "fill": "-1.0E30"
+        },
+        {
+            "size": [
+                3
+            ],
+            "name": "sc_pos_xyz_gse__C4_CP_FGM_5VPS",
+            "description": "Position in GSE",
+            "units": "km",
+            "type": "double",
+            "fill": "-1.0E30"
+        }
+    ],
+    "startDate": "2001-01-07T00:15:19Z",
+    "stopDate": "2023-12-30T23:59:58Z",
+    "status": {
+        "code": 1200,
+        "message": "OK"
+    },
+    "x_server": "https://cdaweb.gsfc.nasa.gov/hapi",
+    "x_dataset": "C4_CP_FGM_5VPS"
+}

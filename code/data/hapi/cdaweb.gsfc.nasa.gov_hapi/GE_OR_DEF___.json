@@ -1,0 +1,147 @@
+{
+    "HAPI": "2.0",
+    "resourceURL": "https://cdaweb.gsfc.nasa.gov/misc/NotesG.html#GE_OR_DEF",
+    "contact": " @ ",
+    "parameters": [
+        {
+            "name": "Time",
+            "length": 24,
+            "units": "UTC",
+            "type": "isotime",
+            "fill": null
+        },
+        {
+            "size": [
+                3
+            ],
+            "name": "GCI_POS",
+            "description": "GCI Cartesian Position                  ",
+            "units": "km",
+            "type": "double",
+            "fill": "-1.0E31"
+        },
+        {
+            "size": [
+                3
+            ],
+            "name": "GCI_VEL",
+            "description": "GCI Cartesian Velocity                  ",
+            "units": "km/sec",
+            "type": "double",
+            "fill": "-1.0E31"
+        },
+        {
+            "size": [
+                3
+            ],
+            "name": "GSE_POS",
+            "description": "GSE Cartesian Position                  ",
+            "units": "km",
+            "type": "double",
+            "fill": "-1.0E31"
+        },
+        {
+            "size": [
+                3
+            ],
+            "name": "GSE_VEL",
+            "description": "GSE Cartesian Velocity                  ",
+            "units": "km/sec",
+            "type": "double",
+            "fill": "-1.0E31"
+        },
+        {
+            "size": [
+                3
+            ],
+            "name": "GSM_POS",
+            "description": "GSM Cartesian Position                  ",
+            "units": "km",
+            "type": "double",
+            "fill": "-1.0E31"
+        },
+        {
+            "size": [
+                3
+            ],
+            "name": "GSM_VEL",
+            "description": "GSM Cartesian Velocity                  ",
+            "units": "km/sec",
+            "type": "double",
+            "fill": "-1.0E31"
+        },
+        {
+            "size": [
+                3
+            ],
+            "name": "SUN_VECTOR",
+            "description": "GCI Sun Position Vector",
+            "units": "km",
+            "type": "double",
+            "fill": "-1.0E31"
+        },
+        {
+            "size": [
+                3
+            ],
+            "name": "HEC_POS",
+            "description": "HEC Cartesian Position                  ",
+            "units": "km",
+            "type": "double",
+            "fill": "-1.0E31"
+        },
+        {
+            "size": [
+                3
+            ],
+            "name": "HEC_VEL",
+            "description": "HEC Cartesian Velocity                  ",
+            "units": "km/sec",
+            "type": "double",
+            "fill": "-1.0E31"
+        },
+        {
+            "name": "CRN_EARTH",
+            "description": "Carrington Rotation Number (after 3/96)",
+            "units": " ",
+            "type": "integer",
+            "fill": "-2147483648"
+        },
+        {
+            "name": "LONG_EARTH",
+            "description": "Heliographic Long of the Earth          ",
+            "units": "rad",
+            "type": "double",
+            "fill": "-1.0E31"
+        },
+        {
+            "name": "LAT_EARTH",
+            "description": "Heliographic Lat of the Earth           ",
+            "units": "rad",
+            "type": "double",
+            "fill": "-1.0E31"
+        },
+        {
+            "name": "LONG_SPACE",
+            "description": "Heliographic Long of Craft              ",
+            "units": "rad",
+            "type": "double",
+            "fill": "-1.0E31"
+        },
+        {
+            "name": "LAT_SPACE",
+            "description": "Heliographic Lat of the Craft           ",
+            "units": "rad",
+            "type": "double",
+            "fill": "-1.0E31"
+        }
+    ],
+    "startDate": "1992-07-27T16:00:00Z",
+    "stopDate": "2022-11-28T00:00:00Z",
+    "status": {
+        "code": 1200,
+        "message": "OK"
+    },
+    "x_server": "https://cdaweb.gsfc.nasa.gov/hapi",
+    "x_dataset": "GE_OR_DEF"
+}

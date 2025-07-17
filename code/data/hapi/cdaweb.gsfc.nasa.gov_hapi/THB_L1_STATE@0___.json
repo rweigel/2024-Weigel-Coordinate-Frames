@@ -1,0 +1,295 @@
+{
+    "HAPI": "2.0",
+    "resourceURL": "https://cdaweb.gsfc.nasa.gov/misc/NotesT.html#THB_L1_STATE",
+    "contact": "V. Angelopoulos @ UCB, NASA NAS5-02099",
+    "parameters": [
+        {
+            "name": "Time",
+            "length": 24,
+            "units": "UTC",
+            "type": "isotime",
+            "fill": null
+        },
+        {
+            "bins": [
+                {
+                    "name": "thb_pos_compno",
+                    "centers": [
+                        1,
+                        2,
+                        3
+                    ],
+                    "units": null
+                }
+            ],
+            "size": [
+                3
+            ],
+            "name": "thb_pos",
+            "description": "thb_position XYZ in GEI (timeseries plot)",
+            "units": null,
+            "type": "double",
+            "fill": "NaN"
+        },
+        {
+            "bins": [
+                {
+                    "name": "thb_pos_compno",
+                    "centers": [
+                        1,
+                        2,
+                        3
+                    ],
+                    "units": null
+                }
+            ],
+            "size": [
+                3
+            ],
+            "name": "thb_posV",
+            "description": "thb_position XYZ in GEI (orbit plot)",
+            "units": "km",
+            "type": "double",
+            "fill": "NaN"
+        },
+        {
+            "bins": [
+                {
+                    "name": "thb_vel_compno",
+                    "centers": [
+                        1,
+                        2,
+                        3
+                    ],
+                    "units": null
+                }
+            ],
+            "size": [
+                3
+            ],
+            "name": "thb_vel",
+            "description": "thb_velocity",
+            "units": null,
+            "type": "double",
+            "fill": "NaN"
+        },
+        {
+            "bins": [
+                {
+                    "name": "thb_pos_gse_compno",
+                    "centers": [
+                        1,
+                        2,
+                        3
+                    ],
+                    "units": null
+                }
+            ],
+            "size": [
+                3
+            ],
+            "name": "thb_pos_gse",
+            "description": "thb_position XYZ in GSE (timeseries plot)",
+            "units": null,
+            "type": "double",
+            "fill": "NaN"
+        },
+        {
+            "bins": [
+                {
+                    "name": "thb_pos_gse_compno",
+                    "centers": [
+                        1,
+                        2,
+                        3
+                    ],
+                    "units": null
+                }
+            ],
+            "size": [
+                3
+            ],
+            "name": "thb_pos_gseV",
+            "description": "thb_position XYZ in GSE (orbit plot)",
+            "units": "km",
+            "type": "double",
+            "fill": "NaN"
+        },
+        {
+            "bins": [
+                {
+                    "name": "thb_pos_gsm_compno",
+                    "centers": [
+                        1,
+                        2,
+                        3
+                    ],
+                    "units": null
+                }
+            ],
+            "size": [
+                3
+            ],
+            "name": "thb_pos_gsm",
+            "description": "thb_position XYZ in GSM (timeseries plot)",
+            "units": null,
+            "type": "double",
+            "fill": "NaN"
+        },
+        {
+            "bins": [
+                {
+                    "name": "thb_pos_gsm_compno",
+                    "centers": [
+                        1,
+                        2,
+                        3
+                    ],
+                    "units": null
+                }
+            ],
+            "size": [
+                3
+            ],
+            "name": "thb_pos_gsmV",
+            "description": "thb_position XYZ in GSM (orbit plot)",
+            "units": "km",
+            "type": "double",
+            "fill": "NaN"
+        },
+        {
+            "bins": [
+                {
+                    "name": "thb_vel_gse_compno",
+                    "centers": [
+                        1,
+                        2,
+                        3
+                    ],
+                    "units": null
+                }
+            ],
+            "size": [
+                3
+            ],
+            "name": "thb_vel_gse",
+            "description": "thb_velocity_gse",
+            "units": null,
+            "type": "double",
+            "fill": "NaN"
+        },
+        {
+            "bins": [
+                {
+                    "name": "thb_vel_gsm_compno",
+                    "centers": [
+                        1,
+                        2,
+                        3
+                    ],
+                    "units": null
+                }
+            ],
+            "size": [
+                3
+            ],
+            "name": "thb_vel_gsm",
+            "description": "thb_velocity_gsm",
+            "units": null,
+            "type": "double",
+            "fill": "NaN"
+        },
+        {
+            "bins": [
+                {
+                    "name": "thb_pos_sel_compno",
+                    "centers": [
+                        1,
+                        2,
+                        3
+                    ],
+                    "units": null
+                }
+            ],
+            "size": [
+                3
+            ],
+            "name": "thb_pos_sel",
+            "description": "thb_pos_sel",
+            "units": null,
+            "type": "double",
+            "fill": "NaN"
+        },
+        {
+            "bins": [
+                {
+                    "name": "thb_pos_sse_compno",
+                    "centers": [
+                        1,
+                        2,
+                        3
+                    ],
+                    "units": null
+                }
+            ],
+            "size": [
+                3
+            ],
+            "name": "thb_pos_sse",
+            "description": "thb_pos_sse",
+            "units": null,
+            "type": "double",
+            "fill": "NaN"
+        },
+        {
+            "bins": [
+                {
+                    "name": "thb_vel_sel_compno",
+                    "centers": [
+                        1,
+                        2,
+                        3
+                    ],
+                    "units": null
+                }
+            ],
+            "size": [
+                3
+            ],
+            "name": "thb_vel_sel",
+            "description": "thb_velocity_sel",
+            "units": null,
+            "type": "double",
+            "fill": "NaN"
+        },
+        {
+            "bins": [
+                {
+                    "name": "thb_vel_sse_compno",
+                    "centers": [
+                        1,
+                        2,
+                        3
+                    ],
+                    "units": null
+                }
+            ],
+            "size": [
+                3
+            ],
+            "name": "thb_vel_sse",
+            "description": "thb_velocity_sse",
+            "units": null,
+            "type": "double",
+            "fill": "NaN"
+        }
+    ],
+    "startDate": "2007-02-17T23:36:00Z",
+    "stopDate": "2025-05-14T23:59:00Z",
+    "status": {
+        "code": 1200,
+        "message": "OK"
+    },
+    "x_server": "https://cdaweb.gsfc.nasa.gov/hapi",
+    "x_dataset": "THB_L1_STATE@0"
+}

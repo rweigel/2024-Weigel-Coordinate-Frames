@@ -1,0 +1,49 @@
+{
+    "startDate": "2000-08-22T00:00:00Z",
+    "stopDate": "2024-09-08T18:45:00Z",
+    "cadence": "PT1M",
+    "description": "<br/> Sampling: 1M<br/> Provider: IRAP",
+    "resourceID": "spase://CNES/NumericalData/CDPP-AMDA/Cluster/Cluster2/Ephemeris/clust2-orb-all",
+    "parameters": [
+        {
+            "name": "Time",
+            "type": "isotime",
+            "length": 24,
+            "units": "UTC",
+            "fill": null
+        },
+        {
+            "name": "c2_xyz_gse",
+            "type": "double",
+            "size": [
+                3
+            ],
+            "units": "Re",
+            "fill": "-1e31",
+            "description": "Spacecraft position in GSE"
+        },
+        {
+            "name": "c2_xyz_gsm",
+            "type": "double",
+            "size": [
+                3
+            ],
+            "units": "Re",
+            "fill": "-1e31",
+            "description": "Spacecraft position in GSM"
+        },
+        {
+            "name": "c2_r",
+            "type": "double",
+            "units": "Re",
+            "fill": "-1e31"
+        }
+    ],
+    "HAPI": "2.0",
+    "status": {
+        "code": 1200,
+        "message": "OK"
+    },
+    "x_server": "https://amda.irap.omp.eu/service/hapi",
+    "x_dataset": "clust2-orb-all"
+}
