@@ -37,7 +37,8 @@ satellites_only = [] # Run all satellites
 #satellites_only = ['Cluster-1', 'Cluster-2', 'Cluster-3', 'Cluster-4']
 #satellites_only = ['MMS-1','MMS-2','MMS-3','MMS-4']
 #satellites_only = ['DSCOVR']
-satellites_only = ['MMS-2']
+#satellites_only = ['MMS-2']
+satellites_only = ['Geotail']
 
 hapi_logging = False
 cos_warnings = False
