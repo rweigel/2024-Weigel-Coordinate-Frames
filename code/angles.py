@@ -64,7 +64,7 @@ if True:
   tf = datetime.datetime(2015, 1, 1, 0, 0, 0)
   excludes = ['sscweb', 'cxform']
 
-if True:
+if False:
 
   delta = {'days': 1}
   to = datetime.datetime(2010, 1, 1, 0, 0, 0)
