@@ -24,9 +24,12 @@ def libs(csys_in, csys_out, excludes=None):
   return libs_avail
 
 def angles(to, tf, delta, libs, transform_kwargs):
+
   t = hxform.time_array(to, tf, delta)
   t_dts = hxform.ints2datetime(t)
   angles = numpy.full((t.shape[0], len(libs)), numpy.nan)
+  dangles = numpy.full((t.shape[0], len(libs)), numpy.nan)
+
   for i, lib in enumerate(libs):
     #log.info(f"Processing {lib}...")
     transform_kwargs['lib'] = lib
@@ -37,6 +40,10 @@ def angles(to, tf, delta, libs, transform_kwargs):
     n = numpy.dot(p_out, p_in)
     d = numpy.linalg.norm(p_out, axis=1)*numpy.linalg.norm(p_in)
     angles[:, i] = (180.0/numpy.pi)*numpy.arccos(n/d)
+
+    #if lib == 'sscweb':
+      #dangles[:, i] = (180.0/numpy.pi)*(0.005/(1+n**2))*(1 + numpy.sum(p_out, axis=1))
+      #import pdb; pdb.set_trace()
 
     if lib.startswith('spiceypy1'):
       years = numpy.array([dt.year for dt in t_dts])
@@ -57,15 +64,15 @@ if True:
   tf = datetime.datetime(2015, 1, 1, 0, 0, 0)
   excludes = ['sscweb', 'cxform']
 
-if False:
+if True:
 
-  delta = {'days': 10}
+  delta = {'days': 1}
   to = datetime.datetime(2010, 1, 1, 0, 0, 0)
-  tf = datetime.datetime(2010, 12, 31, 0, 0, 0)
+  tf = datetime.datetime(2010, 1, 3, 0, 0, 0)
   excludes = ['cxform']
 
 if False:
-  delta = {'days': 1}
+  delta = {'minutes': 10}
   to = datetime.datetime(2010, 12, 21, 0, 0, 0)
   tf = datetime.datetime(2010, 12, 23, 0, 0, 0)
   excludes = ['cxform']
@@ -123,7 +130,7 @@ for combination in combinations:
   df_str = dfs[xform]['diffs'].to_string()
   log.info(f"{xform}\n{df_str}")
 
-print(f"Writing {file_out}.pkl")
-utilrsw.write(f'{file_out}.pkl', dfs)
+print(f"Writing {file_out}")
+utilrsw.write(file_out, dfs)
 
 utilrsw.rm_if_empty('angles.error.log')
