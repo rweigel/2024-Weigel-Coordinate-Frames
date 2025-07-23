@@ -242,35 +242,38 @@ In Figure~\ref{fig:geotail}(d), a comparison is made for the \texttt{GSM} refere
 % The associated SPASE record has GCI translated to GEI
 % https://hpde.io/JAXA/NumericalData/Geotail/Ephemeris/PT10M
 
-In Figure~\ref{fig:mms-2} a comparison is made between data from SSCWeb, CDAWeb, and the JPL Horizons web service, which provides ephemeris for some of the spacecraft available from SSCWeb. The JPL Horizons web service provided ephemeris in the \texttt{ICRF} reference system (which one, ICRF1?), and SunPy is used to transform to other primitive reference frames.
+In Figure~\ref{fig:mms-2}, a comparison is made between data from SSCWeb, CDAWeb, and the JPL Horizons web service \cite{JPLHorizons}, which provides ephemeris for some of the spacecraft available from SSCWeb. The JPL Horizons web service provides ephemeris in the \texttt{ICRF} reference frame (the version of ICRF is not stated), and SunPy is used to transform it to other primitive reference frames.
 
-% NOTE: The spacecraft may be maneuvered frequently. Therefore, the JSpOC
-% TLE-based trajectory provided here may at times depart from the actual
-% trajectory. This can happen because TLEs do not model thruster firings;
-% the TLE trajectory solutions must be reinitialized after each event.
+Figure~\ref{fig:mms-2}a shows that the $\Delta \mathbf{r}$ between \texttt{GSE} ephemeris from CDAWeb and SSCWeb match to within ~3 km, which is much larger than expected by round--off but smaller than the closest separation distance of ~7 km. Figure~\ref{fig:mms-2}b shows that there are larger differences when in \texttt{GSM}.
+
+In Figure~\ref{fig:mms-2}c, larger differences are shown to exist between SSCWeb and JPL, with the maximum angular difference being up to $\sim 1^\circ$ instead of $0.003^\circ$ found in the comparison of SSCWeb and CDAWeb in Figure~\ref{fig:mms-2}a. A similar conclusion is made by comparison of Figure~\ref{fig:mms-2}b and Figure~\ref{fig:mms-2}c. A possible explanation for the differences was found by inspecting the raw Horizons web service result that was used by SunPy, in which it is noted that ``NOTE: The spacecraft may be maneuvered frequently. Therefore, the JSpOC TLE-based trajectory provided here may at times depart from the actual trajectory. This can happen because TLEs do not model thruster firings; the TLE trajectory solutions must be reinitialized after each event.''.
+
+% Sept. 15, 2016
+% https://www.nasa.gov/missions/mms/nasas-mms-achieves-closest-ever-flying-formation/
+% Design called for 10-40 km: https://link.springer.com/article/10.1007/s11214-015-0164-9
 
 \clearpage
 \begin{figure}[h]
      \begin{subfigure}[b]{0.49\textwidth}
          (a)
          \centering
-         \includegraphics[width=\textwidth]{figures/Geotail_SSCWeb-GEI_vs_CDAWeb-GCI.pdf}
+         \includegraphics[width=\textwidth]{code/figures/ephemeris/Geotail_SSCWeb-GEI_vs_CDAWeb-GCI.pdf}
      \end{subfigure}
      \begin{subfigure}[b]{0.49\textwidth}
          (b)
          \centering
-         \includegraphics[width=\textwidth]{figures/Geotail_SSCWeb-J2K_vs_CDAWeb-GCI.pdf}
+         \includegraphics[width=\textwidth]{code/figures/ephemeris/Geotail_SSCWeb-J2K_vs_CDAWeb-GCI.pdf}
      \end{subfigure}
      \par\bigskip\bigskip
      \begin{subfigure}[b]{0.49\textwidth}
          (c)
          \centering
-         \includegraphics[width=\textwidth]{figures/Geotail_SSCWeb-GSE_vs_CDAWeb-GSE.pdf}
+         \includegraphics[width=\textwidth]{code/figures/ephemeris/Geotail_SSCWeb-GSE_vs_CDAWeb-GSE.pdf}
      \end{subfigure}
      \begin{subfigure}[b]{0.49\textwidth}
          (d)
          \centering
-         \includegraphics[width=\textwidth]{figures/Geotail_SSCWeb-GSM_vs_CDAWeb-GSM.pdf}
+         \includegraphics[width=\textwidth]{code/figures/ephemeris/Geotail_SSCWeb-GSM_vs_CDAWeb-GSM.pdf}
      \end{subfigure}
      \caption{Comparison of ephemeris values from SSCWeb and CDAWeb in four different reference systems.}
      \label{fig:geotail}
@@ -314,7 +317,21 @@ In Figure~\ref{fig:mms-2} a comparison is made between data from SSCWeb, CDAWeb,
 
 \subsection{Software}
 \label{sect:comparisons_software}
-\vspace{-1.5in}
+
+In this section, we compare reference frame calculations using the following software packages. 
+
+\begin{itemize}
+    \item Geopack-2008 (labeled as \texttt{geopack\_08\_dp}), which is a Fortran library. 
+    \item \texttt{SpacePy}, which has an option to use the IRBEM Fortran library (labeled as \texttt{spacepy-irbem}) or a native Python implementation (\texttt{spacepy}) of the transforms.
+    \item \texttt{SpiceyPy} is a Python wrapper for the SPICE toolkit. Two versions of SPICE kernel files were used, indicated by \texttt{spicepy1} and \texttt{spicepy2}. \texttt{spicepy1} was used for reference frame transforms for the Van Allen Probes mission. \texttt{spicepy2} had an update to the \texttt{MAG} frame, which used a more recent version of the IGRF model.
+    \item SunPy version 7.0.0
+    \item PySpedas, which uses transformation code derived from the IDL version of PySpedas, which in turn used code from the Fortran \cite{ROCOTLIB} library.
+\end{itemize}
+
+Figure~\ref{fig:angles} compares the angles between the $Z$ axis of select coordinate system pairs. The notation $\angle (Z_A, Z_B)$ means the angle between the $Z$ axis of coordinate frame $A$ in coordinate frame $B$ and the $Z$ axis of coordinate frame $B$. With the PySpedas results excluded, the differences in the angles are $< 0.02^\circ$.
+
+We have also performed coordinate transforms using the \cite{SSCWebCoordinateCalculator}. However, this system only outputs values to two decimal places, which leads to angular differences of $0.3^\circ$.
+
 \begin{figure}[htb]
      \begin{subfigure}[b]{0.49\textwidth}
          (a)
