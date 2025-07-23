@@ -6,10 +6,11 @@ from matplotlib import pyplot as plt
 
 import utilrsw
 
-run = 'delta=10days_20100101-20101231'
-run = 'delta=1days_20100101-20150101'
+#run = 'delta=10days_20100101-20101231'
 #run = 'delta=10minutes_20101221-20101223'
 #run = 'delta=1days_20101221-20101223'
+#run = 'delta=10minutes_20101221-20101223'
+run = 'delta=1days_20100101-20150101'
 
 in_file = os.path.join('data','angles', f'{run}.pkl')
 out_dir = os.path.join('figures', 'angles', run)
@@ -72,9 +73,11 @@ def plot(df, tranform_str):
   for column in df['diffs'].columns:
     if column == '|max-min|':
       continue
-    lib = column.split(' ')[0]  # Get the library name from the column name
+
+    stat = utilrsw.format_exponent(numpy.mean(numpy.abs(df['diffs'][column])), 0)
+    label = f"{column} (${stat}$)"
     axes[1].plot(df['diffs'].index, df['diffs'][column],
-                 label=lib, color=line_map[lib][0], linestyle=line_map[lib][1])
+                 label=label, color=line_map[column][0], linestyle=line_map[column][1])
   axes[1].grid(True)
   axes[1].set_ylabel('Diff. relative to geopack_08_dp [deg]')
   axes[1].legend()
@@ -97,12 +100,3 @@ for transform_key in list(data.keys()):
   plt_config()
   plot(df, tranform_str)
   fig_save(f'{transform_key}')
-
-
-if False:
-  axes[1].plot(times, diffs, label=columns[1:])
-  axes[1].grid(True)
-  axes[1].set_xlabel('Year')
-  axes[1].set_ylabel('[deg]')
-  axes[1].set_title(f'Difference relative to {columns[0]} dipole angle')
-  axes[1].legend()
