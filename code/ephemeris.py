@@ -4,11 +4,13 @@ import os
 from collections import Counter
 
 import numpy as np
-import matplotlib
 from matplotlib import pyplot as plt
 
 from hapiclient import hapi
 from hapiclient import hapitime2datetime
+
+import utilrsw
+utilrsw.mpl.plt_config()
 
 """
 Earth radius in km used by SSCWeb. See
@@ -38,7 +40,7 @@ satellites_only = [] # Run all satellites
 #satellites_only = ['MMS-1','MMS-2','MMS-3','MMS-4']
 #satellites_only = ['DSCOVR']
 #satellites_only = ['MMS-2']
-satellites_only = ['Geotail']
+satellites_only = ['Geotail', 'MMS-2']
 
 hapi_logging = False
 cos_warnings = False
@@ -61,16 +63,11 @@ legend_kwargs = {
   'borderaxespad': 0,
   'framealpha': 1,
   'frameon': True,
-  'ncol': 3
+  'ncol': 3,
+  'handletextpad': 0.5,
+  'columnspacing': 0.75,
 }
 
-matplotlib.use('Agg')
-plt.rcParams['font.family'] = 'Times New Roman'
-plt.rcParams['font.size'] = 14
-plt.rcParams['mathtext.fontset'] = 'cm'
-plt.rcParams['figure.constrained_layout.use'] = True
-plt.rcParams['figure.figsize'] = (8.5, 11)
-################################################################################
 
 def infos(satellite=None):
 
@@ -635,13 +632,13 @@ def plot_diffs(ax, t, r_ave, Δr, Δθ):
   Δr_rel_max_str = f" (max= 1/{1/Δr_rel_max:.0f})"
 
   Δr_max = np.nanmax(Δr)
-  Δr_max_str = f'($|Δ\mathbf{{r}}|_{{\\rm{{max}}}} = {Δr_max*R_E:.1f}$ [km])'
+  Δr_max_str = f'($|Δ\\mathbf{{r}}|_{{\\rm{{max}}}} = {Δr_max*R_E:.1f}$ [km])'
 
   print(f"    Δr_max = {Δr_max:.5f} [R_E]")
   print(f"    Δr_max = {Δr_max*R_E:.1f} [km]")
 
-  ax.plot(t, Δr, 'r-', lw=lw, label=f'$|Δ\mathbf{{r}}|/R_E$ {Δr_max_str}')
-  ax.plot(t, Δr_rel, 'b-', lw=lw, label=f'$|Δ\mathbf{{r}}|/\\overline{{r}}$ {Δr_rel_max_str}')
+  ax.plot(t, Δr, 'r-', lw=lw, label=f'$|Δ\\mathbf{{r}}|/R_E$ {Δr_max_str}')
+  ax.plot(t, Δr_rel, 'b-', lw=lw, label=f'$|Δ\\mathbf{{r}}|/\\overline{{r}}$ {Δr_rel_max_str}')
   ax.plot(t, Δθ, 'g-', lw=lw, label='$Δθ$ [deg]')
 
   _adjust_y_range(ax, bottom=0, gap_fraction=1)

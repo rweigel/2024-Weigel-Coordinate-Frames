@@ -1,7 +1,6 @@
 import os
 
 import numpy
-import matplotlib
 from matplotlib import pyplot as plt
 
 import utilrsw
@@ -36,14 +35,6 @@ def fig_prep():
   gs = plt.gcf().add_gridspec(3)
   axes = gs.subplots(sharex=True)
   return axes
-
-def plt_config():
-  matplotlib.use('Agg')
-  plt.rcParams['font.family'] = 'Times New Roman'
-  plt.rcParams['font.size'] = 14
-  plt.rcParams['mathtext.fontset'] = 'cm'
-  plt.rcParams['figure.constrained_layout.use'] = True
-  plt.rcParams['figure.figsize'] = (8.5, 11)
 
 def plot(df, tranform_str):
 
@@ -90,6 +81,8 @@ def plot(df, tranform_str):
 
   axes[2].set_xlabel('Year')
 
+
+utilrsw.mlp.plt_config()
 data = utilrsw.read(in_file)
 
 for transform_key in list(data.keys()):
@@ -97,6 +90,5 @@ for transform_key in list(data.keys()):
   tranform_str = transform_key.split('_')
   tranform_str = fr"$\angle$ ($Z_{{{tranform_str[0]}}}$, $Z_{{{tranform_str[1]}}}$)"
 
-  plt_config()
   plot(df, tranform_str)
   fig_save(f'{transform_key}')
