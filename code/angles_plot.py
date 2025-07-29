@@ -82,7 +82,7 @@ def plot(df, tranform_str):
   axes[2].set_xlabel('Year')
 
 
-utilrsw.mlp.plt_config()
+utilrsw.mpl.plt_config()
 data = utilrsw.read(in_file)
 
 for transform_key in list(data.keys()):
