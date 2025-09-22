@@ -192,6 +192,9 @@ def infos(satellite=None):
 
   if satellite == '' or satellite.startswith('MMS'):
 
+    # TODO: 
+    # MMS1_MEC_SRVY_L2_EPHT89D
+    # has GEI, GSM, GEO, SM
     sc   = f'mms{satellite[-1]}'
     start = '2016-09-01T00:00:00Z'
     stop  = '2016-09-02T00:00:00Z'

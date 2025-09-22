@@ -65,7 +65,7 @@ def plot(df, tranform_str):
     if column == '|max-min|':
       continue
 
-    stat = utilrsw.format_exponent(numpy.max(numpy.abs(df['diffs'][column])), 0)
+    stat = utilrsw.format_exponent(numpy.mean(numpy.abs(df['diffs'][column])), 0)
     label = f"{column} (${stat}$)"
     axes[1].plot(df['diffs'].index, df['diffs'][column],
                  label=label, color=line_map[column][0], linestyle=line_map[column][1])
