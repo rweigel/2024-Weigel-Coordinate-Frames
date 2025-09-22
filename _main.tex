@@ -63,7 +63,7 @@
 %  Each must be 140 characters or fewer with no special characters or punctuation and must be complete sentences
 
 \begin{keypoints}
-\item Reproducing coordinate system transforms is difficult due to variations in definitions and implementations.
+\item Reproducing coordinate system transforms is difficult due to variations in definitions and implementations; recommendations are given to address.
 \item Ephemeris from different providers can differ significantly (${\sim}0.3^\circ$), as do Z--axis orientations from surveyed software libraries (${\sim}0.03^\circ$).
 \item There is duplication of effort by spacecraft missions related to coordinate system transform calculations.
 %\item Recommendations are given to make reproducibility easier and reduce duplication of effort.
@@ -231,7 +231,7 @@ Having different data providers or software libraries compute \texttt{GEI} in di
 
 The fact that different software libraries provide different options for reference frames is indirect evidence that differences can matter. For example, \texttt{SpacePy} \cite{SpacePy} provides multiple options for computing the \texttt{MAG} system, which have angular differences of ${\sim}0.01^\circ$, and \texttt{SunPy} \cite{SunPy} has options for how the \texttt{GEI} frame is computed (see section~\ref{sect:comparisons_software}). A general finding is that the differences in transform results using a single library but with different options for the transform are on the order of, or smaller than, the difference in transform results found when comparing two different software libraries. As a result, the value of improvements in how a transform is computed with a single library is lost when a comparison is made using data computed with a different library. 
 
-Even if the uncertainty associated with how a given coordinate frame was implemented is small relative to that of the measurements, we suggest that it is illogical for two data providers to report the location of a spacecraft that differs by more than what is expected due to numerical precision (unless the reason for differences is clearly documented and ideally evident in the name of the dataset, e.g., by including the word ``preliminary"). A recommendation for addressing this is given in section~\ref{sect:ephemeris-version}.
+Even if the uncertainty associated with how a given coordinate frame was implemented is small relative to that of the measurements, we suggest that it is illogical for two data providers to report the location of a spacecraft that differs by more than what is expected due to numerical precision unless the reason for differences is clearly documented and ideally evident in the name of the dataset, e.g., by including the word ``preliminary". A recommendation for addressing this is given in section~\ref{sect:ephemeris-version}.
 
 \subsection{Ephemeris}
 \label{sect:comparisons_ephemeris}
@@ -376,9 +376,11 @@ In this section, we compare reference frame calculations using the following sof
 
 Figure~\ref{fig:angles} compares the angles between the $Z$ axis of select coordinate system pairs. The average of the absolute value of the differences with respect to \texttt{geopack\_08\_dp} ranges from $4\cdot 10^{-7}$ to $9\cdot 10^{-2}$ degrees. These values can be used as an uncertainty estimate when comparing data transformed using different software libraries.
 
-In general, the differences in Figure~\ref{fig:angles} are smaller than those found when comparing ephemeris values in section~\ref{sect:comparisons_ephemeris}. (The choice of which library to use as a baseline for this comparison is arbitrary; in general, we are interested in the maximum differences among the libraries, which is displayed in the lower panel of each subplot.)
+The maximum absolute differences shown in the bottom panels of the subplots in Figure~\ref{fig:angles} are smaller than those found when comparing ephemeris values in section~\ref{sect:comparisons_ephemeris}. The choice of which library to use as a baseline for this comparison is arbitrary; in general, we are interested in the maximum differences among the libraries, which is displayed in the lower panel of each subplot.
 
-The maximum annual difference of $0.009^\circ$ is approximately 1/4 of the average yearly angular change in the dipole $Z$ axis of ${\sim}0.04^\circ$ (from 1970--2025) and 1.5 times the average precession of Earth's rotational axis (${\sim}0.006^\circ$ per year).
+The bottom panels of Figure~\ref{fig:angles}a--c shows that the maximum difference between the libraries for the \texttt{GEO}/\text{GSE} is ${\sim}0.02^\circ$,  \texttt{GEO}/\text{GSM} is ${\sim} 0.03^\circ$, \texttt{GEO}/\text{GSM} is ${\sim}0.04^\circ$, all of which are comparable to the average angular change in Earth's dipole $Z$ axis of ${sim}0.04^\circ$ per year.
+
+%Figure~\ref{fig:angles}d s
 
 We have also performed coordinate transforms using the \cite{SSCWebCoordinateCalculator} web service. However, this web service only outputs values to two decimal places, which leads to angular differences of $0.3^\circ$. These values are not plotted so that the library differences are clearly visible.
 
@@ -474,13 +476,13 @@ A community--developed standard should be created for acronyms and definitions. 
 
 For a given transform between reference frames, a transformation matrix at a specific instant in time (or, equivalently, rotation angles or quaternions) relative to a base reference frame is required. We also note that implementing transforms requires technical expertise in software and maintenance, for example, updating parameters in reference frames, verifying the calculations, and documenting changes. Although providing a software version allows for reproducibility in principle, in practice, not all users will be familiar with the cited software, and in the long term, the software may not be maintained, or it may be difficult to install and use. 
 
-Based on this, we recommend that a reference dataset be developed with a long--term plan to keep it up--to--date. Each record in the dataset should consist of a timestamp and a matrix that is required to transform from a given coordinate system to a reference coordinate system. The records should be made available in a standard scientific file format and from a web service API (Application Programming Interface). A parsimonious alternative to providing 9 transform matrix values is to define only one or two angles (and associated rotation axes) that are needed to compute the matrix values.
+Based on this, we recommend that a standards body develops a reference dataset be developed with a long--term plan to keep it up--to--date. Each record in the dataset should consist of a timestamp and a matrix that is required to transform from a given coordinate system to a reference coordinate system. The records should be made available in a standard scientific file format and from a web service API (Application Programming Interface). A parsimonious alternative to providing 9 transform matrix values is to define only one or two angles (and associated rotation axes) that are needed to compute the matrix values.
 
 With such a dataset, if a scientist wants to allow for reproducibility, they could state, for example, ``the vector measurements in \texttt{ABC} were transformed into reference frame \texttt{XYZ}," by using \texttt{ABC} to \texttt{REF} and \texttt{REF} to \texttt{XYZ} transformation matrices in the reference dataset and citing both the standard that defines the acronyms and the reference dataset.
 
 We have found that many software libraries do spot checks of transforms. For example, \texttt{SunPy}'s unit tests \cite{SunPy} involve a comparison with a table from \citeA{Franz2002} at several time instants; \texttt{cxform} \cite{cxform} tests its implementation by comparing the ephemeris in \texttt{GSE} of one year of data from three spacecraft from \citeA{SSCWeb}; a comparison is also made with a table in \citeA{Franz2002}. With the proposed reference database, a software library developer could make a more comprehensive comparison, allowing users to directly estimate uncertainties associated with coordinate transforms.
 
-We also suggest that this dataset contains common time representations. Each record should be a UTC timestamp along with values for \texttt{UT1}, \texttt{TAI}, \texttt{TT}, and \texttt{ET} \cite{McCarthy2011}. Although these time relationships are simple, some require leap second tables, and to perform the computation, one needs to parse (and update if required) the leap second table. An additional advantage of this dataset is that software developers can use it for testing their implementations.
+We also suggest that this dataset contains common time representations. Each record should be a UTC timestamp along with values for \texttt{UT1}, \texttt{TAI}, \texttt{TT}, and \texttt{ET} (\citeA{McCarthy2011}; see section~\ref{sect:glossary} for definitions). Although these time relationships are simple, some require leap second tables, and to perform the computation, one needs to parse (and update if required) the leap second table. An additional advantage of this dataset is that software developers can use it for testing their implementations.
 
 %As demonstrated in section~\ref{sect:comparisons}, differences exist. Debugging and understanding how code works is difficult.
 
@@ -553,10 +555,9 @@ In the absence of these options, we recommend the following.
 
 \begin{itemize}
   \item Software package developers provide documentation on implementation choices (e.g., model used for obliquity). If data from an external resource is used, for example, if the IGRF coefficients are dynamically downloaded, the user should have an option to easily view the data used, so that, if necessary, the values used can be documented in a publication.
-  Software should have a DOI for each version so that the version used can be referenced rather than only a top-level DOI or paper.
-  \item Metadata associated with ephemeris and variables that are transformed should have details about the software version used for the transforms or data used for the transform such as SPICE kernels. The metadata description should be validated by having a third--party consider if there is enough information in the description for them to re--implement the transform.
-  \item Paper authors include the version of software (and a DOI for that version, if available) used for transforms and publish SPICE kernels as supplementary material (if used and not otherwise citable and online) or post to a generalized repository (e.g., Zenodo). 
-  \item Papers that use transforms using a software package should provide details on the options passed to the transform function (e.g., if the transform function allows for the selection of an obliquity model). Ideally, the software used for the paper has a DOI and is public.
+  Software should have a DOI for each version so that the version used can be referenced rather than only a top--level DOI.
+  \item Data providers should ensure that metadata associated with ephemeris and variables that are transformed should have details about the software version used for the transforms or data used for the transform, such as SPICE kernels. The metadata description should be validated by having a third--party consider if there is enough information in the description for them to re--implement the transform.
+  \item Paper authors include the version of software, a DOI for that version if available, and options passed to the transform function. If SPICE kernels were used, they should be provided as supplementary material if they are not otherwise citable and online, or post them to a generalized repository (e.g., Zenodo). 
 
 \end{itemize}
 
