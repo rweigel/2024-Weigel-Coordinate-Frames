@@ -62,12 +62,20 @@
 %  Key Points summarize the main points and conclusions of the article
 %  Each must be 140 characters or fewer with no special characters or punctuation and must be complete sentences
 
+
 \begin{keypoints}
-\item Reproducing coordinate system transforms is difficult due to variations in definitions and implementations; recommendations are given to address.
+\item Reproducing coordinate system transforms is difficult due to variations in definitions and implementations in the software typically used.
 \item Ephemeris from different providers can differ significantly (${\sim}0.3^\circ$), as do Z--axis orientations from surveyed software libraries (${\sim}0.03^\circ$).
-\item There is duplication of effort by spacecraft missions related to coordinate system transform calculations.
-%\item Recommendations are given to make reproducibility easier and reduce duplication of effort.
+%\item The resulting precision of (${\sim}0.3^\circ$) in ephemeris and (${\sim}0.03^\circ$) in Z–axis orientations has now become problematic for spacecraft constellation operations.
+\item We present recommendations to improve the precision and reproducibility of these calculations and reduce expensive duplication by missions.
 \end{keypoints}
+
+%\item Reproducing coordinate system transforms is difficult due to variations in definitions and implementations; recommendations are given to address.
+%\item Ephemeris from different providers can differ significantly (${\sim}0.3^\circ$), as do Z--axis orientations from surveyed software libraries (${\sim}0.03^\circ$).
+%\item There is duplication of effort by spacecraft missions related to coordinate system transform calculations.
+%\item Recommendations are given to make reproducibility easier and reduce duplication of effort.
+
+% Albert - we will add although the focus is on space physics, similar issues and recommendations apply to solar. Can you give a few examples?
 
 \begin{abstract}
 In space physics, acronyms for coordinate systems (e.g., \texttt{GEI}, \texttt{GSM}) are commonly used; however, differences can exist in their definitions and implementations that prevent reproducibility. In this work, we compare definitions in frequently cited journal articles, online resources, and software packages and show that implementation differences can lead to transformations between same--named coordinate systems to differ significantly. Based on these comparisons and results, and to enable reproducibility, we recommend that (a) a standard for acronyms and definitions for coordinate systems is developed; (b) a central authority maintains a citable database of reference data needed for these transforms;  (c) a central authority maintains the SPICE (Spacecraft, Planet, Instrument, C-matrix, Events) kernels used by transforms by space physics spacecraft missions to generate data products in different coordinate systems; and (d) software developers provide explicit comparisons of their implementations with the results of (b) and documentation on implementation choices. In addition, we provide recommendations for scientists and metadata developers to ensure that sufficient reproducibility--enabling information is provided in the absence of these recommendations being implemented.
@@ -135,16 +143,16 @@ Terminology related to reference systems and frames also varies in other fields.
 \section{Examples of Definition Ambiguity}
 \label{sect:definitions}
 
-First, there is no consistency in the expansion of the acronym ``\texttt{GEI}''. \citeA{Russell1971} and \citeA{Hapgood1992} associate \texttt{GEI} with ``Geocentric Equatorial Inertial System". \citeA{Franz2002} and \citeA{SunPy} associate \texttt{GEI} with ``Geocentric Earth Equatorial". Another ambiguity is in \texttt{GCI}; \citeA{SSCWeb} notes ``Geocentric Inertial (GCI) and Earth-Centered Inertial (ECI) are the same as GEI.", which implicitly defines \texttt{GCI} as ``Geocentric Inertial'', in contrast to \citeA{Russell1971} and
+As an example of the ambiguity of coordinate systems and their implementations, we take the common example of \texttt{GEI}. First, there is no consistency in the expansion of the acronym \texttt{GEI}. \citeA{Russell1971} and \citeA{Hapgood1992} associate \texttt{GEI} with ``Geocentric Equatorial Inertial System". \citeA{Franz2002} and \citeA{SunPy} associate \texttt{GEI} with ``Geocentric Earth Equatorial". Another ambiguity is in \texttt{GCI}; \citeA{SSCWeb} notes ``Geocentric Inertial (GCI) and Earth-Centered Inertial (ECI) are the same as GEI.", which implicitly defines \texttt{GCI} as ``Geocentric Inertial'', in contrast to \citeA{Russell1971} and
 \citeA{NASA1970}, which use ``Geocentric Celestial Inertial''. 
 
-In general, the \texttt{GEI} ideal reference frame has $\mathbf{Z}$ aligned with Earth's rotation axis with positive northward, $\mathbf{X}$ as the intersection of Earth's equatorial plane with the plane of Earth's orbit around the Sun (the ecliptic plane), with positive in the direction from the Earth to the Sun at the time of the vernal equinox, and $\mathbf{Y}=\mathbf{Z}\times\mathbf{X}$. (The line of intersection of Earth's equatorial plane with the ecliptic, or the time that it is computed, is sometimes referred to ``the equinox".) When reporting positions, the origin is taken as the center of mass of Earth. To establish this as a reference system as defined in section~\ref{sect:refsystems}, Earth's rotation axis and the ecliptic plane must be specified, along with a models used to compute them and the center of mass of Earth. If the definition includes the origin as Earth's center of mass, a corresponding model is needed.
+In general, the \texttt{GEI} ideal reference frame has $\mathbf{Z}$ aligned with Earth's rotation axis with positive northward, $\mathbf{X}$ as the intersection of Earth's equatorial plane with the plane of Earth's orbit around the Sun (the ecliptic plane), with positive in the direction from the Earth to the Sun at the time of the vernal equinox, and $\mathbf{Y}=\mathbf{Z}\times\mathbf{X}$. (The line of intersection of Earth's equatorial plane with the ecliptic, or the time that it is computed, is sometimes referred to ``the equinox".) When reporting positions, the origin is taken as the center of mass of Earth. To establish this as a reference system as defined in section~\ref{sect:refsystems}, Earth's rotation axis and the ecliptic plane must be specified, along with a models used to compute them and the center of mass of Earth. If the model definition includes a origin as Earth's center of mass, a corresponding model is needed.
 
-Common variations of \texttt{GEI} depend on whether precession and nutation of Earth's rotation axis and precession of the ecliptic plane are accounted for (\citeA{Davis1974}; \citeA{Hapgood1995}; \citeA{Franz2002}). The term ``mean epoch--of--date" (or mean--of--date) is used when only precession is accounted for, that is, the orientation of the ecliptic and Earth's rotation axis is averaged such that nutation variation is removed. If nutation variation is not averaged out, the term ``true epoch--of--date" (or true--of--date) is used~\cite{Hapgood1995}. If the orientations are time independent, an abbreviation for a reference date and time is specified, e.g., J2000.0. (An exact reference date and time is referred to as epochs in the sense of a time instant rather than a period of time.)
+Common variations of \texttt{GEI} depend on whether precession and nutation of Earth's rotation axis and precession of the ecliptic plane are accounted for (\citeA{Davis1974}; \citeA{Hapgood1995}; \citeA{Franz2002}). The term ``mean epoch--of--date" (or mean--of--date) is used when only precession is accounted for, that is, the orientation of the ecliptic and Earth's rotation axis is averaged such that nutation variation is removed. If nutation variation is not averaged out, the term ``true epoch--of--date" (or true--of--date) is used~\cite{Hapgood1995}. If the orientations are time independent, an abbreviation for a reference date and time is specified, e.g., J2000.0. An exact reference date and time is referred to as an epoch in the sense of a time instant rather than a period of time.
 
 Two basic categories of \texttt{GEI}-related reference frames and systems are commonly used: inertial and non-inertial. The following acronyms are associated with an inertial reference system, an idealized system that is not rotating with respect to the distant stars (i.e., stars at an effectively infinite distance from its origin) and with an origin that translates with a constant velocity \cite{NAIFOverview2023}. Note that if the origin is specified as Earth's center (usually its center of mass rather than centroid is implied but not stated), \texttt{GEI} is non--inertial by definition. However, in the following summary of \texttt{GEI}--related reference systems and frames below, we have ignored this technicality.
 
-The objective of the following summary is to demonstrate the diversity in the terms and definitions used for \texttt{GEI}--related reference systems and to motivate the need for the standard recommended in section~\ref{sect:conclusions}.
+The objective of the following summary is to demonstrate the diversity in the terms and definitions used for \texttt{GEI}--related reference systems and to motivate the need for the standard recommended in section~\ref{sect:conclusions}. Similar diversity exists in terms and definitions for other commonly used reference systems, further motivating this work.
 
 % Notes infinite distance https://ntrs.nasa.gov/api/citations/19740026178/downloads/19740026178.pdf but not zero acceleration
 
@@ -153,7 +161,7 @@ The objective of the following summary is to demonstrate the diversity in the te
 
     \item \texttt{J2000} -- Used by \citeA{SSCWeb} to refer to a frame with its origin at Earth's center of mass and in SPICE to refer to a system with origin at the solar system barycenter (\citeA{Acton1997}; \citeA{NAIFFrames2025}).
     
-     \citeA{SSCWeb} provides the definition
+     \citeA{SSCWeb} provides the definition:
      
      ``Geocentric Equatorial Inertial for epoch \texttt{J2000.0} (\texttt{GEI2000}), also known as Mean Equator and Mean Equinox of \texttt{J2000.0} (Julian date 2451545.0 TT (Terrestrial Time), or 2000 January 1 noon TT, or 2000 January 1 11:59:27.816 TAI or 2000 January 1 11:58:55.816 UTC.) This system has X-axis aligned with the mean equinox for epoch \texttt{J2000}; Z-axis is parallel to the rotation axis of the Earth, and Y completes the right-handed orthogonal set.''
 
@@ -185,8 +193,6 @@ The objective of the following summary is to demonstrate the diversity in the te
     \texttt{GCI} -- Geocentric Celestial Inertial; used in OGO satellite data analysis \cite{NASA1970} and stated in \citeA{Russell1971} as equivalent to \texttt{GEI}.
     %\url{https://www.reddit.com/r/gis/comments/16wf78z/understanding_ecef_wgs_and_nad_coordinate_systems/}
 
-    \item \texttt{ECLIPJ2000} -- Mean ecliptic and equinox of J2000 \cite{NAIFFrames2025}.
-
     %\item \texttt{ECEF} -- ``... since PUNCH for the MOC is all earth orbiting, we use ECI and ECEF."
 
     %\item \texttt{M50} -- Mean of 1950 (or Aries-mean-of-1950). This frame is defined in a manner similar to \texttt{J2000}, except that the mean equator and equinox are taken at the start of the Besselian year 1950 \cite{Davis1974}.
@@ -209,11 +215,11 @@ Space physics researchers and analysts have several options for obtaining data i
 
     \parskip 0.1in 
 
-    \item From datasets provided to a data archive (e.g., NASA's Coordinated Data Analysis Web (CDAWeb) and ESA's Cluster Science Archive (CSA)) with vector measurements in different coordinate systems; in this case, the scientist selects a dataset in a needed coordinate system, if available.
+    \item From datasets provided to a data archive (e.g., NASA's Coordinated Data Analysis Web (CDAWeb) and ESA's Cluster Science Archive (CSA)) with vector measurements in different reference systems; in this case, the scientist selects a dataset in a needed coordinate frame, if available.
 
-    \item Using data services that provide vector measurements in different coordinate systems. For example, SSCWeb provides ephemeris values for spacecraft in various coordinate systems as a function of time \cite{SSCWeb} and a calculator that takes an input of a geocentric position in a given reference system at a specific time and outputs the position in other reference systems \cite{SSCWebCoordinateCalculator}.
+    \item Using data services that provide vector measurements in different reference frames. For example, SSCWeb provides ephemeris values for spacecraft in various reference frames as a function of time \cite{SSCWeb} and a calculator that takes an input of a geocentric position in a given reference system at a specific time and outputs the position in other reference systems \cite{SSCWebCoordinateCalculator}.
 
-    \item Using software packages have coordinate transform functions. For example, in Python, \texttt{Astropy} \cite{AstroPy2022}, \texttt{SunPy} \cite{SunPy}, \texttt{SpacePy} \cite{SpacePy}, and \texttt{PySPEDAS} \cite{Angelopoulos2024}. Other libraries include \cite{cxform} in C, and \texttt{Geopack} \cite{Tsyganenko2008} and \texttt{IRBEM} \cite{IRBEM2022} in Fortran.
+    \item Using software packages that have coordinate transform functions. For example, in Python, \texttt{Astropy} \cite{AstroPy2022}, \texttt{SunPy} \cite{SunPy}, \texttt{SpacePy} \cite{SpacePy}, and \texttt{PySPEDAS} \cite{Angelopoulos2024}. Other libraries include \cite{cxform} in C, and \texttt{Geopack} \cite{Tsyganenko2008} and \texttt{IRBEM} \cite{IRBEM2022} in Fortran.
 
 \end{enumerate}
 
@@ -221,7 +227,9 @@ Space physics researchers and analysts have several options for obtaining data i
 
 It is sometimes argued that, although reference frame implementations may give different results, this uncertainty is small compared to measurement uncertainty. For example, \citeA{Hapgood1995} notes that ``The attitude error that arises from an error in the epoch used to compute \texttt{GEI} is $0.036^\circ$, which is small compared to the angular resolution of most space plasma measurements ...". 
 
-Having different data providers or software libraries compute \texttt{GEI} in different ways can lead to issues, for example, 
+Although this statement was made thirty years ago, based on the results in this section, it appears the convention in space physics is that differences at this level are considered negligible. That is, we find angular differences in the ephemeris from different providers and coordinate transforms from different software packages of $0.3^\circ$--$0.03^\circ$, and this uncertainty is not discussed in the documentation, suggesting that it is considered small enough to be ignored.
+
+Although the convention for what uncertainties are considered negligible may have been appropriate at one time, we suggest these assumptions should be revisited. First, we now have spacecraft constellations with a nearest separation distance of 7~km \cite{NASA2016}. Second, having different data providers or software libraries compute transforms in different ways can lead impeded validation, for example, 
 
 \begin{itemize}
 \item In an attempt to develop a 3D visualization program that returns the region of geospace (e.g., plasma sheet, interplanetary medium, plasmasphere) given an arbitrary position, we implemented the models used by \cite{SSCWeb} and attempted to validate our work by comparing our predicted regions at the positions provided by its web service for spacecraft. Although our predictions were generally consistent, we were unable to reproduce the exact time when a spacecraft crossed from one region into another. After a search for errors in our model implementation failed to explain the differences, we realized that the errors were due to the software used for reference frame transformation differing from that used by SSCWeb.
@@ -229,24 +237,29 @@ Having different data providers or software libraries compute \texttt{GEI} in di
 \item Not all global magnetosphere simulation models are executed in the same reference frame. To compare the models, their variables must be transformed into the same coordinate frame, and the uncertainty associated with this transformation must be known to accurately identify the true difference in the model output. In addition, if the two models should, but do not, match to numerical precision at certain locations or under certain conditions, it is difficult to determine the cause of the mismatch when different transforms were used \cite{Thomas2025}. 
 \end{itemize}
 
-The fact that different software libraries provide different options for reference frames is indirect evidence that differences can matter. For example, \texttt{SpacePy} \cite{SpacePy} provides multiple options for computing the \texttt{MAG} system, which have angular differences of ${\sim}0.01^\circ$, and \texttt{SunPy} \cite{SunPy} has options for how the \texttt{GEI} frame is computed (see section~\ref{sect:comparisons_software}). A general finding is that the differences in transform results using a single library but with different options for the transform are on the order of, or smaller than, the difference in transform results found when comparing two different software libraries. As a result, the value of improvements in how a transform is computed with a single library is lost when a comparison is made using data computed with a different library. 
+The fact that different software libraries provide different options for reference frames is indirect evidence that differences can matter. For example, \texttt{SpacePy} \cite{SpacePy} provides multiple options for computing the \texttt{MAG} system, which have angular differences of ${\sim}0.01^\circ$, and \texttt{SunPy} \cite{SunPy} has options for how the \texttt{GEI} frame is computed (see section~\ref{sect:comparisons_software}). A general finding is that the differences in transform results using a single library, but with different options for the transform, are on the order of, or smaller than, the differences in transform results found when comparing two different software libraries. As a result, the value of improvements in how a transform is computed with a single library is lost when a comparison is made using data computed with a different library. 
 
 Even if the uncertainty associated with how a given coordinate frame was implemented is small relative to that of the measurements, we suggest that it is illogical for two data providers to report the location of a spacecraft that differs by more than what is expected due to numerical precision unless the reason for differences is clearly documented and ideally evident in the name of the dataset, e.g., by including the word ``preliminary". A recommendation for addressing this is given in section~\ref{sect:ephemeris-version}.
+
+% Reference sample problems above and also provide stronger motivation for this.
+%Need a statement to support the proposal. Why is this a problem? What problems could this produce in analysis, spacecraft operations, and other areas? Why is it important to pursue this?
 
 \subsection{Ephemeris}
 \label{sect:comparisons_ephemeris}
 
 In this section, we give examples showing how ephemeris values from data providers can differ.
 
-In Figure~\ref{fig:geotail}, the ephemeris of the Geotail spacecraft from \texttt{2021-11-25} through \texttt{2021-12-05} is shown from the \citeA{SSCWeb} web service and CDF \cite{CDF2025} files in from CDAWeb. SSCWeb provides the ephemeris for scientific spacecraft in reference systems that include \texttt{GEI}, \texttt{J2K}, \texttt{GSE}, \texttt{GSM}, and \texttt{GM} (frequently referred to as \texttt{MAG}). The \texttt{GE\_OR\_DEF} dataset has ephemeris values in \texttt{GCI}, \texttt{GSE}, and \texttt{GSM}.
+Figure~\ref{fig:geotail} shows the ephemeris of the Geotail spacecraft from \texttt{2021-11-25} through \texttt{2021-12-05} from the \citeA{SSCWeb} web service and CDF \cite{CDF2025} files from CDAWeb. SSCWeb provides the ephemeris for scientific spacecraft in reference systems that include \texttt{GEI}, \texttt{J2K}, \texttt{GSE}, \texttt{GSM}, and \texttt{GM} (frequently referred to as \texttt{MAG}). The \texttt{GE\_OR\_DEF} dataset has ephemeris values in \texttt{GCI}, \texttt{GSE}, and \texttt{GSM}.
 
-In Figure~\ref{fig:geotail}, the average distance, $\overline{r}$, from the two providers and errors relative to an Earth radius, $R_E\equiv 6378.16$~km, which is the value used by SSCWeb. We used the SSCWeb option to return data as a fraction of $R_E$ with 10 fractional digits. The CDAWeb dataset stores values with units of km as IEEE--754 64-bit floats, and the metadata indicates a recommended display precision of 10 fractional digits. The cadence of the SSCWeb Geotail data is 12 minutes while the CDAWeb Geotail dataset is at a 10--minute cadence. In the time interval displayed in Figure~\ref{fig:geotail}, values from the datasets are only used when they had the same timestamps in the time interval shown.
+Figure~\ref{fig:geotail} shows the average geocentric distance, $\overline{r}$, from the two providers and errors relative to an Earth radius, $R_E\equiv 6378.16$~km, which is the value used by SSCWeb. We used the SSCWeb option to return data as a fraction of $R_E$ with 10 fractional digits. The CDAWeb dataset stores values with units of km as IEEE--754 64-bit floats, and the metadata indicates a recommended display precision of 10 fractional digits. The cadence of the SSCWeb Geotail data is 12 minutes while the CDAWeb Geotail dataset is at a 10--minute cadence. In the time interval displayed in Figure~\ref{fig:geotail}, values from the datasets are only used when they had the same timestamps in the time interval shown.
 
-Based on the documentation for \citeA{SSCWeb}, which has the statement ``Geocentric Inertial (\texttt{GCI}) and Earth-Centered Inertial (\texttt{ECI}) are the same as \texttt{GEI}.", we expect the SSCWeb/\texttt{GEI} and CDAWeb/\texttt{GCI} to be identical to the level of precision of the data, assuming both data sources use the same definition of \texttt{GEI}. The result is shown in Figure~\ref{fig:geotail}(a). The average angular difference between their position vectors is $\Delta \theta \sim 0.3^\circ$, and the average error relative to an Earth radius, $|\Delta\mathbf{r}|/R_E\sim 0.16$, or 16\%. The maximum error relative to the radius, $|\Delta \mathbf{r}|/\overline{r}$ is $1/187$, or $0.5$\%.
+Based on the documentation for \citeA{SSCWeb}, which has the statement ``Geocentric Inertial (\texttt{GCI}) and Earth-Centered Inertial (\texttt{ECI}) are the same as \texttt{GEI}.", we expect the SSCWeb/\texttt{GEI} and CDAWeb/\texttt{GCI} to be identical to the level of precision of the data, assuming both data sources use the same definition of \texttt{GEI}. The result is shown in Figure~\ref{fig:geotail}(a). 
 
 Based on the precision of the data, and if both providers use the same definition of \texttt{GEI}, we expect $|\Delta r|/R_E \simeq 10^{-10}$ given that the SSCWeb values are reported in $R_E$ to $10$ fractional digits and the CDAWeb values are recommended for display with 10 fractional digits. For $\overline{r}=20 R_E$, this corresponds to an uncertainty due to the precision of the data of $\Delta \theta \simeq 20\cdot (180/\pi) \cdot 10^{-10}$ degrees $\simeq 10^{-7}$ degrees.
 
-In Figure~\ref{fig:geotail}(b), there is a much closer match between SSCWeb/J2K and CDAWeb/GCI, with an average angular difference in the position vector of ${\sim}0.002^\circ$ and an average error relative to an Earth radius of ${\sim}0.05$\%. 
+The average angular difference between their position vectors is $\Delta \theta \sim 0.3^\circ$, and the average error relative to an Earth radius, $|\Delta\mathbf{r}|/R_E\sim 0.16$, or 16\%. The maximum error relative to the average geocentric distance, $|\Delta \mathbf{r}|/\overline{r}$ is $1/187$, or $0.5$\%.
+
+In Figure~\ref{fig:geotail}(b), there is a much closer match between SSCWeb/J2K and CDAWeb/GCI, with an average angular difference in the position vector of ${\sim}0.001^\circ$ and an average error relative to an Earth radius of ${\sim}0.05$\%. 
 
 Angular differences can be compared to:
 \begin{enumerate}
@@ -277,7 +290,7 @@ In Figure~\ref{fig:geotail}(d), a comparison is made for the \texttt{GSM} refere
 % The associated SPASE record has GCI translated to GEI
 % https://hpde.io/JAXA/NumericalData/Geotail/Ephemeris/PT10M
 
-In Figure~\ref{fig:mms-2}, a comparison is made between data from SSCWeb, CDAWeb, and the JPL Horizons web service \cite{JPLHorizons}, which provides ephemeris for some of the spacecraft available from SSCWeb. The JPL Horizons web service provides ephemeris in the \texttt{ICRF} reference frame (the version of \texttt{ICRF} is not documented), and \texttt{SunPy} is used to transform it to other reference frames.
+In Figure~\ref{fig:mms-2}, a comparison is made between data from SSCWeb, CDAWeb, and the JPL Horizons web service \cite{JPLHorizons}, which provides ephemeris for some of the spacecraft available from SSCWeb. The CDAWeb dataset is  \texttt{MMS2\_EPD-EIS\_SRVY\_L2\_ELECTRONENERGY}. The JPL Horizons web service provides ephemeris in the \texttt{ICRF} reference frame (the version of \texttt{ICRF} is not documented), and \texttt{SunPy} is used to transform it to other reference frames.
 
 Figure~\ref{fig:mms-2}a shows that the $\Delta \mathbf{r}$ between \texttt{GSE} locations from CDAWeb and SSCWeb match to within ${\sim}3$~km, which is much larger than expected by numerical precision but smaller than the closest separation distance of MMS spacecraft of ${\sim}7$~km \cite{NASA2016}. Figure~\ref{fig:mms-2}b shows that there are larger differences for \texttt{GSM}.
 
@@ -348,7 +361,7 @@ In Figure~\ref{fig:mms-2}c, much larger differences are shown to exist between S
          \centering
          \includegraphics[width=\textwidth]{code/figures/ephemeris/MMS-2_SSCWeb-GSM_vs_JPL-GSM.pdf}
      \end{subfigure}
-     \caption{Comparison of ephemeris values from SSCWeb and CDAWeb (panels (a) and (b) and SSCWeb and JPL Horizons in two different reference systems.}
+     \caption{Comparison of ephemeris values from (a)--(b)  SSCWeb and CDAWeb; (c)--(d) SSCWeb and JPL Horizons in two different reference systems.}
      \label{fig:mms-2}
 \end{figure}
 
@@ -374,15 +387,15 @@ In this section, we compare reference frame calculations using the following sof
     \item \texttt{SunPy} version 7.0.0
 \end{itemize}
 
-Figure~\ref{fig:angles} compares the angles between the $Z$ axis of select coordinate system pairs. The average of the absolute value of the differences with respect to \texttt{geopack\_08\_dp} ranges from $4\cdot 10^{-7}$ to $9\cdot 10^{-2}$ degrees. These values can be used as an uncertainty estimate when comparing data transformed using different software libraries.
+Figure~\ref{fig:angles} compares the angles between the $Z$ axis of select coordinate frame pairs. The average of the absolute value of the differences with respect to \texttt{geopack\_08\_dp} ranges from $4\cdot 10^{-7}$ to $1\cdot 10^{-2}$ degrees; the values for each library are given in the legend in the middle panel of each subplot. These values can be used as an uncertainty estimate when comparing data transformed using different software libraries.
 
 The maximum absolute differences shown in the bottom panels of the subplots in Figure~\ref{fig:angles} are smaller than those found when comparing ephemeris values in section~\ref{sect:comparisons_ephemeris}. The choice of which library to use as a baseline for this comparison is arbitrary; in general, we are interested in the maximum differences among the libraries, which is displayed in the lower panel of each subplot.
 
-The bottom panels of Figure~\ref{fig:angles}a--c shows that the maximum difference between the libraries for the \texttt{GEO}/\text{GSE} is ${\sim}0.02^\circ$,  \texttt{GEO}/\text{GSM} is ${\sim} 0.03^\circ$, \texttt{GEO}/\text{GSM} is ${\sim}0.04^\circ$, all of which are comparable to the average angular change in Earth's dipole $Z$ axis of ${sim}0.04^\circ$ per year.
+The bottom panels of Figure~\ref{fig:angles}a--c shows that the maximum difference between the libraries for the \texttt{GEO}/\texttt{GSE} is ${\sim}0.02^\circ$,  \texttt{GEO}/\texttt{GSM} is ${\sim} 0.03^\circ$, \texttt{GEO}/\texttt{GSM} is ${\sim}0.04^\circ$, all of which are comparable to the average angular change in Earth's dipole $Z$ axis of ${\sim}0.04^\circ$ per year.
 
 %Figure~\ref{fig:angles}d s
 
-We have also performed coordinate transforms using the \cite{SSCWebCoordinateCalculator} web service. However, this web service only outputs values to two decimal places, which leads to angular differences of $0.3^\circ$. These values are not plotted so that the library differences are clearly visible.
+We have also performed coordinate transforms using the \citeA{SSCWebCoordinateCalculator} coordinate calculator web service. However, this service only outputs values to two decimal places, which leads to angular differences of $0.3^\circ$. These values are not plotted so that the library differences are clearly visible.
 
 \begin{figure}[htb]
      \begin{subfigure}[b]{0.49\textwidth}
@@ -406,7 +419,7 @@ We have also performed coordinate transforms using the \cite{SSCWebCoordinateCal
          \centering
          \includegraphics[width=\textwidth]{code/figures/angles/delta=1days_20100101-20150101/MAG_GSM.pdf}
      \end{subfigure}
-     \caption{Angles between $Z$ axes in select coordinate frames. In the top panels of each subplot, the notation $\angle (Z_A, Z_B)$ means the angle between the $Z$ axis of coordinate frame $A$ in coordinate frame $B$ and the $Z$ axis of coordinate frame $B$. The middle panel of each subplot shows the difference in the computed angles in the top panel with respect to \texttt{geopack\_08\_dp}, with the maximum absolute value shown in parentheses. The bottom panels show the maximum absolute value of the differences in the middle panel.}
+     \caption{Angles between $Z$ axes in select coordinate frames. In the top panels of each subplot, the notation $\angle (Z_A, Z_B)$ means the angle between the $Z$ axis of coordinate frame $A$ in coordinate frame $B$ and the $Z$ axis of coordinate frame $B$. At this scale, the differences between the libraries are not visible. The middle panel of each subplot shows the difference in the computed angles in the top panel with respect to \texttt{geopack\_08\_dp}, with the average of the absolute value of each line shown in parentheses. In subplot (a), the values for \texttt{spicepy1} and \texttt{spiceypy2} are identical. The bottom panels show the maximum absolute value of the differences in the middle panel.}
      \label{fig:angles}
 \end{figure}
 
@@ -421,7 +434,7 @@ There is a significant overlap in effort --- typically, a scientist familiar wit
 
 As noted in the conclusions, this effort to develop and verify transforms for variables into different reference frames would not be necessary if either a database of transform matrices or versioned SPICE kernels were available that were accepted as a community standard.
 
-For the SSCWeb data service \cite{SSCWeb}, which provides spacecraft ephemeris, three approaches have been taken in order of priority (see \citeA{SSCWebProvenance} for a table indicating which approach was taken):
+For the SSCWeb data service \cite{SSCWeb}, which provides spacecraft ephemeris, three approaches have been taken in order of priority (see \citeA{SSCWebProvenance} for a table indicating which approach was taken and provenance):
 
 \begin{enumerate}
     \parskip 0.1in 
@@ -471,18 +484,18 @@ Finally, a {\it reference frame} is a realization of a reference system based on
 A community--developed standard should be created for acronyms and definitions. The standard should provide abbreviation/definition pairs for commonly used space physics ideal reference frames. Associated with each ideal reference frame definition, there should be at least one reference system abbreviation/definition pair; if multiple reference systems are in common use, they should have their definition and way of being referred to. For each reference system, there should be at least one reference frame abbreviation/definition.
 %There are two community--developed standards with ideal reference frame definitions: IVOA [Ref] and SPASE [Ref].
 
-\subsection{Reference Frame Reference Dataset}
+\subsection{Reference Frame Standard Dataset}
 \label{sect:reference-dataset}
 
-For a given transform between reference frames, a transformation matrix at a specific instant in time (or, equivalently, rotation angles or quaternions) relative to a base reference frame is required. We also note that implementing transforms requires technical expertise in software and maintenance, for example, updating parameters in reference frames, verifying the calculations, and documenting changes. Although providing a software version allows for reproducibility in principle, in practice, not all users will be familiar with the cited software, and in the long term, the software may not be maintained, or it may be difficult to install and use. 
+For a given transform between reference frames, a transformation matrix at a specific instant in time (or, equivalently, rotation angles or quaternions) relative to a base reference frame is required. We also note that implementing transforms requires technical expertise in software and maintenance, such as updating parameters in reference frames, verifying calculations, and documenting changes. Although providing a software version allows for reproducibility in principle, in practice, not all users will be familiar with the cited software, and in the long term, the software may not be maintained, or it may be difficult to install and use. 
 
-Based on this, we recommend that a standards body develops a reference dataset be developed with a long--term plan to keep it up--to--date. Each record in the dataset should consist of a timestamp and a matrix that is required to transform from a given coordinate system to a reference coordinate system. The records should be made available in a standard scientific file format and from a web service API (Application Programming Interface). A parsimonious alternative to providing 9 transform matrix values is to define only one or two angles (and associated rotation axes) that are needed to compute the matrix values.
+Based on this, we recommend that a standards body develops a standard dataset be developed with a long--term plan to keep it up--to--date. Each record in the dataset should consist of a timestamp and a matrix that is required to transform from a given coordinate frame to a reference coordinate frame. The records should be made available in a standard scientific file format and from a web service API (Application Programming Interface). A parsimonious alternative to providing 9 transform matrix values is to define only one or two angles (and associated rotation axes) that are needed to compute the matrix values.
 
-With such a dataset, if a scientist wants to allow for reproducibility, they could state, for example, ``the vector measurements in \texttt{ABC} were transformed into reference frame \texttt{XYZ}," by using \texttt{ABC} to \texttt{REF} and \texttt{REF} to \texttt{XYZ} transformation matrices in the reference dataset and citing both the standard that defines the acronyms and the reference dataset.
+With such a dataset, if a scientist wants to allow for reproducibility, they could state, for example, ``the vector measurements in \texttt{ABC} were transformed into reference frame \texttt{XYZ}," by using \texttt{ABC} to \texttt{REF} and \texttt{REF} to \texttt{XYZ} transformation matrices in the standard dataset and citing both the standard that defines the acronyms and the standard dataset.
 
-We have found that many software libraries do spot checks of transforms. For example, \texttt{SunPy}'s unit tests \cite{SunPy} involve a comparison with a table from \citeA{Franz2002} at several time instants; \texttt{cxform} \cite{cxform} tests its implementation by comparing the ephemeris in \texttt{GSE} of one year of data from three spacecraft from \citeA{SSCWeb}; a comparison is also made with a table in \citeA{Franz2002}. With the proposed reference database, a software library developer could make a more comprehensive comparison, allowing users to directly estimate uncertainties associated with coordinate transforms.
+We have found that many software libraries do spot checks of transforms. For example, \texttt{SunPy}'s unit tests \cite{SunPy} involve a comparison with a table from \citeA{Franz2002} at several time instants; \texttt{cxform} \cite{cxform} tests its implementation by comparing the ephemeris in \texttt{GSE} of one year of data from three spacecraft from \citeA{SSCWeb}; a comparison is also made with a table in \citeA{Franz2002}. With the proposed reference database, a software library developer could make a more comprehensive comparison, allowing users to directly estimate uncertainties associated with coordinate transforms. An additional advantage of this dataset is that software developers can use it for testing their implementations.
 
-We also suggest that this dataset contains common time representations. Each record should be a UTC timestamp along with values for \texttt{UT1}, \texttt{TAI}, \texttt{TT}, and \texttt{ET} (\citeA{McCarthy2011}; see section~\ref{sect:glossary} for definitions). Although these time relationships are simple, some require leap second tables, and to perform the computation, one needs to parse (and update if required) the leap second table. An additional advantage of this dataset is that software developers can use it for testing their implementations.
+We also suggest that this dataset contains common time representations. Each record should be a UTC timestamp along with values for \texttt{UT1}, \texttt{TAI}, \texttt{TT}, and \texttt{ET} (\citeA{McCarthy2011}; see section~\ref{sect:glossary} for definitions). Although these time relationships are simple, some require leap second tables, and to perform the computation, one needs to parse (and update if required) the leap second table.
 
 %As demonstrated in section~\ref{sect:comparisons}, differences exist. Debugging and understanding how code works is difficult.
 
@@ -509,7 +522,7 @@ Having a dataset of reference frame transform matrices will address another issu
 
 %https://spdf.gsfc.nasa.gov/pub/data/solar-orbiter/ephemeris/
 
-Ideally all mission-specific SPICE kernels would be available from a single repository, kernels related to standard space physics reference frames would be shared across missions, and these standard kernels would either be used to generate the reference dataset described in section~\ref{sect:reference-dataset} or an evaluation of the differences between transforms using these SPICE kernels and the reference dataset would be provided as documentation.
+Ideally all mission-specific SPICE kernels would be available from a single repository, kernels related to standard space physics reference frames would be shared across missions, and these standard kernels would either be used to generate the standard dataset described in section~\ref{sect:reference-dataset} or an evaluation of the differences between transforms using these SPICE kernels and the standard dataset would be provided as documentation.
 
 We also recommend that modern version control systems be used. At present, kernels can be found at various websites, and the kernel versions are sometimes indicated in the file name, but the prior versions are not always provided, which inhibits reproducibility. Storing kernels in a source code repository, which handles versioning and simplifies the research of changes, will improve this. Additionally, we recommend assigning unique identifiers, such as DOIs, to kernels to facilitate their citation.
 
@@ -538,26 +551,26 @@ We also recommend that modern version control systems be used. At present, kerne
 % Recommendation for Re: SpacePy = 6378.137km; IRBEM = 6371.2 km; SSCWeb = 6378.16
 % => Don't provide value in Re.
 
-\subsection{Versioning of Ephemeris}
-\label{ephemeris-version}
+\subsection{Versioning and Documenting Ephemeris}
+\label{sect:ephemeris-version}
 
-In this work, we have been primarily interested in the problem of transforming a vector between reference frames. In the case of an ephemeris provided in a given reference frame, there is an uncertainty due to what is meant by that reference frame, which is addressed by the recommendation in section~\ref{sect:standard-for}.
+In this work, we have been primarily interested in the problem of transforming a vector from one reference frame to another. In the case of an ephemeris provided in a given reference frame, there is an uncertainty due to what is meant by that reference frame, which is addressed by the recommendation in section~\ref{sect:standard-for}.
 
-There is an additional source of uncertainty -- how the ephemeris was determined. Missions have used direct GPS measurements, commercial software such as STK (Systems Tool Kit), and data from facilities such as GSFC Flight Dynamics Facility (FDF), Deep Space Network (DSN), NAIF, and NORAD. Section~\ref{sect:comparisons_ephemeris}, we show an example where the ephemeris for two different data providers for the same spacecraft differed in a way that was unlikely to be due to differences in how the data providers implemented the reference frame. 
+There is an additional source of uncertainty -- how the ephemeris was determined. Missions have used direct GPS measurements, commercial software such as STK (Systems Tool Kit), and data from facilities such as GSFC Flight Dynamics Facility (FDF), the Deep Space Network (DSN), NAIF, and NORAD to produce the ephemeris for the mission.  Section~\ref{sect:comparisons_ephemeris}, we show an example where the ephemeris for two different data providers for the same spacecraft differed in a way that was unlikely to be due to differences in how the data providers implemented the reference frame. 
 
-To address this, we suggest that data providers indicate how the ephemeris was determined. We also suggest that if two data providers provide ephemeris for the same spacecraft, they document how and why their results may differ, if applicable.
+To address this, we suggest that data providers indicate how the ephemeris was determined. We also suggest that if two data providers provide ephemeris for the same spacecraft, they document how and why their results may differ, if applicable. We also recommend that the metadata indicate the uncertainty in the locations. Often, data providers will modify the ephemeris values when more accurate calculations become available. This makes reproducibility difficult. Ideally, old versions of ephemeris would be made available. Often, this is not practical, so an alternative is to provide version information in the metadata.
 
 \subsection{Documentation}
 
-If the above recommendations are followed, the necessary documentation for reproducibility related to coordinate transforms will be simplified. For example, if an author or software package used the reference dataset described in section~\ref{sect:reference-dataset} for a transform, only the reference dataset is needed for reproducibility. Similarly, if one or more SPICE kernels are used and each has a unique DOI and stored in a permanent generalized repository, only the DOIs are needed to retrieve the kernels. In this case, these DOIs and the SPICE software library version used are sufficient for reproducibility.
+If the above recommendations are followed, the necessary documentation for reproducibility related to coordinate transforms will be simplified. For example, if an author or software package used the standard dataset described in section~\ref{sect:reference-dataset} for a transform, only the standard dataset is needed for reproducibility. Similarly, if one or more SPICE kernels are used and each has a unique DOI and stored in a permanent generalized repository, only the DOIs are needed to retrieve the kernels. In this case, these DOIs and the SPICE software library version used are sufficient for reproducibility.
 
 In the absence of these options, we recommend the following.
 
 \begin{itemize}
   \item Software package developers provide documentation on implementation choices (e.g., model used for obliquity). If data from an external resource is used, for example, if the IGRF coefficients are dynamically downloaded, the user should have an option to easily view the data used, so that, if necessary, the values used can be documented in a publication.
-  Software should have a DOI for each version so that the version used can be referenced rather than only a top--level DOI.
-  \item Data providers should ensure that metadata associated with ephemeris and variables that are transformed should have details about the software version used for the transforms or data used for the transform, such as SPICE kernels. The metadata description should be validated by having a third--party consider if there is enough information in the description for them to re--implement the transform.
-  \item Paper authors include the version of software, a DOI for that version if available, and options passed to the transform function. If SPICE kernels were used, they should be provided as supplementary material if they are not otherwise citable and online, or post them to a generalized repository (e.g., Zenodo). 
+  Software should have a DOI for each version so that the version used can be referenced rather than only a top--level DOI. Additional software citation recommendations are given in \citeA{Jackson2012} and \citeA{Smith2016}.
+  \item Data providers should ensure that metadata associated with ephemeris and variables that are transformed should have details about the software version that was used for the transforms or data used for the transform, such as SPICE kernels. The metadata description should be validated by having a third--party consider if there is enough information in the description for them to re--implement the transform.
+  \item Paper authors include the version of software, a DOI for that version if available, and options passed to the transform function. If SPICE kernels are used, they should be provided as supplementary material if they are not otherwise citable and online, or posted to a general repository (e.g., Zenodo). 
 
 \end{itemize}
 
@@ -567,6 +580,7 @@ In the absence of these options, we recommend the following.
 \begin{itemize}
 \item ACE -- Advanced Composition Explorer (spacecraft mission)
 \item CDAWeb -- Coordinated Data Analysis Web (NASA data archive)
+\item CD -- Centered Dipole (reference frame). Same as GM and MAG if they use a model dipole with an origin of Earth's center of mass.
 \item CDF -- Common Data Format (file format for scientific data)
 \item DSN -- Deep Space Network (NASA communications network)
 \item ECI -- Earth-Centered Inertial (reference frame)
@@ -585,11 +599,12 @@ In the absence of these options, we recommend the following.
 \item ISTP -- International Solar-Terrestrial Physics (NASA program)
 \item IRBEM -- International Radiation Belt Environment Modeling (software library)
 \item ICRF -- International Celestial Reference Frame (reference frame)
-\item ICRS -- International Celestial Reference System (refernce system)
+\item ICRS -- International Celestial Reference System (reference system)
 \item J2000 -- Reference system with reference epoch of 2000 January 1 noon TT.
 \item J2000.0 -- Reference epoch associated with J2000
 \item J2K -- Abbreviation of J2000
 \item JPL -- Jet Propulsion Laboratory
+\item MAG -- Geomagnetic (reference frame). Also referred to as Centered Dipole (CD) and GM.
 \item MMS -- Magnetospheric Multiscale Misson 
 \item NAIF -- Navigation and Ancillary Information Facility 
 \item MOD -- Mean of Date (reference frame modifier, precession only)
@@ -608,14 +623,12 @@ In the absence of these options, we recommend the following.
 
 \section{Open Data}
 
-The software, data, and associated calculations are available in ~\cite{Weigel2025}. The additional software used and their versions and references is referenced in section~\ref{sect:comparisons_software}.
+The software, data, and associated calculations are available in ~\citeA{Weigel2025}. The additional software used, its versions, and references are provided in section~\ref {sect:comparisons_software}.
 % https://www.agu.org/publications/authors/journals/data-software-for-authors#needed#availability-statement
 
 \section{Acknowledgments}
 
-This work was supported by NASA Grant 80NSSC24K0199. We thank Fernando Carcaboso Morales, Grant Stephens, and Scott Turner for feedback on the manuscript or additional background information, and Jim Lewis for addressing questions about \texttt{PySPEDAS}. 
-
-% Boris Semenov
+This work was supported by NASA Grant 80NSSC24K0199. We thank Fernando Carcaboso Morales, Scott Turner, Lan Jian, Rita Johnson, Leonard Garcia, Tami Kovalick, Boris Semenov, and Nathaniel Bachman for feedback on the manuscript or additional background information, and Jim Lewis for addressing questions about \texttt{PySPEDAS}. 
 
 \bibliography{_main}
 

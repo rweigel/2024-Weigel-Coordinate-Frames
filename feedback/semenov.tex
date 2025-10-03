@@ -1,0 +1,247 @@
+Semenov and Bachman
+
+Bob –
+
+ 
+
+Apologies for the delay. NAIF's plate is very full so adding a review of this scale to it is quite challenging.
+
+ 
+
+Please see our feedback below. It is split into two "categories" – editorial review comments and technical questions (for consideration in your recommendations paper and/or in the future proposal).
+
+ 
+
+The line numbers are for the document version that you send on 09/16/25, re-attached with the name "Weigel_Coordinate_Frames-2025-09-16.pdf" for traceability.
+
+ 
+
+Regards,
+
+Boris.
+
+ 
+
+====================================================================
+
+NAIF's Editorial Comments on Weigel_Coordinate_Frames-2025-09-16.pdf
+
+====================================================================
+
+ 
+
+﻿
+
+-- in Abstract, line 15, maybe change: differences can exist -> differences often exist
+
+ 
+
+ 
+
+-- in 1, lines 32-35 it is noted that the terms “ideal reference system”, “reference system”, or “reference frame” will be used in the remainder of this article but a number of subsequent pages, specifically lines 198, 199, 200-202, 350, and 433-434 (these two lines are also noted below in a separate item below) still use the "coordinate system(s)".
+
+ 
+
+ 
+
+-- in 3, remove line 192,  ECLIPJ2000 is based on ecliptic North and as such is in a different frame "family"
+
+ 
+
+ 
+
+-- in 3, line 206, missing "that": Using software packages have coordinate transform functions. -> Using software packages that have coordinate transform functions.
+
+ 
+
+ 
+
+-- in 4.1, lines 260-261, this sentence appears to be incomplete
+
+ 
+
+ 
+
+-- in 4.1, in Figure 1a and 1d, the max radial differences of ~1000 km do not seem plausible to be an indication of different orbit determination solutions for Geotail used in SSCWeb and CDAWeb. They are much more likely to be an indication of an apples-to-oranges comparison (i.e. vectors are not just in different frames but also have different origins or tips, or both), or a gross error in one of the data sources, or an error is retrieving/handling the data. Simply looking at 1a and 1b one can say that SSCWeb/GEI and SSCWeb/J2K cannot be the same vectors in two different frames because their radial differences from CDAWeb/GCI are so significantly different.
+
+ 
+
+ 
+
+-- in 4.2, in Figure 3, it is not clear what’s shown on the top plot in each quadrant. These top plots have no units. If one was to assume that they are in degrees, the value ranges for top plots a, b, and d (90-130, 100-130, 70-100) seem way too large given that Earth north, Ecliptic north and Earth magnetic pole used as defining vectors for these frames have separations of no more than 30 degrees. I know that we don’t need yet another set of frames thrown in the mix, but a quick check with ITRF93 (should be close to GEO), BC_GSE (should be close to other GSEs) and BC_GSM (should be close to other GSMs) using WebGeocalc shows very different and more "relatable" angle ranges -- see three attached screenshots wgc_bc_*.png. For the record, ITRF93 is built into SPICE and supported by latest Earth binary PCKs; BC_GSE and BC_GSM are defined in this Frames Kernel
+
+ 
+
+   https://naif.jpl.nasa.gov/pub/naif/pds/pds4/bc/bc_spice/spice_kernels/fk/bc_sci_v12.tf
+
+ 
+
+and supported by BepiColombo archive kernels (DOI 10.5270/esa-m4c8r20), and WebGeocalc Angular Separation panel that I used is accessible at
+
+ 
+
+   https://wgc.jpl.nasa.gov:8443/webgeocalc/#AngularSeparation
+
+ 
+
+ 
+
+-- in 4.2, in Figure 3, it seems that the top plots in each quadrant have multiple lines masking each other and because of that appear as a single line. Because of this masking, having a legend on these top plots -- which is a second legend for each quadrant in addition to the legend in the middle plot -- is actually a bit confusing.
+
+ 
+
+ 
+
+-- in 4.2, for lines 352-353
+
+ 
+
+      ... These values can be used as an uncertainty estimate
+
+      when comparing data transformed using different software libraries.
+
+ 
+
+   it is not clear the uncertainty of what quantity is meant here, and if uncertainty is the right term.
+
+ 
+
+ 
+
+-- in 6.2, lines 432-434, maybe change the terms "coordinate system" to reference frame, e.g.
+
+ 
+
+      Each record in the dataset should consist of a times-tamp and a matrix
+
+      that is required to transform from a given coordinate system to a reference
+
+      coordinate system.
+
+ 
+
+   to
+
+ 
+
+      Each record in the dataset should consist of a times-stamp and a matrix
+
+      that is required to transform from a given reference frame to the
+
+      "reference" reference frame.
+
+ 
+
+   (`` "reference" reference frame '' certainly does not sounds good; maybe a different term should be selected to specify the "core" reference frame with respect to which all data sets are provided.)
+
+ 
+
+   Also, a correction in the updated text above: times-tamp -> times-stamp
+
+ 
+
+ 
+
+-- in 7, MAG is missing from the list
+
+ 
+
+ 
+
+-- in 8, on line 569, should "is referenced" be "are referenced"?
+
+ 
+
+ 
+
+=====================================================================
+
+NAIF's Technical Questions on Weigel_Coordinate_Frames-2025-09-16.pdf
+
+=====================================================================
+
+ 
+
+ 
+
+1)  Who is the central authority mentioned in the abstract? Is this an existing entity? If not, what's the selection process for this entity?
+
+ 
+
+ 
+
+2) For reference frame realizations that depend on ephemerides or models for orientation or direction vectors, will the database include data for a broad set of combinations of models? For example, will there be data for variants of the GSM frame that use different combinations of planetary ephemerides and geomagnetic dipole models?
+
+ 
+
+Are there limits on the number of variants of a given reference frame that can be supported?
+
+ 
+
+If the sets of underlying ephemerides and other models serving as inputs to frame transformations are restricted, what will be the selection process?
+
+ 
+
+ 
+
+3) How will the database be updated when underlying data, for example ephemerides, are updated?
+
+ 
+
+How will errors in the database be corrected? 
+
+ 
+
+How will users be informed of database updates?
+
+ 
+
+ 
+
+4) Will users have access to source code used to populate the database?
+
+ 
+
+ 
+
+5) Will the database contain only computed transformations for a fixed sequence of times, or will software be provided to compute transformations, using records from the database, at times specified by the user?
+
+ 
+
+If users must interpolate transformations, this would be another source of inconsistency.
+
+ 
+
+ 
+
+6) If the database contains only pre-computed transformations, what is the time step between transformations stored for a given pair of reference frames?
+
+ 
+
+ 
+
+7) How much storage will the database require? How fast will the database grow?
+
+ 
+
+ 
+
+8) How will software used to populate the database be maintained? How will software used to access the database be maintained?
+
+ 
+
+ 
+
+9) How will time transformations be done? For example, will conversions between TDB and TT accurately account for gravitational effects?
+
+ 
+
+ 
+
+10) What precision level will be used to compute transformations stored in the database? Will it be IEEE double precision floating point?
+
+ 
+
+=====================================================================
+
+End.
