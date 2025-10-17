@@ -1,0 +1,55 @@
+From: steven.m.petrinec@lmco.com <steven.m.petrinec@lmco.com>
+Sent: Thursday, August 7, 2025 8:00 PM
+To: Robert Weigel <rweigel@gmu.edu>
+Subject: RE: draft paper?
+
+Thanks, Robert!
+
+I read through the draft. It sounds quite good!
+
+I have a few minor comments/suggestions (below).
+
+Feel free to use or ignore as needed.
+
+-Steve
+
+ 
+
+Line 36: term -> terms
+Line 84: ‘Reference System’. Is this supposed to be ‘Reference Frame’ (to match the acronym)?
+Line 86: IRCF. Is this supposed to be ICRF?
+Line 96: Perhaps break up this long sentence.
+Section 2: Is there a distinction between ‘reference frame’ and ‘frame of reference’? I tend to think of the latter in terms of an observer’s viewpoint, which may be different from another’s viewpoint (due to a relative and constant velocity between the two observers). Perhaps this is already touched on in Sec.3, Lines 142-145.
+
+I had noticed this issue with usage before. Based on some light research, they seem to be the same. I would use them differently: "A reference frame ..." when discussing them in general and "The frame of reference" when discussing a particular one.
+
+Line 203: ‘requires positions > 1 RE,’. I assume this means a geocentric distance of > 1 RE (i.e., above the surface of the Earth), rather than component spatial resolution. Perhaps this needs a bit more description…
+
+I've decided to drop that detail.
+
+Lines 232-238: I’m not sure what to do here. I think the majority of global magnetosphere simulation model runs are compared against either observations, or against simple empirical models parameterized by solar wind (or other) conditions. To simplify the global simulation runs, they often take advantage of symmetries, like using a solar wind inflow directed along one axis. But this axis is typically deflected from the XGSE (or XGSM) axis by some angle (an average ‘aberration’ angle of ~4 degrees, but can be different if the observed solar wind flow direction fro a given interval is used). In such a case, either the simulation model results need to be rotated to a GSM coordinate system, or the observations need to be rotated into the aberrated coordinate system.
+
+Line 305: ‘depends orientation’ -> ‘depends on the orientation’
+
+Line 316: ‘ICRF reference frame’ -> ‘ICRF’ [redundant]
+Line 327: I like the mention of spacecraft maneuvers here as they’re a very important aspect of spacecraft operations, which are not usually appreciated (or even noticed) by scientists.
+
+This issue should be mentioned in the conclusions. There should be versions of ephemeris - preliminary and final. Let's discuss in the next telecon.
+
+Line 359: ‘the the’
+
+Line 524: ‘for paper’ -> ‘for a paper’
+ 
+
+Some acronyms have not been defined (e.g., SM coordinates)
+
+Do you mean I haven't discussed it? 
+
+It should probably be emphasized more that the coordinate systems discussed here are Earth-based (other planets also have prescribed coordinate systems; some are quite different from those used near Earth).
+
+Will do.
+
+It’s good to keep this article focused as it is, even though there are other coordinate systems used at lower altitudes (as described at length by Laundal and Richmond); some of which are not even orthogonal. Still, it might be worth at least pointing out somewhere (aside from Line 66) that additional magnetic coordinate systems exist that are useful for linking space-based and ground-based regimes.
+ 
+
+Will do.
