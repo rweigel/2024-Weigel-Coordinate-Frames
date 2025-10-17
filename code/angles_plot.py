@@ -1,7 +1,9 @@
 import os
 
 import numpy
+
 from matplotlib import pyplot as plt
+from matplotlib.ticker import MultipleLocator
 
 import utilrsw
 
@@ -32,7 +34,7 @@ def fig_save(fname):
   plt.close()
 
 def fig_prep():
-  gs = plt.gcf().add_gridspec(3)
+  gs = plt.gcf().add_gridspec(3, hspace=0.07)
   axes = gs.subplots(sharex=True)
   return axes
 
@@ -53,13 +55,15 @@ def plot(df, tranform_str):
 
   axes = fig_prep()
 
-  for column in df['values'].columns:
-    lib = column
-    axes[0].plot(df['values'].index, df['values'][column],
-                 label=lib, color=line_map[lib][0], linestyle=line_map[lib][1])
+  lib = 'geopack_08_dp'
+  axes[0].plot(df['values'].index, df['values'][lib],
+                 label=lib,
+                 color=line_map[lib][0],
+                 linestyle=line_map[lib][1])
   axes[0].grid(True)
-  axes[0].set_ylabel(tranform_str)
+  axes[0].set_ylabel(tranform_str + ' [deg]')
   axes[0].legend()
+
 
   for column in df['diffs'].columns:
     if column == '|max-min|':
@@ -68,18 +72,59 @@ def plot(df, tranform_str):
     stat = utilrsw.format_exponent(numpy.mean(numpy.abs(df['diffs'][column])), 0)
     label = f"{column} (${stat}$)"
     axes[1].plot(df['diffs'].index, df['diffs'][column],
-                 label=label, color=line_map[column][0], linestyle=line_map[column][1])
+                 label=label,
+                 color=line_map[column][0],
+                 linestyle=line_map[column][1])
+
   axes[1].grid(True)
   axes[1].set_ylabel('Diff. relative to geopack_08_dp [deg]')
-  axes[1].legend()
+
+  # Add zero line to the difference subplot
+  axes[1].axhline(0, color='black', linestyle='-', linewidth=1, zorder=0)
+
+  # Force symmetric y-limits for the difference subplot
+  yl = axes[1].get_ylim()
+  ymax = abs(max(yl, key=abs))
+  axes[1].set_ylim(-ymax, ymax)
+
+  # Set y-axis major tick increment to 0.01 for the difference subplot
+  #axes[1].yaxis.set_major_locator(MultipleLocator(0.01))
+  axes[1].grid(which='minor', axis='y', linestyle=':', linewidth=0.5)
+  axes[1].yaxis.set_minor_locator(MultipleLocator(0.01))
+
+  axes[1].legend(ncols=3, fontsize=14, columnspacing=0.85)
+
 
   axes[2].plot(df['diffs'].index, df['diffs']['|max-min|'],
-               label='|max-min|', color=line_map['|max-min|'][0], linestyle=line_map['|max-min|'][1])
+               label='|max-min|',
+               color=line_map['|max-min|'][0],
+               linestyle=line_map['|max-min|'][1])
+
+
   axes[2].grid(True)
   axes[2].set_ylabel('|max-min| [deg]')
+  axes[2].set_xlabel('Year')
+
+  yl0 = axes[2].get_ylim()[0]
+  yl1 = axes[2].get_ylim()[1]
+  axes[2].set_ylim(bottom=0 - (yl1-yl0)*0.05)
   axes[2].legend()
 
-  axes[2].set_xlabel('Year')
+
+  for ax in axes:
+    # Remove short tick lines next to axis numbers
+    ax.tick_params(axis='x', length=0)
+    ax.tick_params(axis='y', which='minor', length=0)
+    ax.tick_params(axis='y', length=0)
+    utilrsw.mpl.adjust_legend(ax)
+    ax.spines['bottom'].set_visible(False)
+    ax.spines['top'].set_visible(False)
+    ax.spines['right'].set_visible(False)
+    ax.spines['left'].set_visible(False)
+    ax.set_xlim(df['values'].index.min(), df['values'].index.max())
+
+  fig = axes[0].get_figure()
+  fig.align_ylabels()
 
 
 utilrsw.mpl.plt_config()
