@@ -11,7 +11,8 @@ import utilrsw
 #run = 'delta=10minutes_20101221-20101223'
 #run = 'delta=1days_20101221-20101223'
 #run = 'delta=10minutes_20101221-20101223'
-run = 'z-delta=1days_20100101-20150101'
+axis = 'z'
+run = f'{axis}-delta=1days_20100101-20150101'
 
 in_file = os.path.join('data','angles', f'{run}.pkl')
 out_dir = os.path.join('figures', 'angles', run)
@@ -133,7 +134,8 @@ data = utilrsw.read(in_file)
 for transform_key in list(data.keys()):
   df = data[transform_key]
   tranform_str = transform_key.split('_')
-  tranform_str = fr"$\angle$ ($Z_{{{tranform_str[0]}}}$, $Z_{{{tranform_str[1]}}}$)"
+  axis = axis.upper()
+  tranform_str = fr"$\angle$ (${{{axis}}}_{{{tranform_str[0]}}}$, ${{{axis}}}_{{{tranform_str[1]}}}$)"
 
   plot(df, tranform_str)
   fig_save(f'{transform_key}')
