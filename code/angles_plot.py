@@ -11,7 +11,7 @@ import utilrsw
 #run = 'delta=10minutes_20101221-20101223'
 #run = 'delta=1days_20101221-20101223'
 #run = 'delta=10minutes_20101221-20101223'
-run = 'delta=1days_20100101-20150101'
+run = 'z-delta=1days_20100101-20150101'
 
 in_file = os.path.join('data','angles', f'{run}.pkl')
 out_dir = os.path.join('figures', 'angles', run)
