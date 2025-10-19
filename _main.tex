@@ -53,6 +53,7 @@
 %Thomas https://orcid.org/0000-0003-1623-9035\\
 %Christopher https://orcid.org/0000-0002-0262-6432\\
 %Stephens https://orcid.org/0000-0002-5961-5582\\
+% Petrinec ORCID: 0000-0002-0329-7087
 %\vspace{0.2in}
 
 %\affiliation{1}{George Mason University, 4400 University Drive, Fairfax, VA 22030}
@@ -78,7 +79,7 @@
 % Albert - we will add although the focus is on space physics, similar issues and recommendations apply to solar. Can you give a few examples?
 
 \begin{abstract}
-In space physics, acronyms for coordinate systems (e.g., \texttt{GEI}, \texttt{GSM}) are commonly used; however, differences can exist in their definitions and implementations that prevent reproducibility. In this work, we compare definitions in frequently cited journal articles, online resources, and software packages and show that implementation differences can lead to transformations between same--named coordinate systems to differ significantly. Based on these comparisons and results, and to enable reproducibility, we recommend that (a) a standard for acronyms and definitions for coordinate systems is developed; (b) a central authority maintains a citable database of reference data needed for these transforms;  (c) a central authority maintains the SPICE (Spacecraft, Planet, Instrument, C-matrix, Events) kernels used by transforms by space physics spacecraft missions to generate data products in different coordinate systems; and (d) software developers provide explicit comparisons of their implementations with the results of (b) and documentation on implementation choices. In addition, we provide recommendations for scientists and metadata developers to ensure that sufficient reproducibility--enabling information is provided in the absence of these recommendations being implemented.
+In space physics, acronyms for coordinate systems (e.g., \texttt{GEI}, \texttt{GSM}) are commonly used; however, differences in their definitions and implementations can prevent reproducibility. In this work, we compare definitions in frequently cited journal articles, online resources, and software packages and show that implementation differences can lead to transformations between same--named coordinate systems to differ significantly. Based on these comparisons and results, and to enable reproducibility, we recommend that (a) a standard for acronyms and definitions for coordinate systems is developed; (b) a central authority maintains a citable database of reference data needed for these transforms;  (c) a central authority maintains the SPICE (Spacecraft, Planet, Instrument, C-matrix, Events) kernels used by transforms by space physics spacecraft missions to generate data products in different coordinate systems; and (d) software developers provide explicit comparisons of their implementations with the results of (b) and documentation on implementation choices. In addition, we provide recommendations for scientists and metadata developers to ensure that sufficient reproducibility-enabling information is provided if these recommendations are not implemented.
 \end{abstract}
 
 \section{Introduction}
@@ -333,7 +334,7 @@ In Figure~\ref{fig:mms-2}c, much larger differences are shown to exist between S
          \centering
          \includegraphics[width=\textwidth]{code/figures/ephemeris/Geotail_SSCWeb-GSM_vs_CDAWeb-GSM.pdf}
      \end{subfigure}
-     \caption{Comparison of ephemeris values from SSCWeb and CDAWeb in four different reference systems.}
+     \caption{Comparison of ephemeris values from SSCWeb and CDAWeb in four different reference systems. The top panel in each subplot shows the $X$, $Y$, and $Z$ values from each provider (on this scale, differences cannot be seen) and the average radial distance, $\overline{r}$, from the two providers. The bottom panel of each subplot shows relative differences in the position vector $\Delta\mathbf{r}$ and the angular difference in the position vectors, $\Delta\theta$.}
      \label{fig:geotail}
 \end{figure}
 
@@ -387,7 +388,7 @@ In this section, we compare reference frame calculations using the following sof
     \item \texttt{SunPy} version 7.0.0
 \end{itemize}
 
-Figure~\ref{fig:angles} compares the angles between the $Z$ axis of select coordinate frame pairs. The average of the absolute value of the differences with respect to \texttt{geopack\_08\_dp} ranges from $4\cdot 10^{-7}$ to $1\cdot 10^{-2}$ degrees; the values for each library are given in the legend in the middle panel of each subplot. These values can be used as an uncertainty estimate when comparing data transformed using different software libraries.
+Figure~\ref{fig:angles} compares the angles between the $Z$ axis of select coordinate frame pairs. The average of the absolute value of the differences with respect to \texttt{geopack\_08\_dp} ranges from $4\cdot 10^{-7}$ to $1\cdot 10^{-2}$ degrees; the values for each library are given in the legend in the middle panel of each subplot. %These values can be used as an uncertainty estimate when comparing data transformed using different software libraries.
 
 The maximum absolute differences shown in the bottom panels of the subplots in Figure~\ref{fig:angles} are smaller than those found when comparing ephemeris values in section~\ref{sect:comparisons_ephemeris}. The choice of which library to use as a baseline for this comparison is arbitrary; in general, we are interested in the maximum differences among the libraries, which is displayed in the lower panel of each subplot.
 
