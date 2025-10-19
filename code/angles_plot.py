@@ -65,7 +65,6 @@ def plot(df, tranform_str):
   axes[0].set_ylabel(tranform_str + ' [deg]')
   axes[0].legend()
 
-
   for column in df['diffs'].columns:
     if column == '|max-min|':
       continue
@@ -113,6 +112,8 @@ def plot(df, tranform_str):
 
 
   for ax in axes:
+    # Prevent offset notation on x-axis (e.g., 2.01e4)
+    ax.get_yaxis().get_major_formatter().set_useOffset(False)
     # Remove short tick lines next to axis numbers
     ax.tick_params(axis='x', length=0)
     ax.tick_params(axis='y', which='minor', length=0)
