@@ -134,7 +134,7 @@ def _print_and_write(xform, dfs, dir_table, libs_avail):
 
 
 if True:
-  axis = 'z'
+  axis = 'x'
   delta = {'days': 1}
   to = datetime.datetime(2010, 1, 1, 0, 0, 0)
   tf = datetime.datetime(2015, 1, 1, 0, 0, 0)
