@@ -10,15 +10,16 @@ import utilrsw
 
 log = utilrsw.logger(console_format='%(message)s')
 
-def libs(csys_in, csys_out, excludes=None):
-  lib_infos = hxform.info.known_libs(info=True)
+def libs(frame_in, frame_out, excludes=None):
+  lib_infos = hxform.lib_info()
   libs_avail = []
-  for i, lib_info in enumerate(lib_infos):
-    lib = lib_info['name']
+  for lib, lib_info in lib_infos.items():
     if excludes is not None and lib in excludes:
       continue
-    if csys_in not in lib_info['systems'] or csys_out not in lib_info['systems']:
-      log.warning(f"Skipping {lib} because it does not support both {csys_in} and {csys_out} systems")
+    if frame_in not in lib_info['frames'] or frame_out not in lib_info['frames']:
+      wmsg = f"{frame_in} and {frame_out} are both not available in {lib}"
+      wmsg += ", skipping this transform pair comparison."
+      log.warning(wmsg)
       continue
     libs_avail.append(lib)
   return libs_avail
@@ -134,20 +135,22 @@ def _print_and_write(xform, dfs, dir_table, libs_avail):
 
 
 if True:
-  axis = 'x'
+  axis = 'z'
   delta = {'days': 1}
   to = datetime.datetime(2010, 1, 1, 0, 0, 0)
   tf = datetime.datetime(2015, 1, 1, 0, 0, 0)
   excludes = ['sscweb', 'cxform']
 
 if False:
+  # Short run
   axis = 'z'
   delta = {'days': 1}
   to = datetime.datetime(2010, 1, 1, 0, 0, 0)
   tf = datetime.datetime(2010, 1, 3, 0, 0, 0)
-  excludes = ['sscweb', 'cxform']
+  excludes = ['cxform']
 
 if False:
+  # Short high-cadence run
   axis = 'z'
   delta = {'minutes': 10}
   to = datetime.datetime(2010, 12, 21, 0, 0, 0)
@@ -163,7 +166,7 @@ run = f'{axis}-delta={delta_str}_{to_str}-{tf_str}'
 dir_table = os.path.join('figures', 'angles', run)
 file_out = os.path.join('data', 'angles', f'{run}.pkl')
 
-transform_kwargs = { 'ctype_in': 'car', 'ctype_out': 'car'}
+transform_kwargs = {'ctype_in': 'car', 'ctype_out': 'car'}
 
 csys_list = ['GEO', 'MAG', 'GSE', 'GSM']
 combinations = list(itertools.combinations(csys_list, 2))
@@ -171,14 +174,16 @@ combinations = list(itertools.combinations(csys_list, 2))
 dfs = {}
 df_deltas = {}
 for combination in combinations:
-  csys_in, csys_out = combination
+  frame_in, frame_out = combination
+  if not (frame_in == 'MAG' and frame_out == 'GSM'):
+    continue
 
-  transform_kwargs['csys_in'] = csys_in
-  transform_kwargs['csys_out'] = csys_out
-  libs_avail = libs(csys_in, csys_out, excludes=excludes)
+  transform_kwargs['frame_in'] = frame_in
+  transform_kwargs['frame_out'] = frame_out
+  libs_avail = libs(frame_in, frame_out, excludes=excludes)
   t_dts, Δθ, δψ = angles(to, tf, axis, delta, libs_avail, transform_kwargs)
 
-  xform = f"{csys_in}_{csys_out}"
+  xform = f"{frame_in}_{frame_out}"
   dfs[xform] = {'values': None, 'diffs': None, 'uncert': None}
 
   index = pandas.to_datetime(t_dts)

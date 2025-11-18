@@ -1,24 +1,18 @@
 import os
-
 import numpy
-
-from matplotlib import pyplot as plt
-from matplotlib.ticker import MultipleLocator
-
 import utilrsw
 
-#run = 'delta=10days_20100101-20101231'
-#run = 'delta=10minutes_20101221-20101223'
-#run = 'delta=1days_20101221-20101223'
-#run = 'delta=10minutes_20101221-20101223'
-axis = 'x'
+axis = 'z'
 run = f'{axis}-delta=1days_20100101-20150101'
 
 in_file = os.path.join('data','angles', f'{run}.pkl')
 out_dir = os.path.join('figures', 'angles', run)
 
+
 def fig_save(fname):
   import os
+  from matplotlib import pyplot as plt
+
   for fmt in ['svg', 'png', 'pdf']:
     kwargs = {'bbox_inches': 'tight'}
     if fmt == 'png':
@@ -32,14 +26,20 @@ def fig_save(fname):
     os.makedirs(os.path.dirname(fname_full), exist_ok=True)
     print(f"  Writing {fname_full}")
     plt.savefig(fname_full, bbox_inches='tight')
+
   plt.close()
 
+
 def fig_prep():
+  from matplotlib import pyplot as plt
   gs = plt.gcf().add_gridspec(3, hspace=0.07)
   axes = gs.subplots(sharex=True)
   return axes
 
+
 def plot(df, tranform_str):
+
+  from matplotlib.ticker import MultipleLocator
 
   line_map = {
     'geopack_08_dp': ['black', '-'],
@@ -57,12 +57,14 @@ def plot(df, tranform_str):
   axes = fig_prep()
 
   lib = 'geopack_08_dp'
-  axes[0].plot(df['values'].index, df['values'][lib],
-                 label=lib,
-                 color=line_map[lib][0],
-                 linestyle=line_map[lib][1])
+  kwargs = {
+    'label': lib,
+    'color': line_map[lib][0],
+    'linestyle': line_map[lib][1]
+  }
+  axes[0].plot(df['values'].index, df['values'][lib], **kwargs)
   axes[0].grid(True)
-  axes[0].set_ylabel(tranform_str + ' [deg]')
+  axes[0].set_ylabel(f"{tranform_str} [deg]")
   axes[0].legend()
 
   for column in df['diffs'].columns:
@@ -71,10 +73,12 @@ def plot(df, tranform_str):
 
     stat = utilrsw.format_exponent(numpy.mean(numpy.abs(df['diffs'][column])), 0)
     label = f"{column} (${stat}$)"
-    axes[1].plot(df['diffs'].index, df['diffs'][column],
-                 label=label,
-                 color=line_map[column][0],
-                 linestyle=line_map[column][1])
+    kwargs = {
+      'label': label,
+      'color': line_map[column][0],
+      'linestyle': line_map[column][1]
+    }
+    axes[1].plot(df['diffs'].index, df['diffs'][column], **kwargs)
 
   axes[1].grid(True)
   axes[1].set_ylabel('Diff. relative to geopack_08_dp [deg]')
@@ -88,17 +92,17 @@ def plot(df, tranform_str):
   axes[1].set_ylim(-ymax, ymax)
 
   # Set y-axis major tick increment to 0.01 for the difference subplot
-  #axes[1].yaxis.set_major_locator(MultipleLocator(0.01))
   axes[1].grid(which='minor', axis='y', linestyle=':', linewidth=0.5)
   axes[1].yaxis.set_minor_locator(MultipleLocator(0.01))
 
   axes[1].legend(ncols=3, fontsize=14, columnspacing=0.85)
 
-
-  axes[2].plot(df['diffs'].index, df['diffs']['|max-min|'],
-               label='|max-min|',
-               color=line_map['|max-min|'][0],
-               linestyle=line_map['|max-min|'][1])
+  kwargs = {
+    'label': '|max-min|',
+    'color': line_map['|max-min|'][0],
+    'linestyle': line_map['|max-min|'][1]
+  }
+  axes[2].plot(df['diffs'].index, df['diffs']['|max-min|'], **kwargs)
 
 
   axes[2].grid(True)
@@ -109,7 +113,6 @@ def plot(df, tranform_str):
   yl1 = axes[2].get_ylim()[1]
   axes[2].set_ylim(bottom=0 - (yl1-yl0)*0.05)
   axes[2].legend()
-
 
   for ax in axes:
     # Prevent offset notation on x-axis (e.g., 2.01e4)
@@ -134,9 +137,12 @@ data = utilrsw.read(in_file)
 
 for transform_key in list(data.keys()):
   df = data[transform_key]
-  tranform_str = transform_key.split('_')
+  frames = transform_key.split('_')
+  frame1 = frames[0]
+  frame2 = frames[1]
   axis = axis.upper()
-  tranform_str = fr"$\angle$ (${{{axis}}}_{{{tranform_str[0]}}}$, ${{{axis}}}_{{{tranform_str[1]}}}$)"
+  pair = f"(${axis}_{{{frame1}}}$, ${axis}_{{{frame2}}}$)"
+  tranform_str = fr"$\angle$ {pair}"
 
   plot(df, tranform_str)
   fig_save(f'{transform_key}')
