@@ -1,19 +1,93 @@
-2025-11-18T18:01:07.407670Z WARN  angles MAG and GSM are both not available in pyspedas, skipping this transform pair comparison.
-2025-11-18T18:01:08.521446Z INFO  angles 
+2025-12-12T12:55:43.389895Z WARN  angles GEO and MAG are both not available in pyspedas, skipping this transform pair comparison.
+2025-12-12T12:55:44.253657Z INFO  angles 
+GEO_MAG in degrees
+              cxform  geopack_08_dp   spacepy  spacepy-irbem  spiceypy1  spiceypy2     sunpy    sscweb
+2010-01-01  9.983378       9.983977  9.983977       9.954327   9.983631   9.978145  9.983977  9.841132
+2010-01-02  9.983216       9.983815  9.983815       9.954327   9.983481   9.977992  9.983815  9.841132
+2025-12-12T12:55:44.277680Z INFO  angles 
+GEO_MAG (uncert in Δθ in degrees)
+                  cxform  geopack_08_dp       spacepy  spacepy-irbem     spiceypy1     spiceypy2         sunpy    sscweb
+2010-01-01  1.115050e-13   1.115057e-13  1.115057e-13   1.114740e-13  1.115053e-13  1.114994e-13  1.115057e-13  0.314186
+2010-01-02  1.115049e-13   1.115055e-13  1.115055e-13   1.114740e-13  1.115051e-13  1.114993e-13  1.115055e-13  0.314186
+2025-12-12T12:55:44.297962Z INFO  angles 
+GEO_MAG Δθ - (Δθ geopack_08_dp) in degrees
+              cxform       spacepy  spacepy-irbem  spiceypy1  spiceypy2         sunpy    sscweb  |max-min|
+2010-01-01 -0.000600  0.000000e+00      -0.029650  -0.000347  -0.005833  0.000000e+00 -0.142846   0.142846
+2010-01-02 -0.000599 -2.222385e-08      -0.029488  -0.000334  -0.005824 -1.111802e-07 -0.142683   0.142683
+2025-12-12T12:55:56.358690Z INFO  angles 
+GEO_GSE in degrees
+             cxform  geopack_08_dp    spacepy  spacepy-irbem  spiceypy1  spiceypy2      sunpy     sscweb   pyspedas
+2010-01-01  23.4377      23.437976  23.438774      23.437851  23.437974  23.437974  23.438719  23.300928  23.437976
+2010-01-02  23.4377      23.437976  23.438786      23.437866  23.438016  23.438016  23.438773  23.400054  23.437976
+2025-12-12T12:55:56.380478Z INFO  angles 
+GEO_GSE (uncert in Δθ in degrees)
+                  cxform  geopack_08_dp       spacepy  spacepy-irbem     spiceypy1     spiceypy2         sunpy    sscweb      pyspedas
+2010-01-01  2.631254e-13   2.631260e-13  2.631427e-13   2.631255e-13  2.631280e-13  2.631280e-13  2.631330e-13  0.369270  2.631260e-13
+2010-01-02  2.637445e-13   2.637450e-13  2.637615e-13   2.637447e-13  2.637468e-13  2.637468e-13  2.637519e-13  0.370821  2.637450e-13
+2025-12-12T12:55:56.398991Z INFO  angles 
+GEO_GSE Δθ - (Δθ geopack_08_dp) in degrees
+              cxform   spacepy  spacepy-irbem  spiceypy1  spiceypy2     sunpy    sscweb      pyspedas  |max-min|
+2010-01-01 -0.000276  0.000798      -0.000125  -0.000002  -0.000002  0.000743 -0.137049 -2.425839e-09   0.137846
+2010-01-02 -0.000276  0.000810      -0.000109   0.000040   0.000040  0.000797 -0.037922 -2.585423e-09   0.038732
+2025-12-12T12:55:56.908931Z INFO  angles 
+GEO_GSM in degrees
+               cxform  geopack_08_dp    spacepy  spacepy-irbem  spiceypy1  spiceypy2      sunpy     sscweb   pyspedas
+2010-01-01  25.225382      25.225879  25.224383      25.213805  25.226289  25.224244  25.226370  25.300671  25.225879
+2010-01-02  25.148841      25.149340  25.147671      25.137294  25.149796  25.147741  25.149891  25.056913  25.149340
+2025-12-12T12:55:56.932731Z INFO  angles 
+GEO_GSM (uncert in Δθ in degrees)
+                  cxform  geopack_08_dp       spacepy  spacepy-irbem     spiceypy1     spiceypy2         sunpy    sscweb      pyspedas
+2010-01-01  2.759405e-13   2.759426e-13  2.759366e-13   2.758742e-13  2.759456e-13  2.759340e-13  2.759440e-13  0.389358  2.759426e-13
+2010-01-02  2.757047e-13   2.757068e-13  2.757002e-13   2.756388e-13  2.757099e-13  2.756983e-13  2.757084e-13  0.387070  2.757068e-13
+2025-12-12T12:55:56.949789Z INFO  angles 
+GEO_GSM Δθ - (Δθ geopack_08_dp) in degrees
+              cxform   spacepy  spacepy-irbem  spiceypy1  spiceypy2     sunpy    sscweb      pyspedas  |max-min|
+2010-01-01 -0.000497 -0.001496      -0.012074   0.000410  -0.001635  0.000491  0.074792 -1.546859e-07   0.086866
+2010-01-02 -0.000500 -0.001670      -0.012047   0.000456  -0.001600  0.000551 -0.092428 -1.744316e-07   0.092978
+2025-12-12T12:55:56.965272Z WARN  angles MAG and GSE are both not available in pyspedas, skipping this transform pair comparison.
+2025-12-12T12:55:57.458627Z INFO  angles 
+MAG_GSE in degrees
+               cxform  geopack_08_dp    spacepy  spacepy-irbem  spiceypy1  spiceypy2      sunpy     sscweb
+2010-01-01  29.438415      29.439401  29.440778      29.413920  29.433636  29.427462  29.440772  29.271252
+2010-01-02  29.559207      29.560194  29.561582      29.534668  29.554542  29.548346  29.561612  29.511003
+2025-12-12T12:55:57.479528Z INFO  angles 
+MAG_GSE (uncert in Δθ in degrees)
+                  cxform  geopack_08_dp       spacepy  spacepy-irbem     spiceypy1     spiceypy2         sunpy    sscweb
+2010-01-01  2.937348e-13   2.937384e-13  2.937523e-13   2.936260e-13  2.937215e-13  2.936962e-13  2.937461e-13  0.412540
+2010-01-02  2.945073e-13   2.945111e-13  2.945247e-13   2.943989e-13  2.944941e-13  2.944687e-13  2.945187e-13  0.414171
+2025-12-12T12:55:57.496799Z INFO  angles 
+MAG_GSE Δθ - (Δθ geopack_08_dp) in degrees
+              cxform   spacepy  spacepy-irbem  spiceypy1  spiceypy2     sunpy    sscweb  |max-min|
+2010-01-01 -0.000986  0.001378      -0.025481  -0.005765  -0.011939  0.001371 -0.168148   0.169526
+2010-01-02 -0.000988  0.001388      -0.025527  -0.005652  -0.011848  0.001417 -0.049192   0.050609
+2025-12-12T12:55:57.510012Z WARN  angles MAG and GSM are both not available in pyspedas, skipping this transform pair comparison.
+2025-12-12T12:55:58.014107Z INFO  angles 
 MAG_GSM in degrees
-            geopack_08_dp    spacepy  spacepy-irbem  spiceypy1  spiceypy2      sunpy     sscweb
-2010-01-01      25.580722  25.576307      25.567662  25.572234  25.567858  25.581857  25.537434
-2010-01-02      25.478433  25.473849      25.465494  25.470079  25.465712  25.479717  25.537434
-2010-01-03      25.368885  25.364139      25.356063  25.360661  25.356303  25.370319  25.537434
-2025-11-18T18:01:08.541241Z INFO  angles 
+               cxform  geopack_08_dp    spacepy  spacepy-irbem  spiceypy1  spiceypy2      sunpy     sscweb
+2010-01-01  25.579793      25.580722  25.576307      25.567662  25.572234  25.567858  25.581857  25.537434
+2010-01-02  25.477502      25.478433  25.473849      25.465494  25.470079  25.465712  25.479717  25.537434
+2025-12-12T12:55:58.028115Z INFO  angles 
 MAG_GSM (uncert in Δθ in degrees)
-            geopack_08_dp       spacepy  spacepy-irbem     spiceypy1     spiceypy2         sunpy    sscweb
-2010-01-01   2.619426e-13  2.619337e-13   2.619049e-13  2.619181e-13  2.619055e-13  2.619459e-13  0.368782
-2010-01-02   2.616478e-13  2.616385e-13   2.616106e-13  2.616238e-13  2.616112e-13  2.616515e-13  0.368782
-2010-01-03   2.613327e-13  2.613230e-13   2.612959e-13  2.613091e-13  2.612966e-13  2.613368e-13  0.368782
-2025-11-18T18:01:08.559356Z INFO  angles 
+                  cxform  geopack_08_dp       spacepy  spacepy-irbem     spiceypy1     spiceypy2         sunpy    sscweb
+2010-01-01  2.619399e-13   2.619426e-13  2.619337e-13   2.619049e-13  2.619181e-13  2.619055e-13  2.619459e-13  0.368782
+2010-01-02  2.616451e-13   2.616478e-13  2.616385e-13   2.616106e-13  2.616238e-13  2.616112e-13  2.616515e-13  0.368782
+2025-12-12T12:55:58.039778Z INFO  angles 
 MAG_GSM Δθ - (Δθ geopack_08_dp) in degrees
-             spacepy  spacepy-irbem  spiceypy1  spiceypy2     sunpy    sscweb  |max-min|
-2010-01-01 -0.004415      -0.013059  -0.008488  -0.012864  0.001135 -0.043287   0.044422
-2010-01-02 -0.004584      -0.012940  -0.008355  -0.012721  0.001284  0.059001   0.071941
-2010-01-03 -0.004746      -0.012822  -0.008224  -0.012582  0.001434  0.168549   0.181371
+              cxform   spacepy  spacepy-irbem  spiceypy1  spiceypy2     sunpy    sscweb  |max-min|
+2010-01-01 -0.000928 -0.004415      -0.013059  -0.008488  -0.012864  0.001135 -0.043287   0.044422
+2010-01-02 -0.000931 -0.004584      -0.012940  -0.008355  -0.012721  0.001284  0.059001   0.071941
+2025-12-12T12:55:58.539124Z INFO  angles 
+GSE_GSM in degrees
+               cxform  geopack_08_dp    spacepy  spacepy-irbem  spiceypy1  spiceypy2      sunpy     sscweb   pyspedas
+2010-01-01  15.089563      15.089978  15.098522      15.059911  15.092978  15.087826  15.090832  15.004920  15.089979
+2010-01-02  15.517828      15.518248  15.526746      15.488386  15.521039  15.515879  15.518940  15.708638  15.518250
+2025-12-12T12:55:58.562869Z INFO  angles 
+GSE_GSM (uncert in Δθ in degrees)
+                  cxform  geopack_08_dp       spacepy  spacepy-irbem     spiceypy1     spiceypy2         sunpy    sscweb      pyspedas
+2010-01-01  1.172438e-13   1.172443e-13  1.172544e-13   1.172100e-13  1.172478e-13  1.172417e-13  1.172453e-13  0.329150  1.172443e-13
+2010-01-02  1.177516e-13   1.177521e-13  1.177622e-13   1.177178e-13  1.177554e-13  1.177492e-13  1.177529e-13  0.332456  1.177521e-13
+2025-12-12T12:55:58.579372Z INFO  angles 
+GSE_GSM Δθ - (Δθ geopack_08_dp) in degrees
+              cxform   spacepy  spacepy-irbem  spiceypy1  spiceypy2     sunpy    sscweb  pyspedas  |max-min|
+2010-01-01 -0.000415  0.008544      -0.030067   0.003000  -0.002152  0.000855 -0.085057  0.000001   0.093602
+2010-01-02 -0.000420  0.008497      -0.029863   0.002791  -0.002370  0.000691  0.190389  0.000001   0.220252

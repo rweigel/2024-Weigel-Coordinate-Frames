@@ -1,3 +1,5 @@
+# Usage: python angles.py [run_id]
+
 import os
 import datetime
 import itertools
@@ -9,6 +11,7 @@ import hxform
 import utilrsw
 
 log = utilrsw.logger(console_format='%(message)s')
+
 
 def libs(frame_in, frame_out, excludes=None):
   lib_infos = hxform.lib_info()
@@ -25,19 +28,21 @@ def libs(frame_in, frame_out, excludes=None):
   return libs_avail
 
 
-def angles(to, tf, axis, delta, libs, transform_kwargs):
+def angles(to, tf, axis, delta, libs, hxform_args):
 
   if axis not in ['x', 'y', 'z']:
     raise ValueError(f"Invalid axis: {axis}. Must be one of 'x', 'y', or 'z'.")
 
-  t = hxform.time_array(to, tf, delta)
-  t_dts = hxform.ints2datetime(t)
+  t = hxform.timelib.ints_list(to, tf, delta)
+  t = numpy.array(t, dtype=numpy.int32)
+  t = t[:, 0:6]
+  t_dts = hxform.timelib.ints2datetime(t)
   Δθ = numpy.full((t.shape[0], len(libs)), numpy.nan)
   δψ = numpy.full((t.shape[0], len(libs)), numpy.nan) # Uncertainty in ψ ≔ Δθ
 
   for i, lib in enumerate(libs):
     #log.info(f"Processing {lib}...")
-    transform_kwargs['lib'] = lib
+    hxform_args['lib'] = lib
 
     if axis == 'x':
       p_in = numpy.array([1., 0., 1.])
@@ -46,7 +51,7 @@ def angles(to, tf, axis, delta, libs, transform_kwargs):
     if axis == 'z':
       p_in = numpy.array([0., 0., 1.])
 
-    p_out = hxform.transform(p_in, t, **transform_kwargs)
+    p_out = hxform.transform(p_in, t, **hxform_args)
 
     n = numpy.dot(p_out, p_in)
     d = numpy.linalg.norm(p_out, axis=1)*numpy.linalg.norm(p_in)
@@ -69,6 +74,24 @@ def angles(to, tf, axis, delta, libs, transform_kwargs):
       Δθ[mask, i] = numpy.nan
 
   return t_dts, Δθ, δψ
+
+
+def diffs(dfs, xform, index, libs_avail):
+
+  # Compute diffs DataFrame
+  columns_diff = libs_avail.copy()
+  columns_diff.remove('geopack_08_dp')
+  df = pandas.DataFrame(numpy.nan, index=index, columns=columns_diff)
+  if 'geopack_08_dp' in libs_avail:
+    for lib in libs_avail:
+      if lib != 'geopack_08_dp':
+        diff = dfs[xform]['values'][lib] - dfs[xform]['values']['geopack_08_dp']
+        df[lib] = diff
+
+  max_min = dfs[xform]['values'].max(axis=1) - dfs[xform]['values'].min(axis=1)
+  df['|max-min|'] = numpy.abs(max_min)
+
+  return df
 
 
 def _angle_uncert(p_in, p_out, n, ε):
@@ -126,86 +149,112 @@ def _print_and_write(xform, dfs, dir_table, libs_avail):
 
   for key in df_info.keys():
     df_str = dfs[xform][key].to_string()
+    print('-' * os.get_terminal_size().columns)
     log.info(f"\n{xform} {df_info[key][1]}\n{df_str}")
     file_table = os.path.join(dir_table, f'{xform}_{df_info[key][0]}.txt')
-    print(f"Writing {file_table}")
+    print(f"Writing above table to {file_table}")
     utilrsw.write(file_table, df_str)
 
+    print("\nStatistics for previous table:")
     print(dfs[xform][key].describe())
+    print('-' * os.get_terminal_size().columns)
+    print("")
 
 
-if True:
-  axis = 'z'
-  delta = {'days': 1}
-  to = datetime.datetime(2010, 1, 1, 0, 0, 0)
-  tf = datetime.datetime(2015, 1, 1, 0, 0, 0)
-  excludes = ['sscweb', 'cxform']
+def _config():
 
-if False:
-  # Short run
-  axis = 'z'
-  delta = {'days': 1}
-  to = datetime.datetime(2010, 1, 1, 0, 0, 0)
-  tf = datetime.datetime(2010, 1, 3, 0, 0, 0)
-  excludes = ['cxform']
+  import sys
+  run_id = 1
 
-if False:
-  # Short high-cadence run
-  axis = 'z'
-  delta = {'minutes': 10}
-  to = datetime.datetime(2010, 12, 21, 0, 0, 0)
-  tf = datetime.datetime(2010, 12, 23, 0, 0, 0)
-  excludes = ['cxform']
+  frames = ['GEO', 'MAG', 'GSE', 'GSM']
 
-to_str = datetime.datetime.strftime(to, '%Y%m%d')
-tf_str = datetime.datetime.strftime(tf, '%Y%m%d')
-delta_unit = list(delta.keys())[0]
-delta_str = f'{delta[delta_unit]}{delta_unit}'
+  if len(sys.argv) > 0:
+    run_id = int(sys.argv[1])
 
-run = f'{axis}-delta={delta_str}_{to_str}-{tf_str}'
-dir_table = os.path.join('figures', 'angles', run)
-file_out = os.path.join('data', 'angles', f'{run}.pkl')
+  if run_id == 1:
+    axis = 'z'
+    delta = {'days': 1}
+    to = datetime.datetime(2010, 1, 1, 0, 0, 0)
+    tf = datetime.datetime(2015, 1, 1, 0, 0, 0)
+    excludes = ['sscweb', 'cxform']
 
-transform_kwargs = {'ctype_in': 'car', 'ctype_out': 'car'}
+  if run_id == 2:
+    # Short run
+    axis = 'z'
+    delta = {'days': 1}
+    to = datetime.datetime(2010, 1, 1, 0, 0, 0)
+    tf = datetime.datetime(2010, 1, 3, 0, 0, 0)
+    excludes = []
 
-csys_list = ['GEO', 'MAG', 'GSE', 'GSM']
-combinations = list(itertools.combinations(csys_list, 2))
+  if run_id == 3:
+    # Short high-cadence run
+    axis = 'z'
+    delta = {'minutes': 10}
+    to = datetime.datetime(2010, 12, 21, 0, 0, 0)
+    tf = datetime.datetime(2010, 12, 23, 0, 0, 0)
+    excludes = ['cxform']
+
+  to_str = datetime.datetime.strftime(to, '%Y%m%d')
+  tf_str = datetime.datetime.strftime(tf, '%Y%m%d')
+  delta_unit = list(delta.keys())[0]
+  delta_str = f'{delta[delta_unit]}{delta_unit}'
+
+  run_str = f'{axis}-delta={delta_str}_{to_str}-{tf_str}'
+  dir_table = os.path.join('figures', 'angles', run_str)
+  file_out = os.path.join('data', 'angles', f'{run_str}.pkl')
+
+  print(f'Run id = {run_id}')
+
+  return {
+    "axis": axis,
+    "delta": delta,
+    "to": to,
+    "tf": tf,
+    "excludes": excludes,
+    "frames": frames,
+    "dir_table": dir_table,
+    "file_out": file_out
+  }
+
+
+cfg = _config()
 
 dfs = {}
-df_deltas = {}
-for combination in combinations:
-  frame_in, frame_out = combination
-  if not (frame_in == 'MAG' and frame_out == 'GSM'):
-    continue
+for combination in list(itertools.combinations(cfg['frames'], 2)):
 
-  transform_kwargs['frame_in'] = frame_in
-  transform_kwargs['frame_out'] = frame_out
-  libs_avail = libs(frame_in, frame_out, excludes=excludes)
-  t_dts, Δθ, δψ = angles(to, tf, axis, delta, libs_avail, transform_kwargs)
+  frame_in, frame_out = combination
+
+  hxform_args = {
+    'ctype_in': 'car',
+    'ctype_out': 'car',
+    'frame_in': frame_in,
+    'frame_out': frame_out
+  }
+
+  libs_avail = libs(frame_in, frame_out, excludes=cfg['excludes'])
+
+  args = (cfg['to'], cfg['tf'], cfg['axis'], cfg['delta'], libs_avail, hxform_args)
+
+  t_dts, Δθ, δψ = angles(*args)
 
   xform = f"{frame_in}_{frame_out}"
-  dfs[xform] = {'values': None, 'diffs': None, 'uncert': None}
+
+  dfs[xform] = {
+    'values': None,
+    'diffs': None,
+    'uncert': None
+  }
 
   index = pandas.to_datetime(t_dts)
   dfs[xform]['values'] = pandas.DataFrame(Δθ, index=index, columns=libs_avail)
   dfs[xform]['uncert'] = pandas.DataFrame(δψ, index=index, columns=libs_avail)
 
-  # Compute diff DataFrame
-  columns_diff = libs_avail.copy()
-  columns_diff.remove('geopack_08_dp')
-  dfs[xform]['diffs'] = pandas.DataFrame(numpy.nan, index=index, columns=columns_diff)
-  if 'geopack_08_dp' in libs_avail:
-    for lib in libs_avail:
-      if lib != 'geopack_08_dp':
-        diff = dfs[xform]['values'][lib] - dfs[xform]['values']['geopack_08_dp']
-        dfs[xform]['diffs'][lib] = diff
+  dfs[xform]['diffs'] = diffs(dfs, xform, index, libs_avail)
 
-  max_min = dfs[xform]['values'].max(axis=1) - dfs[xform]['values'].min(axis=1)
-  dfs[xform]['diffs']['|max-min|'] = numpy.abs(max_min)
+  _print_and_write(xform, dfs, cfg['dir_table'], libs_avail)
 
-  _print_and_write(xform, dfs, dir_table, libs_avail)
 
-print(f"Writing {file_out}")
-utilrsw.write(file_out, dfs)
+print(f"Writing {cfg['file_out']}")
+utilrsw.write(cfg['file_out'], dfs)
 
 utilrsw.rm_if_empty('angles.errors.log')
