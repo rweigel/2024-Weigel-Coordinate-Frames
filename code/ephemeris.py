@@ -192,7 +192,7 @@ def infos(satellite=None):
 
   if satellite == '' or satellite.startswith('MMS'):
 
-    # TODO: 
+    # TODO:
     # MMS1_MEC_SRVY_L2_EPHT89D
     # has GEI, GSM, GEO, SM
     sc   = f'mms{satellite[-1]}'

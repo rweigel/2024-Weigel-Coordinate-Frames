@@ -1,0 +1,50 @@
+4.5 miles separation => 7.40e-03 deg at 8.79 R_E
+CDAWeb GSE (MMSi_MEC_SRVY_L2_EPHT89D)
+  MMS1 mean distance: 8.79 R_E
+    Minimum distance from centroid: 4.04 km
+  MMS2 mean distance: 8.79 R_E
+    Minimum distance from centroid: 2.98 km
+  MMS3 mean distance: 8.79 R_E
+    Minimum distance from centroid: 3.07 km
+  MMS4 mean distance: 8.79 R_E
+    Minimum distance from centroid: 3.99 km
+MMS1-MMS2
+  Minimum separation distance and angle: 6.00 km  and 6.13e-03 deg
+MMS1-MMS3
+  Minimum separation distance and angle: 6.07 km  and 6.20e-03 deg
+MMS1-MMS4
+  Minimum separation distance and angle: 2.21 km  and 2.25e-03 deg
+MMS2-MMS3
+  Minimum separation distance and angle: 4.59 km  and 4.69e-03 deg
+MMS2-MMS4
+  Minimum separation distance and angle: 5.54 km  and 5.66e-03 deg
+MMS3-MMS4
+  Minimum separation distance and angle: 5.72 km  and 5.84e-03 deg
+Writing: figures/mms_separation/mms_separation_CDAWeb_GSE_MMSi_MEC_SRVY_L2_EPHT89D.pdf
+Writing: figures/mms_separation/svg/mms_separation_CDAWeb_GSE_MMSi_MEC_SRVY_L2_EPHT89D.svg
+Writing: figures/mms_separation/png/mms_separation_CDAWeb_GSE_MMSi_MEC_SRVY_L2_EPHT89D.png
+
+SSCWeb GSE
+  MMS1 mean distance: 8.79 R_E
+    Minimum distance from centroid: 3.96 km
+  MMS2 mean distance: 8.79 R_E
+    Minimum distance from centroid: 2.91 km
+  MMS3 mean distance: 8.79 R_E
+    Minimum distance from centroid: 3.02 km
+  MMS4 mean distance: 8.79 R_E
+    Minimum distance from centroid: 3.95 km
+MMS1-MMS2
+  Minimum separation distance and angle: 5.96 km  and 6.09e-03 deg
+MMS1-MMS3
+  Minimum separation distance and angle: 5.94 km  and 6.07e-03 deg
+MMS1-MMS4
+  Minimum separation distance and angle: 2.17 km  and 2.22e-03 deg
+MMS2-MMS3
+  Minimum separation distance and angle: 4.52 km  and 4.62e-03 deg
+MMS2-MMS4
+  Minimum separation distance and angle: 5.48 km  and 5.60e-03 deg
+MMS3-MMS4
+  Minimum separation distance and angle: 5.64 km  and 5.76e-03 deg
+Writing: figures/mms_separation/mms_separation_SSCWeb_GSE.pdf
+Writing: figures/mms_separation/svg/mms_separation_SSCWeb_GSE.svg
+Writing: figures/mms_separation/png/mms_separation_SSCWeb_GSE.png

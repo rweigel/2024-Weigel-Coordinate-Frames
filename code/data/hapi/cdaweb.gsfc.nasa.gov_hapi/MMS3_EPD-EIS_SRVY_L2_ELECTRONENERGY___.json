@@ -19,35 +19,35 @@
         },
         {
             "name": "mms3_epd_eis_srvy_l2_electronenergy_deadtime",
-            "description": "---> Instrument Deadtime",
+            "description": "Instrument Deadtime",
             "units": "s",
             "type": "double",
             "fill": "-1.0E31"
         },
         {
             "name": "mms3_epd_eis_srvy_l2_electronenergy_largepixel",
-            "description": "---> Instrument Large Pixel in Use",
+            "description": "Instrument Large Pixel in Use",
             "units": ".",
             "type": "integer",
             "fill": "-128"
         },
         {
             "name": "mms3_epd_eis_srvy_l2_electronenergy_spin",
-            "description": "---> Spin",
+            "description": "Spin",
             "units": ".",
             "type": "integer",
             "fill": "65535"
         },
         {
             "name": "mms3_epd_eis_srvy_l2_electronenergy_sector",
-            "description": "---> Sector",
+            "description": "Sector",
             "units": ".",
             "type": "integer",
             "fill": "-128"
         },
         {
             "name": "mms3_epd_eis_srvy_l2_electronenergy_quality",
-            "description": "---> Quality Word",
+            "description": "Quality Word",
             "units": ".",
             "type": "double",
             "fill": "4.294967295E9"
@@ -69,8 +69,548 @@
             "size": [
                 5
             ],
+            "name": "mms3_epd_eis_srvy_l2_electronenergy_electron_P6_counts_t0",
+            "description": "MMS3 ElectronEnergy-Survey electron_P6_counts_t0 [data available beginning on 2025/01/06]",
+            "units": " ",
+            "type": "double",
+            "fill": "-1.0E31"
+        },
+        {
+            "bins": [
+                {
+                    "name": "mms3_epd_eis_srvy_l2_electronenergy_electron_t1_energy",
+                    "centers": [
+                        40.0,
+                        60.0,
+                        90.0,
+                        200.0,
+                        400.0
+                    ],
+                    "units": "keV"
+                }
+            ],
+            "size": [
+                5
+            ],
+            "name": "mms3_epd_eis_srvy_l2_electronenergy_electron_P6_counts_t1",
+            "description": "---> electron_P6_counts_t1",
+            "units": " ",
+            "type": "double",
+            "fill": "-1.0E31"
+        },
+        {
+            "bins": [
+                {
+                    "name": "mms3_epd_eis_srvy_l2_electronenergy_electron_t2_energy",
+                    "centers": [
+                        40.0,
+                        60.0,
+                        90.0,
+                        200.0,
+                        400.0
+                    ],
+                    "units": "keV"
+                }
+            ],
+            "size": [
+                5
+            ],
+            "name": "mms3_epd_eis_srvy_l2_electronenergy_electron_P6_counts_t2",
+            "description": "---> electron_P6_counts_t2",
+            "units": " ",
+            "type": "double",
+            "fill": "-1.0E31"
+        },
+        {
+            "bins": [
+                {
+                    "name": "mms3_epd_eis_srvy_l2_electronenergy_electron_t3_energy",
+                    "centers": [
+                        40.0,
+                        60.0,
+                        90.0,
+                        200.0,
+                        400.0
+                    ],
+                    "units": "keV"
+                }
+            ],
+            "size": [
+                5
+            ],
+            "name": "mms3_epd_eis_srvy_l2_electronenergy_electron_P6_counts_t3",
+            "description": "---> electron_P6_counts_t3",
+            "units": " ",
+            "type": "double",
+            "fill": "-1.0E31"
+        },
+        {
+            "bins": [
+                {
+                    "name": "mms3_epd_eis_srvy_l2_electronenergy_electron_t4_energy",
+                    "centers": [
+                        40.0,
+                        60.0,
+                        90.0,
+                        200.0,
+                        400.0
+                    ],
+                    "units": "keV"
+                }
+            ],
+            "size": [
+                5
+            ],
+            "name": "mms3_epd_eis_srvy_l2_electronenergy_electron_P6_counts_t4",
+            "description": "---> electron_P6_counts_t4",
+            "units": " ",
+            "type": "double",
+            "fill": "-1.0E31"
+        },
+        {
+            "bins": [
+                {
+                    "name": "mms3_epd_eis_srvy_l2_electronenergy_electron_t5_energy",
+                    "centers": [
+                        40.0,
+                        60.0,
+                        90.0,
+                        200.0,
+                        400.0
+                    ],
+                    "units": "keV"
+                }
+            ],
+            "size": [
+                5
+            ],
+            "name": "mms3_epd_eis_srvy_l2_electronenergy_electron_P6_counts_t5",
+            "description": "---> electron_P6_counts_t5",
+            "units": " ",
+            "type": "double",
+            "fill": "-1.0E31"
+        },
+        {
+            "bins": [
+                {
+                    "name": "mms3_epd_eis_srvy_l2_electronenergy_electron_t0_energy",
+                    "centers": [
+                        40.0,
+                        60.0,
+                        90.0,
+                        200.0,
+                        400.0
+                    ],
+                    "units": "keV"
+                }
+            ],
+            "size": [
+                5
+            ],
+            "name": "mms3_epd_eis_srvy_l2_electronenergy_electron_P6_cps_t0",
+            "description": "MMS3 ElectronEnergy-Survey electron_P6_cps_t0 [data available beginning on 2025/01/06]",
+            "units": "1/s",
+            "type": "double",
+            "fill": "-1.0E31"
+        },
+        {
+            "bins": [
+                {
+                    "name": "mms3_epd_eis_srvy_l2_electronenergy_electron_t1_energy",
+                    "centers": [
+                        40.0,
+                        60.0,
+                        90.0,
+                        200.0,
+                        400.0
+                    ],
+                    "units": "keV"
+                }
+            ],
+            "size": [
+                5
+            ],
+            "name": "mms3_epd_eis_srvy_l2_electronenergy_electron_P6_cps_t1",
+            "description": "---> electron_P6_cps_t1",
+            "units": "1/s",
+            "type": "double",
+            "fill": "-1.0E31"
+        },
+        {
+            "bins": [
+                {
+                    "name": "mms3_epd_eis_srvy_l2_electronenergy_electron_t2_energy",
+                    "centers": [
+                        40.0,
+                        60.0,
+                        90.0,
+                        200.0,
+                        400.0
+                    ],
+                    "units": "keV"
+                }
+            ],
+            "size": [
+                5
+            ],
+            "name": "mms3_epd_eis_srvy_l2_electronenergy_electron_P6_cps_t2",
+            "description": "---> electron_P6_cps_t2",
+            "units": "1/s",
+            "type": "double",
+            "fill": "-1.0E31"
+        },
+        {
+            "bins": [
+                {
+                    "name": "mms3_epd_eis_srvy_l2_electronenergy_electron_t3_energy",
+                    "centers": [
+                        40.0,
+                        60.0,
+                        90.0,
+                        200.0,
+                        400.0
+                    ],
+                    "units": "keV"
+                }
+            ],
+            "size": [
+                5
+            ],
+            "name": "mms3_epd_eis_srvy_l2_electronenergy_electron_P6_cps_t3",
+            "description": "---> electron_P6_cps_t3",
+            "units": "1/s",
+            "type": "double",
+            "fill": "-1.0E31"
+        },
+        {
+            "bins": [
+                {
+                    "name": "mms3_epd_eis_srvy_l2_electronenergy_electron_t4_energy",
+                    "centers": [
+                        40.0,
+                        60.0,
+                        90.0,
+                        200.0,
+                        400.0
+                    ],
+                    "units": "keV"
+                }
+            ],
+            "size": [
+                5
+            ],
+            "name": "mms3_epd_eis_srvy_l2_electronenergy_electron_P6_cps_t4",
+            "description": "---> electron_P6_cps_t4",
+            "units": "1/s",
+            "type": "double",
+            "fill": "-1.0E31"
+        },
+        {
+            "bins": [
+                {
+                    "name": "mms3_epd_eis_srvy_l2_electronenergy_electron_t5_energy",
+                    "centers": [
+                        40.0,
+                        60.0,
+                        90.0,
+                        200.0,
+                        400.0
+                    ],
+                    "units": "keV"
+                }
+            ],
+            "size": [
+                5
+            ],
+            "name": "mms3_epd_eis_srvy_l2_electronenergy_electron_P6_cps_t5",
+            "description": "---> electron_P6_cps_t5",
+            "units": "1/s",
+            "type": "double",
+            "fill": "-1.0E31"
+        },
+        {
+            "bins": [
+                {
+                    "name": "mms3_epd_eis_srvy_l2_electronenergy_electron_t0_energy",
+                    "centers": [
+                        40.0,
+                        60.0,
+                        90.0,
+                        200.0,
+                        400.0
+                    ],
+                    "units": "keV"
+                }
+            ],
+            "size": [
+                5
+            ],
+            "name": "mms3_epd_eis_srvy_l2_electronenergy_electron_P6_flux_t0",
+            "description": "MMS3 ElectronEnergy-Survey electron_P6_flux_t0 [data available beginning on 2025/01/06]",
+            "units": "1/(cm^2 s sr keV)",
+            "type": "double",
+            "fill": "-1.0E31"
+        },
+        {
+            "bins": [
+                {
+                    "name": "mms3_epd_eis_srvy_l2_electronenergy_electron_t1_energy",
+                    "centers": [
+                        40.0,
+                        60.0,
+                        90.0,
+                        200.0,
+                        400.0
+                    ],
+                    "units": "keV"
+                }
+            ],
+            "size": [
+                5
+            ],
+            "name": "mms3_epd_eis_srvy_l2_electronenergy_electron_P6_flux_t1",
+            "description": "---> electron_P6_flux_t1",
+            "units": "1/(cm^2 s sr keV)",
+            "type": "double",
+            "fill": "-1.0E31"
+        },
+        {
+            "bins": [
+                {
+                    "name": "mms3_epd_eis_srvy_l2_electronenergy_electron_t2_energy",
+                    "centers": [
+                        40.0,
+                        60.0,
+                        90.0,
+                        200.0,
+                        400.0
+                    ],
+                    "units": "keV"
+                }
+            ],
+            "size": [
+                5
+            ],
+            "name": "mms3_epd_eis_srvy_l2_electronenergy_electron_P6_flux_t2",
+            "description": "---> electron_P6_flux_t2",
+            "units": "1/(cm^2 s sr keV)",
+            "type": "double",
+            "fill": "-1.0E31"
+        },
+        {
+            "bins": [
+                {
+                    "name": "mms3_epd_eis_srvy_l2_electronenergy_electron_t3_energy",
+                    "centers": [
+                        40.0,
+                        60.0,
+                        90.0,
+                        200.0,
+                        400.0
+                    ],
+                    "units": "keV"
+                }
+            ],
+            "size": [
+                5
+            ],
+            "name": "mms3_epd_eis_srvy_l2_electronenergy_electron_P6_flux_t3",
+            "description": "---> electron_P6_flux_t3",
+            "units": "1/(cm^2 s sr keV)",
+            "type": "double",
+            "fill": "-1.0E31"
+        },
+        {
+            "bins": [
+                {
+                    "name": "mms3_epd_eis_srvy_l2_electronenergy_electron_t4_energy",
+                    "centers": [
+                        40.0,
+                        60.0,
+                        90.0,
+                        200.0,
+                        400.0
+                    ],
+                    "units": "keV"
+                }
+            ],
+            "size": [
+                5
+            ],
+            "name": "mms3_epd_eis_srvy_l2_electronenergy_electron_P6_flux_t4",
+            "description": "---> electron_P6_flux_t4",
+            "units": "1/(cm^2 s sr keV)",
+            "type": "double",
+            "fill": "-1.0E31"
+        },
+        {
+            "bins": [
+                {
+                    "name": "mms3_epd_eis_srvy_l2_electronenergy_electron_t5_energy",
+                    "centers": [
+                        40.0,
+                        60.0,
+                        90.0,
+                        200.0,
+                        400.0
+                    ],
+                    "units": "keV"
+                }
+            ],
+            "size": [
+                5
+            ],
+            "name": "mms3_epd_eis_srvy_l2_electronenergy_electron_P6_flux_t5",
+            "description": "---> electron_P6_flux_t5",
+            "units": "1/(cm^2 s sr keV)",
+            "type": "double",
+            "fill": "-1.0E31"
+        },
+        {
+            "name": "mms3_epd_eis_srvy_l2_electronenergy_dump_P6_counts_t0",
+            "description": "MMS3 ElectronEnergy-Survey dump_P6_counts_t0 [data available beginning on 2025/01/06]",
+            "units": " ",
+            "type": "double",
+            "fill": "-1.0E31"
+        },
+        {
+            "name": "mms3_epd_eis_srvy_l2_electronenergy_dump_P6_counts_t1",
+            "description": "---> dump_P6_counts_t1",
+            "units": " ",
+            "type": "double",
+            "fill": "-1.0E31"
+        },
+        {
+            "name": "mms3_epd_eis_srvy_l2_electronenergy_dump_P6_counts_t2",
+            "description": "---> dump_P6_counts_t2",
+            "units": " ",
+            "type": "double",
+            "fill": "-1.0E31"
+        },
+        {
+            "name": "mms3_epd_eis_srvy_l2_electronenergy_dump_P6_counts_t3",
+            "description": "---> dump_P6_counts_t3",
+            "units": " ",
+            "type": "double",
+            "fill": "-1.0E31"
+        },
+        {
+            "name": "mms3_epd_eis_srvy_l2_electronenergy_dump_P6_counts_t4",
+            "description": "---> dump_P6_counts_t4",
+            "units": " ",
+            "type": "double",
+            "fill": "-1.0E31"
+        },
+        {
+            "name": "mms3_epd_eis_srvy_l2_electronenergy_dump_P6_counts_t5",
+            "description": "---> dump_P6_counts_t5",
+            "units": " ",
+            "type": "double",
+            "fill": "-1.0E31"
+        },
+        {
+            "name": "mms3_epd_eis_srvy_l2_electronenergy_dump_P6_cps_t0",
+            "description": "MMS3 ElectronEnergy-Survey dump_P6_cps_t0 [data available beginning on 2025/01/06]",
+            "units": "1/s",
+            "type": "double",
+            "fill": "-1.0E31"
+        },
+        {
+            "name": "mms3_epd_eis_srvy_l2_electronenergy_dump_P6_cps_t1",
+            "description": "---> dump_P6_cps_t1",
+            "units": "1/s",
+            "type": "double",
+            "fill": "-1.0E31"
+        },
+        {
+            "name": "mms3_epd_eis_srvy_l2_electronenergy_dump_P6_cps_t2",
+            "description": "---> dump_P6_cps_t2",
+            "units": "1/s",
+            "type": "double",
+            "fill": "-1.0E31"
+        },
+        {
+            "name": "mms3_epd_eis_srvy_l2_electronenergy_dump_P6_cps_t3",
+            "description": "---> dump_P6_cps_t3",
+            "units": "1/s",
+            "type": "double",
+            "fill": "-1.0E31"
+        },
+        {
+            "name": "mms3_epd_eis_srvy_l2_electronenergy_dump_P6_cps_t4",
+            "description": "---> dump_P6_cps_t4",
+            "units": "1/s",
+            "type": "double",
+            "fill": "-1.0E31"
+        },
+        {
+            "name": "mms3_epd_eis_srvy_l2_electronenergy_dump_P6_cps_t5",
+            "description": "---> dump_P6_cps_t5",
+            "units": "1/s",
+            "type": "double",
+            "fill": "-1.0E31"
+        },
+        {
+            "name": "mms3_epd_eis_srvy_l2_electronenergy_dump_P6_flux_t0",
+            "description": "MMS3 ElectronEnergy-Survey dump_P6_flux_t0 [data available beginning on 2025/01/06]",
+            "units": "1/(cm^2 s sr keV)",
+            "type": "double",
+            "fill": "-1.0E31"
+        },
+        {
+            "name": "mms3_epd_eis_srvy_l2_electronenergy_dump_P6_flux_t1",
+            "description": "---> dump_P6_flux_t1",
+            "units": "1/(cm^2 s sr keV)",
+            "type": "double",
+            "fill": "-1.0E31"
+        },
+        {
+            "name": "mms3_epd_eis_srvy_l2_electronenergy_dump_P6_flux_t2",
+            "description": "---> dump_P6_flux_t2",
+            "units": "1/(cm^2 s sr keV)",
+            "type": "double",
+            "fill": "-1.0E31"
+        },
+        {
+            "name": "mms3_epd_eis_srvy_l2_electronenergy_dump_P6_flux_t3",
+            "description": "---> dump_P6_flux_t3",
+            "units": "1/(cm^2 s sr keV)",
+            "type": "double",
+            "fill": "-1.0E31"
+        },
+        {
+            "name": "mms3_epd_eis_srvy_l2_electronenergy_dump_P6_flux_t4",
+            "description": "---> dump_P6_flux_t4",
+            "units": "1/(cm^2 s sr keV)",
+            "type": "double",
+            "fill": "-1.0E31"
+        },
+        {
+            "name": "mms3_epd_eis_srvy_l2_electronenergy_dump_P6_flux_t5",
+            "description": "---> dump_P6_flux_t5",
+            "units": "1/(cm^2 s sr keV)",
+            "type": "double",
+            "fill": "-1.0E31"
+        },
+        {
+            "bins": [
+                {
+                    "name": "mms3_epd_eis_srvy_l2_electronenergy_electron_t0_energy",
+                    "centers": [
+                        40.0,
+                        60.0,
+                        90.0,
+                        200.0,
+                        400.0
+                    ],
+                    "units": "keV"
+                }
+            ],
+            "size": [
+                5
+            ],
             "name": "mms3_epd_eis_srvy_l2_electronenergy_electron_P5_counts_t0",
-            "description": "MMS3 ElectronEnergy-Survey electron_P5_counts_t0 [data available beginning on 2019/12/20]",
+            "description": "MMS3 ElectronEnergy-Survey electron_P5_counts_t0 [data available from 2019/12/20 to 2025/01/06]",
             "units": " ",
             "type": "double",
             "fill": "-1.0E31"
@@ -208,7 +748,7 @@
                 5
             ],
             "name": "mms3_epd_eis_srvy_l2_electronenergy_electron_P5_cps_t0",
-            "description": "MMS3 ElectronEnergy-Survey electron_P5_cps_t0 [data available beginning on 2019/12/20]",
+            "description": "MMS3 ElectronEnergy-Survey electron_P5_cps_t0 [data available from 2019/12/20 to 2025/01/06]",
             "units": "1/s",
             "type": "double",
             "fill": "-1.0E31"
@@ -346,7 +886,7 @@
                 5
             ],
             "name": "mms3_epd_eis_srvy_l2_electronenergy_electron_P5_flux_t0",
-            "description": "MMS3 ElectronEnergy-Survey electron_P5_flux_t0 [data available beginning on 2019/12/20]",
+            "description": "MMS3 ElectronEnergy-Survey electron_P5_flux_t0 [data available from 2019/12/20 to 2025/01/06]",
             "units": "1/(cm^2 s sr keV)",
             "type": "double",
             "fill": "-1.0E31"
@@ -1296,378 +1836,378 @@
         },
         {
             "name": "mms3_epd_eis_srvy_l2_electronenergy_dump_P3_counts_t0",
-            "description": "mms3_epd_eis_srvy_l2_electronenergy_dump_P3_counts_t0",
+            "description": "MMS3 ElectronEnergy-Survey dump_P3_counts_t0 [data available from 2015/07/02 to 2016/09/28]",
             "units": ".",
             "type": "double",
             "fill": "-1.0E31"
         },
         {
             "name": "mms3_epd_eis_srvy_l2_electronenergy_dump_P3_counts_t1",
-            "description": "---> mms3_epd_eis_srvy_l2_electronenergy_dump_P3_counts_t1",
+            "description": "---> dump_P3_counts_t1",
             "units": ".",
             "type": "double",
             "fill": "-1.0E31"
         },
         {
             "name": "mms3_epd_eis_srvy_l2_electronenergy_dump_P3_counts_t2",
-            "description": "---> mms3_epd_eis_srvy_l2_electronenergy_dump_P3_counts_t2",
+            "description": "---> dump_P3_counts_t2",
             "units": ".",
             "type": "double",
             "fill": "-1.0E31"
         },
         {
             "name": "mms3_epd_eis_srvy_l2_electronenergy_dump_P3_counts_t3",
-            "description": "---> mms3_epd_eis_srvy_l2_electronenergy_dump_P3_counts_t3",
+            "description": "---> dump_P3_counts_t3",
             "units": ".",
             "type": "double",
             "fill": "-1.0E31"
         },
         {
             "name": "mms3_epd_eis_srvy_l2_electronenergy_dump_P3_counts_t4",
-            "description": "---> mms3_epd_eis_srvy_l2_electronenergy_dump_P3_counts_t4",
+            "description": "---> dump_P3_counts_t4",
             "units": ".",
             "type": "double",
             "fill": "-1.0E31"
         },
         {
             "name": "mms3_epd_eis_srvy_l2_electronenergy_dump_P3_counts_t5",
-            "description": "---> mms3_epd_eis_srvy_l2_electronenergy_dump_P3_counts_t5",
+            "description": "---> dump_P3_counts_t5",
             "units": ".",
             "type": "double",
             "fill": "-1.0E31"
         },
         {
             "name": "mms3_epd_eis_srvy_l2_electronenergy_dump_P4_counts_t0",
-            "description": "mms3_epd_eis_srvy_l2_electronenergy_dump_P4_counts_t0",
+            "description": "MMS3 ElectronEnergy-Survey dump_P4_counts_t0 [data available from 2016/09/29 to 2019/12/19]",
             "units": ".",
             "type": "double",
             "fill": "-1.0E31"
         },
         {
             "name": "mms3_epd_eis_srvy_l2_electronenergy_dump_P4_counts_t1",
-            "description": "---> mms3_epd_eis_srvy_l2_electronenergy_dump_P4_counts_t1",
+            "description": "---> dump_P4_counts_t1",
             "units": ".",
             "type": "double",
             "fill": "-1.0E31"
         },
         {
             "name": "mms3_epd_eis_srvy_l2_electronenergy_dump_P4_counts_t2",
-            "description": "---> mms3_epd_eis_srvy_l2_electronenergy_dump_P4_counts_t2",
+            "description": "---> dump_P4_counts_t2",
             "units": ".",
             "type": "double",
             "fill": "-1.0E31"
         },
         {
             "name": "mms3_epd_eis_srvy_l2_electronenergy_dump_P4_counts_t3",
-            "description": "---> mms3_epd_eis_srvy_l2_electronenergy_dump_P4_counts_t3",
+            "description": "---> dump_P4_counts_t3",
             "units": ".",
             "type": "double",
             "fill": "-1.0E31"
         },
         {
             "name": "mms3_epd_eis_srvy_l2_electronenergy_dump_P4_counts_t4",
-            "description": "---> mms3_epd_eis_srvy_l2_electronenergy_dump_P4_counts_t4",
+            "description": "---> dump_P4_counts_t4",
             "units": ".",
             "type": "double",
             "fill": "-1.0E31"
         },
         {
             "name": "mms3_epd_eis_srvy_l2_electronenergy_dump_P4_counts_t5",
-            "description": "---> mms3_epd_eis_srvy_l2_electronenergy_dump_P4_counts_t5",
+            "description": "---> dump_P4_counts_t5",
             "units": ".",
             "type": "double",
             "fill": "-1.0E31"
         },
         {
             "name": "mms3_epd_eis_srvy_l2_electronenergy_dump_P5_counts_t0",
-            "description": "mms3_epd_eis_srvy_l2_electronenergy_dump_P5_counts_t0",
+            "description": "MMS3 ElectronEnergy-Survey dump_P5_counts_t0 [data available from 2019/12/20 to 2025/01/06]",
             "units": ".",
             "type": "double",
             "fill": "-1.0E31"
         },
         {
             "name": "mms3_epd_eis_srvy_l2_electronenergy_dump_P5_counts_t1",
-            "description": "---> mms3_epd_eis_srvy_l2_electronenergy_dump_P5_counts_t1",
+            "description": "---> dump_P5_counts_t1",
             "units": ".",
             "type": "double",
             "fill": "-1.0E31"
         },
         {
             "name": "mms3_epd_eis_srvy_l2_electronenergy_dump_P5_counts_t2",
-            "description": "---> mms3_epd_eis_srvy_l2_electronenergy_dump_P5_counts_t2",
+            "description": "---> dump_P5_counts_t2",
             "units": ".",
             "type": "double",
             "fill": "-1.0E31"
         },
         {
             "name": "mms3_epd_eis_srvy_l2_electronenergy_dump_P5_counts_t3",
-            "description": "---> mms3_epd_eis_srvy_l2_electronenergy_dump_P5_counts_t3",
+            "description": "---> dump_P5_counts_t3",
             "units": ".",
             "type": "double",
             "fill": "-1.0E31"
         },
         {
             "name": "mms3_epd_eis_srvy_l2_electronenergy_dump_P5_counts_t4",
-            "description": "---> mms3_epd_eis_srvy_l2_electronenergy_dump_P5_counts_t4",
+            "description": "---> dump_P5_counts_t4",
             "units": ".",
             "type": "double",
             "fill": "-1.0E31"
         },
         {
             "name": "mms3_epd_eis_srvy_l2_electronenergy_dump_P5_counts_t5",
-            "description": "---> mms3_epd_eis_srvy_l2_electronenergy_dump_P5_counts_t5",
+            "description": "---> dump_P5_counts_t5",
             "units": ".",
             "type": "double",
             "fill": "-1.0E31"
         },
         {
             "name": "mms3_epd_eis_srvy_l2_electronenergy_dump_P3_cps_t0",
-            "description": "mms3_epd_eis_srvy_l2_electronenergy_dump_P3_cps_t0",
+            "description": "MMS3 ElectronEnergy-Survey dump_P3_cps_t0 [data available from 2015/07/02 to 2016/09/28]",
             "units": "1/s",
             "type": "double",
             "fill": "-1.0E31"
         },
         {
             "name": "mms3_epd_eis_srvy_l2_electronenergy_dump_P3_cps_t1",
-            "description": "---> mms3_epd_eis_srvy_l2_electronenergy_dump_P3_cps_t1",
+            "description": "---> dump_P3_cps_t1",
             "units": "1/s",
             "type": "double",
             "fill": "-1.0E31"
         },
         {
             "name": "mms3_epd_eis_srvy_l2_electronenergy_dump_P3_cps_t2",
-            "description": "---> mms3_epd_eis_srvy_l2_electronenergy_dump_P3_cps_t2",
+            "description": "---> dump_P3_cps_t2",
             "units": "1/s",
             "type": "double",
             "fill": "-1.0E31"
         },
         {
             "name": "mms3_epd_eis_srvy_l2_electronenergy_dump_P3_cps_t3",
-            "description": "---> mms3_epd_eis_srvy_l2_electronenergy_dump_P3_cps_t3",
+            "description": "---> dump_P3_cps_t3",
             "units": "1/s",
             "type": "double",
             "fill": "-1.0E31"
         },
         {
             "name": "mms3_epd_eis_srvy_l2_electronenergy_dump_P3_cps_t4",
-            "description": "---> mms3_epd_eis_srvy_l2_electronenergy_dump_P3_cps_t4",
+            "description": "---> dump_P3_cps_t4",
             "units": "1/s",
             "type": "double",
             "fill": "-1.0E31"
         },
         {
             "name": "mms3_epd_eis_srvy_l2_electronenergy_dump_P3_cps_t5",
-            "description": "---> mms3_epd_eis_srvy_l2_electronenergy_dump_P3_cps_t5",
+            "description": "---> dump_P3_cps_t5",
             "units": "1/s",
             "type": "double",
             "fill": "-1.0E31"
         },
         {
             "name": "mms3_epd_eis_srvy_l2_electronenergy_dump_P4_cps_t0",
-            "description": "mms3_epd_eis_srvy_l2_electronenergy_dump_P4_cps_t0",
+            "description": "MMS3 ElectronEnergy-Survey dump_P4_cps_t0 [data available from 2016/09/29 to 2019/12/19]",
             "units": "1/s",
             "type": "double",
             "fill": "-1.0E31"
         },
         {
             "name": "mms3_epd_eis_srvy_l2_electronenergy_dump_P4_cps_t1",
-            "description": "---> mms3_epd_eis_srvy_l2_electronenergy_dump_P4_cps_t1",
+            "description": "---> dump_P4_cps_t1",
             "units": "1/s",
             "type": "double",
             "fill": "-1.0E31"
         },
         {
             "name": "mms3_epd_eis_srvy_l2_electronenergy_dump_P4_cps_t2",
-            "description": "---> mms3_epd_eis_srvy_l2_electronenergy_dump_P4_cps_t2",
+            "description": "---> dump_P4_cps_t2",
             "units": "1/s",
             "type": "double",
             "fill": "-1.0E31"
         },
         {
             "name": "mms3_epd_eis_srvy_l2_electronenergy_dump_P4_cps_t3",
-            "description": "---> mms3_epd_eis_srvy_l2_electronenergy_dump_P4_cps_t3",
+            "description": "---> dump_P4_cps_t3",
             "units": "1/s",
             "type": "double",
             "fill": "-1.0E31"
         },
         {
             "name": "mms3_epd_eis_srvy_l2_electronenergy_dump_P4_cps_t4",
-            "description": "---> mms3_epd_eis_srvy_l2_electronenergy_dump_P4_cps_t4",
+            "description": "---> dump_P4_cps_t4",
             "units": "1/s",
             "type": "double",
             "fill": "-1.0E31"
         },
         {
             "name": "mms3_epd_eis_srvy_l2_electronenergy_dump_P4_cps_t5",
-            "description": "---> mms3_epd_eis_srvy_l2_electronenergy_dump_P4_cps_t5",
+            "description": "---> dump_P4_cps_t5",
             "units": "1/s",
             "type": "double",
             "fill": "-1.0E31"
         },
         {
             "name": "mms3_epd_eis_srvy_l2_electronenergy_dump_P5_cps_t0",
-            "description": "mms3_epd_eis_srvy_l2_electronenergy_dump_P5_cps_t0",
+            "description": "MMS3 ElectronEnergy-Survey dump_P5_cps_t0 [data available from 2019/12/20 to 2025/01/06]",
             "units": "1/s",
             "type": "double",
             "fill": "-1.0E31"
         },
         {
             "name": "mms3_epd_eis_srvy_l2_electronenergy_dump_P5_cps_t1",
-            "description": "---> mms3_epd_eis_srvy_l2_electronenergy_dump_P5_cps_t1",
+            "description": "---> dump_P5_cps_t1",
             "units": "1/s",
             "type": "double",
             "fill": "-1.0E31"
         },
         {
             "name": "mms3_epd_eis_srvy_l2_electronenergy_dump_P5_cps_t2",
-            "description": "---> mms3_epd_eis_srvy_l2_electronenergy_dump_P5_cps_t2",
+            "description": "---> dump_P5_cps_t2",
             "units": "1/s",
             "type": "double",
             "fill": "-1.0E31"
         },
         {
             "name": "mms3_epd_eis_srvy_l2_electronenergy_dump_P5_cps_t3",
-            "description": "---> mms3_epd_eis_srvy_l2_electronenergy_dump_P5_cps_t3",
+            "description": "---> dump_P5_cps_t3",
             "units": "1/s",
             "type": "double",
             "fill": "-1.0E31"
         },
         {
             "name": "mms3_epd_eis_srvy_l2_electronenergy_dump_P5_cps_t4",
-            "description": "---> mms3_epd_eis_srvy_l2_electronenergy_dump_P5_cps_t4",
+            "description": "---> dump_P5_cps_t4",
             "units": "1/s",
             "type": "double",
             "fill": "-1.0E31"
         },
         {
             "name": "mms3_epd_eis_srvy_l2_electronenergy_dump_P5_cps_t5",
-            "description": "---> mms3_epd_eis_srvy_l2_electronenergy_dump_P5_cps_t5",
+            "description": "---> dump_P5_cps_t5",
             "units": "1/s",
             "type": "double",
             "fill": "-1.0E31"
         },
         {
             "name": "mms3_epd_eis_srvy_l2_electronenergy_dump_P3_flux_t0",
-            "description": "mms3_epd_eis_srvy_l2_electronenergy_dump_P3_flux_t0",
+            "description": "MMS3 ElectronEnergy-Survey dump_P3_flux_t0 [data available from 2015/07/02 to 2016/09/28]",
             "units": "1/(cm^2 s sr keV)",
             "type": "double",
             "fill": "-1.0E31"
         },
         {
             "name": "mms3_epd_eis_srvy_l2_electronenergy_dump_P3_flux_t1",
-            "description": "---> mms3_epd_eis_srvy_l2_electronenergy_dump_P3_flux_t1",
+            "description": "---> dump_P3_flux_t1",
             "units": "1/(cm^2 s sr keV)",
             "type": "double",
             "fill": "-1.0E31"
         },
         {
             "name": "mms3_epd_eis_srvy_l2_electronenergy_dump_P3_flux_t2",
-            "description": "---> mms3_epd_eis_srvy_l2_electronenergy_dump_P3_flux_t2",
+            "description": "---> dump_P3_flux_t2",
             "units": "1/(cm^2 s sr keV)",
             "type": "double",
             "fill": "-1.0E31"
         },
         {
             "name": "mms3_epd_eis_srvy_l2_electronenergy_dump_P3_flux_t3",
-            "description": "---> mms3_epd_eis_srvy_l2_electronenergy_dump_P3_flux_t3",
+            "description": "---> dump_P3_flux_t3",
             "units": "1/(cm^2 s sr keV)",
             "type": "double",
             "fill": "-1.0E31"
         },
         {
             "name": "mms3_epd_eis_srvy_l2_electronenergy_dump_P3_flux_t4",
-            "description": "---> mms3_epd_eis_srvy_l2_electronenergy_dump_P3_flux_t4",
+            "description": "---> dump_P3_flux_t4",
             "units": "1/(cm^2 s sr keV)",
             "type": "double",
             "fill": "-1.0E31"
         },
         {
             "name": "mms3_epd_eis_srvy_l2_electronenergy_dump_P3_flux_t5",
-            "description": "---> mms3_epd_eis_srvy_l2_electronenergy_dump_P3_flux_t5",
+            "description": "---> dump_P3_flux_t5",
             "units": "1/(cm^2 s sr keV)",
             "type": "double",
             "fill": "-1.0E31"
         },
         {
             "name": "mms3_epd_eis_srvy_l2_electronenergy_dump_P4_flux_t0",
-            "description": "mms3_epd_eis_srvy_l2_electronenergy_dump_P4_flux_t0",
+            "description": "MMS3 ElectronEnergy-Survey dump_P4_flux_t0 [data available from 2016/09/29 to 2019/12/19]",
             "units": "1/(cm^2 s sr keV)",
             "type": "double",
             "fill": "-1.0E31"
         },
         {
             "name": "mms3_epd_eis_srvy_l2_electronenergy_dump_P4_flux_t1",
-            "description": "---> mms3_epd_eis_srvy_l2_electronenergy_dump_P4_flux_t1",
+            "description": "---> dump_P4_flux_t1",
             "units": "1/(cm^2 s sr keV)",
             "type": "double",
             "fill": "-1.0E31"
         },
         {
             "name": "mms3_epd_eis_srvy_l2_electronenergy_dump_P4_flux_t2",
-            "description": "---> mms3_epd_eis_srvy_l2_electronenergy_dump_P4_flux_t2",
+            "description": "---> dump_P4_flux_t2",
             "units": "1/(cm^2 s sr keV)",
             "type": "double",
             "fill": "-1.0E31"
         },
         {
             "name": "mms3_epd_eis_srvy_l2_electronenergy_dump_P4_flux_t3",
-            "description": "---> mms3_epd_eis_srvy_l2_electronenergy_dump_P4_flux_t3",
+            "description": "---> dump_P4_flux_t3",
             "units": "1/(cm^2 s sr keV)",
             "type": "double",
             "fill": "-1.0E31"
         },
         {
             "name": "mms3_epd_eis_srvy_l2_electronenergy_dump_P4_flux_t4",
-            "description": "---> mms3_epd_eis_srvy_l2_electronenergy_dump_P4_flux_t4",
+            "description": "---> dump_P4_flux_t4",
             "units": "1/(cm^2 s sr keV)",
             "type": "double",
             "fill": "-1.0E31"
         },
         {
             "name": "mms3_epd_eis_srvy_l2_electronenergy_dump_P4_flux_t5",
-            "description": "---> mms3_epd_eis_srvy_l2_electronenergy_dump_P4_flux_t5",
+            "description": "---> dump_P4_flux_t5",
             "units": "1/(cm^2 s sr keV)",
             "type": "double",
             "fill": "-1.0E31"
         },
         {
             "name": "mms3_epd_eis_srvy_l2_electronenergy_dump_P5_flux_t0",
-            "description": "mms3_epd_eis_srvy_l2_electronenergy_dump_P5_flux_t0",
+            "description": "MMS3 ElectronEnergy-Survey dump_P5_flux_t0 [data available from 2019/12/20 to 2025/01/06]",
             "units": "1/(cm^2 s sr keV)",
             "type": "double",
             "fill": "-1.0E31"
         },
         {
             "name": "mms3_epd_eis_srvy_l2_electronenergy_dump_P5_flux_t1",
-            "description": "---> mms3_epd_eis_srvy_l2_electronenergy_dump_P5_flux_t1",
+            "description": "---> dump_P5_flux_t1",
             "units": "1/(cm^2 s sr keV)",
             "type": "double",
             "fill": "-1.0E31"
         },
         {
             "name": "mms3_epd_eis_srvy_l2_electronenergy_dump_P5_flux_t2",
-            "description": "---> mms3_epd_eis_srvy_l2_electronenergy_dump_P5_flux_t2",
+            "description": "---> dump_P5_flux_t2",
             "units": "1/(cm^2 s sr keV)",
             "type": "double",
             "fill": "-1.0E31"
         },
         {
             "name": "mms3_epd_eis_srvy_l2_electronenergy_dump_P5_flux_t3",
-            "description": "---> mms3_epd_eis_srvy_l2_electronenergy_dump_P5_flux_t3",
+            "description": "---> dump_P5_flux_t3",
             "units": "1/(cm^2 s sr keV)",
             "type": "double",
             "fill": "-1.0E31"
         },
         {
             "name": "mms3_epd_eis_srvy_l2_electronenergy_dump_P5_flux_t4",
-            "description": "---> mms3_epd_eis_srvy_l2_electronenergy_dump_P5_flux_t4",
+            "description": "---> dump_P5_flux_t4",
             "units": "1/(cm^2 s sr keV)",
             "type": "double",
             "fill": "-1.0E31"
         },
         {
             "name": "mms3_epd_eis_srvy_l2_electronenergy_dump_P5_flux_t5",
-            "description": "---> mms3_epd_eis_srvy_l2_electronenergy_dump_P5_flux_t5",
+            "description": "---> dump_P5_flux_t5",
             "units": "1/(cm^2 s sr keV)",
             "type": "double",
             "fill": "-1.0E31"
@@ -1681,35 +2221,35 @@
         },
         {
             "name": "mms3_epd_eis_srvy_l2_electronenergy_pitch_angle_t1",
-            "description": "---> Pitch Angle for Telescope 1 MMS3",
+            "description": "Pitch Angle for Telescope 1 MMS3",
             "units": "deg",
             "type": "double",
             "fill": "-1.0E31"
         },
         {
             "name": "mms3_epd_eis_srvy_l2_electronenergy_pitch_angle_t2",
-            "description": "---> Pitch Angle for Telescope 2 MMS3",
+            "description": "Pitch Angle for Telescope 2 MMS3",
             "units": "deg",
             "type": "double",
             "fill": "-1.0E31"
         },
         {
             "name": "mms3_epd_eis_srvy_l2_electronenergy_pitch_angle_t3",
-            "description": "---> Pitch Angle for Telescope 3 MMS3",
+            "description": "Pitch Angle for Telescope 3 MMS3",
             "units": "deg",
             "type": "double",
             "fill": "-1.0E31"
         },
         {
             "name": "mms3_epd_eis_srvy_l2_electronenergy_pitch_angle_t4",
-            "description": "---> Pitch Angle for Telescope 4 MMS3",
+            "description": "Pitch Angle for Telescope 4 MMS3",
             "units": "deg",
             "type": "double",
             "fill": "-1.0E31"
         },
         {
             "name": "mms3_epd_eis_srvy_l2_electronenergy_pitch_angle_t5",
-            "description": "---> Pitch Angle for Telescope 5 MMS3",
+            "description": "Pitch Angle for Telescope 5 MMS3",
             "units": "deg",
             "type": "double",
             "fill": "-1.0E31"
@@ -1729,7 +2269,7 @@
                 3
             ],
             "name": "mms3_epd_eis_srvy_l2_electronenergy_look_t1",
-            "description": "---> Look Direction for Telescope 1 MMS3",
+            "description": "Look Direction for Telescope 1 MMS3",
             "units": ".",
             "type": "double",
             "fill": "-1.0E31"
@@ -1739,7 +2279,7 @@
                 3
             ],
             "name": "mms3_epd_eis_srvy_l2_electronenergy_look_t2",
-            "description": "---> Look Direction for Telescope 2 MMS3",
+            "description": "Look Direction for Telescope 2 MMS3",
             "units": ".",
             "type": "double",
             "fill": "-1.0E31"
@@ -1749,7 +2289,7 @@
                 3
             ],
             "name": "mms3_epd_eis_srvy_l2_electronenergy_look_t3",
-            "description": "---> Look Direction for Telescope 3 MMS3",
+            "description": "Look Direction for Telescope 3 MMS3",
             "units": ".",
             "type": "double",
             "fill": "-1.0E31"
@@ -1759,7 +2299,7 @@
                 3
             ],
             "name": "mms3_epd_eis_srvy_l2_electronenergy_look_t4",
-            "description": "---> Look Direction for Telescope 4 MMS3",
+            "description": "Look Direction for Telescope 4 MMS3",
             "units": ".",
             "type": "double",
             "fill": "-1.0E31"
@@ -1769,7 +2309,7 @@
                 3
             ],
             "name": "mms3_epd_eis_srvy_l2_electronenergy_look_t5",
-            "description": "---> Look Direction for Telescope 5 MMS3",
+            "description": "Look Direction for Telescope 5 MMS3",
             "units": ".",
             "type": "double",
             "fill": "-1.0E31"
@@ -1789,7 +2329,7 @@
                 3
             ],
             "name": "mms3_epd_eis_srvy_l2_electronenergy_position_gse",
-            "description": "---> Spacecraft position GSE MMS3",
+            "description": "Spacecraft position GSE MMS3",
             "units": "km",
             "type": "double",
             "fill": "-1.0E31"
@@ -1799,7 +2339,7 @@
                 3
             ],
             "name": "mms3_epd_eis_srvy_l2_electronenergy_position_gsm",
-            "description": "---> Spacecraft position in GSM coordinates MMS3",
+            "description": "Spacecraft position in GSM coordinates MMS3",
             "units": "km",
             "type": "double",
             "fill": "-1.0E31"
@@ -1809,7 +2349,7 @@
                 3
             ],
             "name": "mms3_epd_eis_srvy_l2_electronenergy_moon_gse",
-            "description": "---> Spacecraft-Moon vector in GSE coordinates MMS3",
+            "description": "Spacecraft-Moon vector in GSE coordinates MMS3",
             "units": "km",
             "type": "double",
             "fill": "-1.0E31"
@@ -1829,7 +2369,7 @@
                 9
             ],
             "name": "mms3_epd_eis_srvy_l2_electronenergy_gse_to_gsm",
-            "description": "---> Transformation Matrix GSE to GSM Frame MMS3",
+            "description": "Transformation Matrix GSE to GSM Frame MMS3",
             "units": ".",
             "type": "double",
             "fill": "-1.0E31"
@@ -1843,49 +2383,49 @@
         },
         {
             "name": "mms3_epd_eis_srvy_l2_electronenergy_l",
-            "description": "---> Dipole L-shell MMS3",
+            "description": "Dipole L-shell MMS3",
             "units": ".",
             "type": "double",
             "fill": "-1.0E31"
         },
         {
             "name": "mms3_epd_eis_srvy_l2_electronenergy_gse_lat",
-            "description": "---> Latitude in GSE Frame MMS3",
+            "description": "Latitude in GSE Frame MMS3",
             "units": "deg",
             "type": "double",
             "fill": "-1.0E31"
         },
         {
             "name": "mms3_epd_eis_srvy_l2_electronenergy_gse_lon",
-            "description": "---> Longitude in GSE Frame MMS3",
+            "description": "Longitude in GSE Frame MMS3",
             "units": "deg",
             "type": "double",
             "fill": "-1.0E31"
         },
         {
             "name": "mms3_epd_eis_srvy_l2_electronenergy_gsm_lat",
-            "description": "---> Latitude in GSM Frame MMS3",
+            "description": "Latitude in GSM Frame MMS3",
             "units": "deg",
             "type": "double",
             "fill": "-1.0E31"
         },
         {
             "name": "mms3_epd_eis_srvy_l2_electronenergy_gsm_lon",
-            "description": "---> Longitude in GSM Frame MMS3",
+            "description": "Longitude in GSM Frame MMS3",
             "units": "deg",
             "type": "double",
             "fill": "-1.0E31"
         },
         {
             "name": "mms3_epd_eis_srvy_l2_electronenergy_sm_lat",
-            "description": "---> Latitude in SM Frame MMS3",
+            "description": "Latitude in SM Frame MMS3",
             "units": "deg",
             "type": "double",
             "fill": "-1.0E31"
         },
         {
             "name": "mms3_epd_eis_srvy_l2_electronenergy_sm_lon",
-            "description": "---> Longitude in SM Frame MMS3",
+            "description": "Longitude in SM Frame MMS3",
             "units": "deg",
             "type": "double",
             "fill": "-1.0E31"
@@ -1906,35 +2446,35 @@
         },
         {
             "name": "mms3_epd_eis_srvy_l2_electronenergy_ssd1",
-            "description": "---> Solid State Energy Detector 1 Count Rate MMS3",
+            "description": "Solid State Energy Detector 1 Count Rate MMS3",
             "units": "1/s",
             "type": "double",
             "fill": "-1.0E31"
         },
         {
             "name": "mms3_epd_eis_srvy_l2_electronenergy_ssd2",
-            "description": "---> Solid State Energy Detector 2 Count Rate MMS3",
+            "description": "Solid State Energy Detector 2 Count Rate MMS3",
             "units": "1/s",
             "type": "double",
             "fill": "-1.0E31"
         },
         {
             "name": "mms3_epd_eis_srvy_l2_electronenergy_ssd3",
-            "description": "---> Solid State Energy Detector 3 Count Rate MMS3",
+            "description": "Solid State Energy Detector 3 Count Rate MMS3",
             "units": "1/s",
             "type": "double",
             "fill": "-1.0E31"
         },
         {
             "name": "mms3_epd_eis_srvy_l2_electronenergy_ssd4",
-            "description": "---> Solid State Energy Detector 4 Count Rate MMS3",
+            "description": "Solid State Energy Detector 4 Count Rate MMS3",
             "units": "1/s",
             "type": "double",
             "fill": "-1.0E31"
         },
         {
             "name": "mms3_epd_eis_srvy_l2_electronenergy_ssd5",
-            "description": "---> Solid State Energy Detector 5 Count Rate MMS3",
+            "description": "Solid State Energy Detector 5 Count Rate MMS3",
             "units": "1/s",
             "type": "double",
             "fill": "-1.0E31"
@@ -1948,14 +2488,14 @@
         },
         {
             "name": "mms3_epd_eis_srvy_l2_electronenergy_vee",
-            "description": "---> Valid Electron Events per second MMS3",
+            "description": "Valid Electron Events per second MMS3",
             "units": "1/s",
             "type": "double",
             "fill": "-1.0E31"
         }
     ],
-    "startDate": "2015-09-01T00:00:03Z",
-    "stopDate": "2025-03-02T23:43:35Z",
+    "startDate": "2015-09-26T00:00:01Z",
+    "stopDate": "2025-11-10T23:59:58Z",
     "status": {
         "code": 1200,
         "message": "OK"
