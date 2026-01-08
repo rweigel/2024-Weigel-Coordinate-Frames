@@ -71,7 +71,7 @@ def plot(df, tranform_str):
     if column == '|max-min|':
       continue
 
-    stat = utilrsw.format_exponent(numpy.mean(numpy.abs(df['diffs'][column])), 0)
+    stat = utilrsw.mpl.format_exponent(numpy.mean(numpy.abs(df['diffs'][column])), 0)
     label = f"{column} (${stat}$)"
     kwargs = {
       'label': label,

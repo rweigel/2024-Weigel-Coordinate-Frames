@@ -168,10 +168,11 @@ def _config():
 
   frames = ['GEO', 'MAG', 'GSE', 'GSM']
 
-  if len(sys.argv) > 0:
+  if len(sys.argv) > 1:
     run_id = int(sys.argv[1])
 
   if run_id == 1:
+    # Paper run
     axis = 'z'
     delta = {'days': 1}
     to = datetime.datetime(2010, 1, 1, 0, 0, 0)
