@@ -17,8 +17,18 @@ rm -f agutexSI2019.cls
 
 find . -name '.DS_Store' -delete
 find . -name '.gitignore' -delete
-find code/figures -name '*.txt' -delete
-find code/figures -name '*.png' -delete
-find code/figures -name '*.svg' -delete
+
+# Extract referenced files from main.tex
+referenced_files=$(grep -oE '\{code/[^}]+\}' main.tex | tr -d '{}' | sort -u)
+
+# Delete files in code/ that are not referenced in main.tex
+find code -type f | while read file; do
+  if ! echo "$referenced_files" | grep -q "^${file}$"; then
+    rm -f "$file"
+  fi
+done
+
+# Delete empty directories in code/
+find code/ -type d -empty -delete
 
 cd ..; zip -r arxiv.zip arxiv
