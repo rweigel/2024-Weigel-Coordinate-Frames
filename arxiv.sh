@@ -28,6 +28,10 @@ find code -type f | while read file; do
   fi
 done
 
+# Replace \usepackage{lineno} with %\usepackage{lineno} in main.tex
+sed -i '' 's/\\usepackage{lineno}/%\\usepackage{lineno}/' main.tex
+sed -i '' 's/\\linenumbers/%\\linenumbers/' main.tex
+
 # Delete empty directories in code/
 find code/ -type d -empty -delete
 
